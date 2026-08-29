@@ -128,20 +128,33 @@ def clean_link(link):
     return link
 
 
+def is_google_feed(url):
+    return "news.google.com" in url or "google.co" in url
+
+
 def fetch_feed(source):
-    """1本のフィードを取得して記事リストを返す。失敗したらエラー情報を返す。"""
-    req = urllib.request.Request(source["url"], headers={"User-Agent": USER_AGENT})
+    """1本のフィードを取得して記事リストを返す。失敗したらエラー情報を返す。
+
+    Google系はGitHub Actionsのような共有IPからだと一時的に弾かれやすいので、
+    同意Cookieを付けて、失敗時は間隔を空けながら3回まで粘る。
+    """
+    google = is_google_feed(source["url"])
+    headers = {"User-Agent": USER_AGENT}
+    if google:
+        headers["Cookie"] = "CONSENT=YES+cb.20240101-01-p0.ja+FX+000"
+    req = urllib.request.Request(source["url"], headers=headers)
     raw_items = None
-    for attempt in (1, 2):  # 一時的なエラーに備えて1回だけ再試行
+    max_attempts = 3 if google else 2
+    for attempt in range(1, max_attempts + 1):
         try:
             with urllib.request.urlopen(req, timeout=FETCH_TIMEOUT) as res:
                 raw = res.read()
             raw_items = parse_feed_xml(sanitize_xml(raw))
             break
         except Exception as e:
-            if attempt == 2:
+            if attempt == max_attempts:
                 return {"source": source, "error": str(e)[:120], "entries": []}
-            time.sleep(2)
+            time.sleep(3 * attempt)
 
     entries = []
     for it in raw_items:
@@ -533,9 +546,18 @@ def main():
         for sec in config["sections"]
         for src in sec["sources"]
     ]
-    print(f"📡 {len(jobs)}本のフィードを巡回中…", file=sys.stderr)
+    # Google系は同一IPからの連打で弾かれやすいので、並列に混ぜず1本ずつ間隔を空けて巡回する
+    google_jobs = [j for j in jobs if is_google_feed(j["url"])]
+    other_jobs = [j for j in jobs if not is_google_feed(j["url"])]
+    print(
+        f"📡 {len(jobs)}本のフィードを巡回中…（うちGoogle系{len(google_jobs)}本はゆっくり順番に）",
+        file=sys.stderr,
+    )
     with concurrent.futures.ThreadPoolExecutor(max_workers=12) as ex:
-        results = list(ex.map(fetch_feed, jobs))
+        results = list(ex.map(fetch_feed, other_jobs))
+    for j in google_jobs:
+        results.append(fetch_feed(j))
+        time.sleep(1.5)
 
     errors = [r for r in results if r["error"]]
     for r in errors:
