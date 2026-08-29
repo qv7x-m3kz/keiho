@@ -344,11 +344,13 @@ ARCHIVE_INDEX_TEMPLATE = """<!DOCTYPE html>
   .card { background: var(--surface); border-radius: 14px; box-shadow: 0 1px 2px rgba(14,29,61,.06), 0 4px 16px rgba(14,29,61,.05); padding: 22px 26px; margin-top: 16px; }
   h2 { font-size: 15px; font-weight: 700; letter-spacing: 0.1em; border-bottom: 2px solid var(--navy); padding-bottom: 8px; }
   ul { list-style: none; }
-  li a { display: flex; justify-content: space-between; padding: 12px 2px; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; font-size: 14.5px; }
+  li a { display: block; padding: 12px 2px; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
   li:last-child a { border-bottom: none; }
-  li a:hover .d { color: var(--accent); }
+  li a:hover .d, li a:hover .t { color: var(--accent); }
+  .row1 { display: flex; justify-content: space-between; font-size: 14.5px; }
   .d { font-weight: 700; }
   .n { color: var(--ink-faint); font-size: 12.5px; }
+  .t { display: block; font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 </style>
 </head>
 <body>
@@ -367,19 +369,33 @@ ARCHIVE_INDEX_TEMPLATE = """<!DOCTYPE html>
 """
 
 
+def front_title_of(path):
+    """アーカイブ号のHTMLから一面トップの見出しを抜き出す。"""
+    try:
+        m = re.search(
+            r'class="front-top".*?class="headline">(.*?)</h2>',
+            path.read_text(encoding="utf-8"),
+            re.S,
+        )
+        return strip_html(m.group(1)) if m else ""
+    except Exception:
+        return ""
+
+
 def write_archive_index(arch_dir, launch, tagline):
     """archive/ 内の日付ファイルを走査してバックナンバー一覧を生成する。"""
-    dates = []
+    editions = []
     for f in arch_dir.glob("????-??-??.html"):
         try:
-            dates.append(datetime.strptime(f.stem, "%Y-%m-%d").date())
+            d = datetime.strptime(f.stem, "%Y-%m-%d").date()
         except ValueError:
             continue
-    dates.sort(reverse=True)
+        editions.append((d, front_title_of(f)))
+    editions.sort(key=lambda e: e[0], reverse=True)
 
     parts = []
     current_month = None
-    for d in dates:
+    for d, title in editions:
         month = f"{d.year}年{d.month}月"
         if month != current_month:
             if current_month is not None:
@@ -387,10 +403,12 @@ def write_archive_index(arch_dir, launch, tagline):
             parts.append(f'<section class="card"><h2>{month}</h2><ul>')
             current_month = month
         issue = max(1, (d - launch).days + 1)
+        title_html = f'<span class="t">{esc(title)}</span>' if title else ""
         parts.append(
             f'<li><a href="{d:%Y-%m-%d}.html">'
-            f'<span class="d">{d.month}月{d.day}日（{WEEKDAYS_JA[d.weekday()]}）</span>'
-            f'<span class="n">第{issue}号</span></a></li>'
+            f'<span class="row1"><span class="d">{d.month}月{d.day}日（{WEEKDAYS_JA[d.weekday()]}）</span>'
+            f'<span class="n">第{issue}号</span></span>'
+            f"{title_html}</a></li>"
         )
     if current_month is not None:
         parts.append("</ul></section>")
@@ -399,7 +417,7 @@ def write_archive_index(arch_dir, launch, tagline):
         "%%BODY%%", "\n".join(parts)
     )
     (arch_dir / "index.html").write_text(page, encoding="utf-8")
-    return len(dates)
+    return len(editions)
 
 
 # ---------------------------------------------------------------- メイン

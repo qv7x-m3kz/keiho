@@ -24,11 +24,13 @@
   .card { background: var(--surface); border-radius: 14px; box-shadow: 0 1px 2px rgba(14,29,61,.06), 0 4px 16px rgba(14,29,61,.05); padding: 22px 26px; margin-top: 16px; }
   h2 { font-size: 15px; font-weight: 700; letter-spacing: 0.1em; border-bottom: 2px solid var(--navy); padding-bottom: 8px; }
   ul { list-style: none; }
-  li a { display: flex; justify-content: space-between; padding: 12px 2px; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; font-size: 14.5px; }
+  li a { display: block; padding: 12px 2px; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
   li:last-child a { border-bottom: none; }
-  li a:hover .d { color: var(--accent); }
+  li a:hover .d, li a:hover .t { color: var(--accent); }
+  .row1 { display: flex; justify-content: space-between; font-size: 14.5px; }
   .d { font-weight: 700; }
   .n { color: var(--ink-faint); font-size: 12.5px; }
+  .t { display: block; font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 </style>
 </head>
 <body>
@@ -41,7 +43,7 @@
 </div>
 <div class="sheet">
 <section class="card"><h2>2026年8月</h2><ul>
-<li><a href="2026-08-29.html"><span class="d">8月29日（土）</span><span class="n">第1号</span></a></li>
+<li><a href="2026-08-29.html"><span class="row1"><span class="d">8月29日（土）</span><span class="n">第1号</span></span><span class="t">【採用・ブランディング】文章はAIで作れる時代。「声」にしか乗らない熱量と、中小企業の発信戦略｜古川仁章</span></a></li>
 </ul></section>
 </div>
 </body>
