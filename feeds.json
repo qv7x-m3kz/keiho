@@ -97,6 +97,15 @@
       ]
     },
     {
+      "id": "news",
+      "title": "経済・時事",
+      "icon": "public",
+      "sources": [
+        { "name": "Google News（ビジネス）", "url": "https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=ja&gl=JP&ceid=JP:ja", "site": "https://news.google.com/home?hl=ja&gl=JP&ceid=JP:ja" },
+        { "name": "Google News（国際）", "url": "https://news.google.com/rss/headlines/section/topic/WORLD?hl=ja&gl=JP&ceid=JP:ja", "site": "https://news.google.com/home?hl=ja&gl=JP&ceid=JP:ja" }
+      ]
+    },
+    {
       "id": "lifehack",
       "title": "ライフハック",
       "icon": "eco",
