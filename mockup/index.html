@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>かん報 — 2026年8月28日 朝刊</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<style>
+  :root {
+    --bg: #eef1f6;
+    --surface: #ffffff;
+    --ink: #1b2a4a;
+    --ink-soft: #51617f;
+    --ink-faint: #8b97ad;
+    --navy: #0e1d3d;
+    --navy-soft: #9fb3d9;
+    --accent: #2f6fed;
+    --accent-weak: #e3ecfd;
+    --rule: #dfe5ee;
+    --gothic: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--gothic);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:hover .headline, a:hover.headline { color: var(--accent); }
+
+  /* ===== サンプル告知 ===== */
+  .sample-note {
+    background: var(--accent-weak);
+    color: #2757b8;
+    font-size: 12px;
+    text-align: center;
+    padding: 7px 12px;
+  }
+
+  /* ===== マストヘッド（紺帯） ===== */
+  .masthead-band { background: var(--navy); color: #fff; }
+  .masthead-inner { max-width: 1000px; margin: 0 auto; padding: 18px 20px 26px; }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--navy-soft);
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .masthead { text-align: center; }
+  .masthead h1 {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-indent: 0.28em;
+    line-height: 1.15;
+  }
+  .masthead .edition {
+    font-size: 12px;
+    color: var(--navy-soft);
+    letter-spacing: 0.3em;
+    text-indent: 0.3em;
+    margin-top: 8px;
+  }
+  .crawl-note {
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    text-align: center;
+    letter-spacing: 0.06em;
+    padding: 12px 16px 0;
+  }
+
+  .sheet { max-width: 1000px; margin: 0 auto; padding: 16px 20px 56px; }
+
+  /* ===== カード共通 ===== */
+  .card {
+    background: var(--surface);
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(14, 29, 61, 0.06), 0 4px 16px rgba(14, 29, 61, 0.05);
+    padding: 26px 28px;
+    margin-top: 16px;
+  }
+
+  /* ===== 共通パーツ ===== */
+  .kicker {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    letter-spacing: 0.2em;
+    text-indent: 0.1em;
+    padding: 3px 12px;
+    border-radius: 999px;
+  }
+  .meta { font-size: 12px; color: var(--ink-faint); letter-spacing: 0.03em; }
+  .meta .src { color: var(--ink-soft); font-weight: 600; }
+  .meta .score { color: var(--accent); font-weight: 600; }
+  .tags { display: inline-flex; gap: 6px; flex-wrap: wrap; vertical-align: middle; }
+  .tag {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-weak);
+    padding: 2px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .excerpt { font-size: 13.5px; color: var(--ink-soft); }
+
+  /* ===== 一面 ===== */
+  .front-top .headline {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 12px 0 10px;
+  }
+  .front-top .excerpt { font-size: 14.5px; max-width: 46em; }
+  .front-top .meta { margin-top: 12px; }
+  .front-subs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 32px;
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+  }
+  .front-subs article + article { border-left: 1px solid var(--rule); padding-left: 32px; }
+  .front-subs .headline { font-size: 17px; font-weight: 700; line-height: 1.55; margin-bottom: 6px; }
+  .front-subs .excerpt { margin-bottom: 8px; }
+
+  /* ===== セクション ===== */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 10px;
+  }
+  .section-head h2 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    font-size: 22px;
+    color: var(--accent);
+  }
+  .section-head .count { font-size: 12px; color: var(--ink-faint); }
+  .section article { padding: 16px 2px; border-bottom: 1px solid var(--rule); }
+  .section article.extra { display: none; }
+  .section.open article.extra { display: block; }
+  .section .headline { font-size: 15.5px; font-weight: 700; line-height: 1.6; }
+  .section .excerpt { margin-top: 3px; }
+  .section .meta { margin-top: 5px; }
+
+  .more-btn {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
+    padding: 10px;
+    font-family: var(--gothic);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-weak);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    transition: background 0.15s;
+  }
+  .more-btn:hover { background: #d3e2fb; }
+
+  /* ===== フッター ===== */
+  footer {
+    margin-top: 36px;
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    letter-spacing: 0.15em;
+  }
+
+  /* ===== スマホ ===== */
+  @media (max-width: 640px) {
+    .sheet { padding: 12px 12px 44px; }
+    .masthead-inner { padding: 14px 16px 20px; }
+    .masthead h1 { font-size: 38px; }
+    .masthead .edition { font-size: 10.5px; letter-spacing: 0.16em; text-indent: 0.16em; }
+    .crawl-note { font-size: 10.5px; letter-spacing: 0.02em; }
+    .card { padding: 20px 18px; border-radius: 12px; }
+    .front-top .headline { font-size: 21px; }
+    .front-subs { grid-template-columns: 1fr; gap: 18px; }
+    .front-subs article + article { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 18px; }
+    .section .headline { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-note">※ これはデザイン確認用のサンプル紙面です（記事はぜんぶ架空やで）</div>
+
+<div class="masthead-band">
+  <div class="masthead-inner">
+    <div class="top-bar">
+      <span>2026年（令和8年）8月28日　金曜日</span>
+      <span>第1号</span>
+    </div>
+    <header class="masthead">
+      <h1>かん報</h1>
+      <p class="edition">かんちゃん専用朝刊　—　毎朝六時 刷り上がり</p>
+    </header>
+  </div>
+</div>
+
+<p class="crawl-note">今朝の巡回：購読サイト 36件 ／ アラート・キーワード 5件　＜ 8月27日 06:00 〜 8月28日 06:00 ＞</p>
+
+<div class="sheet">
+
+  <!-- ============ 一面 ============ -->
+  <section class="card">
+    <article class="front-top">
+      <span class="kicker">一面</span>
+      <span class="tags" style="margin-left:10px"><span class="tag">AI</span><span class="tag">デザイン</span></span>
+      <a href="#"><h2 class="headline">Figma、デザインシステムの「ずれ」をAIが自動検知する新機能を発表　トークン監査が数分で完了に</h2></a>
+      <p class="excerpt">Figmaは27日、ライブラリ内のコンポーネントとデザイントークンの不整合をAIが走査し、修正候補まで提示する新機能を発表した。大規模なデザインシステム運用の監査工数を大幅に削減できるとしており、ベータ版は来月から……</p>
+      <p class="meta"><span class="src">コリス</span>　8月28日 04:12　　<span class="score">注目度 ★★★★★</span></p>
+    </article>
+
+    <div class="front-subs">
+      <article>
+        <a href="#"><h3 class="headline">人材業界、生成AI面接支援ツールの導入が急拡大　大手3社が相次ぎ発表</h3></a>
+        <p class="excerpt">候補者体験の改善を目的に、面接の文字起こし・要約から評価支援までを担うツールの導入が広がっている……</p>
+        <p class="meta"><span class="src">HR NOTE</span>　8月27日 18:40　　<span class="tags"><span class="tag">人材</span><span class="tag">AI</span></span></p>
+      </article>
+      <article>
+        <a href="#"><h3 class="headline">「らしさ」はどこに宿るか——リブランディング成功企業10社に共通した意思決定の型</h3></a>
+        <p class="excerpt">ロゴ刷新の派手さではなく、社内の言葉の統一から始めた企業ほど定着率が高いという調査結果……</p>
+        <p class="meta"><span class="src">knowledge / baigie</span>　8月27日 11:00　　<span class="tags"><span class="tag">ブランディング</span></span></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ AI ============ -->
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">auto_awesome</span>AI</h2><span class="count">6件</span></div>
+    <article>
+      <a href="#"><h3 class="headline">Adobe、Illustratorに「参照画像からのスタイル移植」機能　ベクターのまま質感を再現</h3></a>
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　8月27日 15:22</p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">デザイナーの7割が「AIで作業時間は減ったが、判断の仕事は増えた」——国内実態調査2026</h3></a>
+      <p class="excerpt">単純作業の自動化が進む一方、品質判断・ディレクション業務の比重が増加している。</p>
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　8月27日 09:00</p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">プロンプトからLPを丸ごと生成する新サービス、公開3日で登録10万件</h3></a>
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月27日 21:05</p>
+    </article>
+    <article class="extra">
+      <a href="#"><h3 class="headline">国産LLM大手、画像生成の商用ライセンスを刷新　クリエイター向けに補償を拡充</h3></a>
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月27日 13:47</p>
+    </article>
+    <article class="extra">
+      <a href="#"><h3 class="headline">「AIと協働するデザインプロセス」大手代理店が社内ガイドラインを公開</h3></a>
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　8月27日 10:30</p>
+    </article>
+    <article class="extra">
+      <a href="#"><h3 class="headline">音声からワイヤーフレームを起こすプラグインが話題　会議しながら画面設計</h3></a>
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　8月27日 08:15</p>
+    </article>
+    <button class="more-btn" data-count="3">もっとみる（あと3件）▼</button>
+  </section>
+
+  <!-- ============ デザインの潮流 ============ -->
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">palette</span>デザインの潮流</h2><span class="count">5件</span></div>
+    <article>
+      <a href="#"><h3 class="headline">老舗文具メーカーのVI刷新が話題　「変えない部分」の言語化に1年かけた理由</h3></a>
+      <p class="excerpt">ブランドの核を先に定義したことで、その後の展開判断が迷わなくなったという。</p>
+      <p class="meta"><span class="src">JDN</span>　8月27日 17:50　　<span class="tags"><span class="tag">ブランディング</span></span></p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">2026年下半期のUIトレンド予測——「静かなインターフェース」への揺り戻し</h3></a>
+      <p class="meta"><span class="src">unprinted</span>　8月27日 12:00　　<span class="tags"><span class="tag">UI/UX</span></span></p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">デザイン組織のカラー管理、トークン導入で実装フローはどう変わったか</h3></a>
+      <p class="meta"><span class="src">Visional Design</span>　8月27日 09:30</p>
+    </article>
+    <article class="extra">
+      <a href="#"><h3 class="headline">グッドパッチ、デザイン経営支援の新プログラムを発表</h3></a>
+      <p class="meta"><span class="src">MEMOPATCH</span>　8月27日 14:20</p>
+    </article>
+    <article class="extra">
+      <a href="#"><h3 class="headline">「東京の芸術祭2026」全会場マップが公開　過去最多の52会場</h3></a>
+      <p class="meta"><span class="src">Tokyo Art Beat</span>　8月27日 16:05　　<span class="tags"><span class="tag">アート</span></span></p>
+    </article>
+    <button class="more-btn" data-count="2">もっとみる（あと2件）▼</button>
+  </section>
+
+  <!-- ============ 制作テク・Tips ============ -->
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">build</span>制作テク・Tips</h2><span class="count">4件</span></div>
+    <article>
+      <a href="#"><h3 class="headline">CSSの新しいカラー関数を実務で使う——ダークモード対応がぐっと楽になる書き方</h3></a>
+      <p class="meta"><span class="src">コリス</span>　8月27日 22:41</p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">Photoshopの生成塗りつぶし、商用案件での安全な使い方チェックリスト</h3></a>
+      <p class="meta"><span class="src">PhotoshopVIP</span>　8月27日 19:10　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">バナーの視線誘導、数字で検証してみた——Zの法則は本当か</h3></a>
+      <p class="meta"><span class="src">デザインのコツ。</span>　8月27日 08:00</p>
+    </article>
+    <article class="extra">
+      <a href="#"><h3 class="headline">入稿データの落とし穴10選　印刷会社に聞いた「戻し」の定番</h3></a>
+      <p class="meta"><span class="src">DTP Transit 別館</span>　8月27日 11:45</p>
+    </article>
+    <button class="more-btn" data-count="1">もっとみる（あと1件）▼</button>
+  </section>
+
+  <!-- ============ ギャラリー ============ -->
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">grid_view</span>ギャラリー</h2><span class="count">3件</span></div>
+    <article>
+      <a href="#"><h3 class="headline">【ギャラリー更新】余白の使い方が美しいコーポレートサイト 8選</h3></a>
+      <p class="meta"><span class="src">muuuuu.org</span>　8月27日 19:33</p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">S5-Style 今週のピックアップ：スクロール演出が心地よいブランドサイト</h3></a>
+      <p class="meta"><span class="src">S5-Style</span>　8月27日 15:00</p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">【動画】BtoBサイトのFV、勝ちパターンを3分で解説</h3></a>
+      <p class="meta"><span class="src">ベイジTV</span>　8月27日 18:00</p>
+    </article>
+  </section>
+
+  <!-- ============ 写真 ============ -->
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">photo_camera</span>写真</h2><span class="count">2件</span></div>
+    <article>
+      <a href="#"><h3 class="headline">ポートレートの「余白の光」を作るレタッチ手順を全公開</h3></a>
+      <p class="meta"><span class="src">レタッチャー / 大谷キミト</span>　8月27日 20:12　　<span class="tags"><span class="tag">写真</span></span></p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">フィルムライクな色作り、Lightroomプリセット無料配布はじまる</h3></a>
+      <p class="meta"><span class="src">GENIC</span>　8月27日 12:30　　<span class="tags"><span class="tag">写真</span></span></p>
+    </article>
+  </section>
+
+  <!-- ============ ビジネス・人材・ブランド ============ -->
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">business_center</span>ビジネス・人材・ブランド</h2><span class="count">4件</span></div>
+    <article>
+      <a href="#"><h3 class="headline">エンジニア採用、「スカウト文面の質」が返信率を最大3倍左右——2万通の分析結果</h3></a>
+      <p class="meta"><span class="src">Google News（人材業界）</span>　8月27日 12:30　　<span class="tags"><span class="tag">人材</span></span></p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">採用ブランディング、露出量より「一貫性」——応募者調査で判明した意外な決め手</h3></a>
+      <p class="meta"><span class="src">Google News（ブランディング）</span>　8月27日 10:08　　<span class="tags"><span class="tag">ブランディング</span><span class="tag">人材</span></span></p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">BtoBサイトの「事例ページ」を読まれるものにする構成パターン12選</h3></a>
+      <p class="meta"><span class="src">knowledge / baigie</span>　8月27日 11:00</p>
+    </article>
+    <article class="extra">
+      <a href="#"><h3 class="headline">デザイナーの新卒採用、ポートフォリオ「量より過程」重視へ　主要企業の選考が変化</h3></a>
+      <p class="meta"><span class="src">はたらくビビビット</span>　8月27日 09:40　　<span class="tags"><span class="tag">人材</span></span></p>
+    </article>
+    <button class="more-btn" data-count="1">もっとみる（あと1件）▼</button>
+  </section>
+
+  <!-- ============ ライフハック ============ -->
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">eco</span>ライフハック</h2><span class="count">1件</span></div>
+    <article>
+      <a href="#"><h3 class="headline">「朝いちばんのタスク」を前夜に1つだけ決める——集中が続く人の共通習慣</h3></a>
+      <p class="meta"><span class="src">あなたのスイッチを押すブログ</span>　8月27日 07:00</p>
+    </article>
+  </section>
+
+  <footer>
+    かん報 v0.2（叩き台・監修反映版）　—　produced by くろえもん
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.more-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var sec = btn.closest('.section');
+      sec.classList.toggle('open');
+      var n = btn.dataset.count;
+      btn.textContent = sec.classList.contains('open')
+        ? '閉じる ▲'
+        : 'もっとみる（あと' + n + '件）▼';
+    });
+  });
+</script>
+</body>
+</html>

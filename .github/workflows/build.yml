@@ -1,0 +1,42 @@
+name: 朝刊を刷る
+
+on:
+  schedule:
+    - cron: '0 21 * * *' # 毎朝6:00 JST（UTCでは前日21:00）
+  workflow_dispatch: # 手動ボタンでも刷れるように
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: リポジトリを取得
+        uses: actions/checkout@v4
+
+      - name: Pythonを準備
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 紙面を生成
+        run: python build.py
+
+      - name: Pages用に紙面をアップロード
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: 公開
+        id: deployment
+        uses: actions/deploy-pages@v4

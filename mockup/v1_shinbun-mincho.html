@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>かん報 — 2026年8月28日 朝刊</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #555;
+    --ink-faint: #8a8a8a;
+    --paper: #faf8f3;
+    --paper-deep: #f2efe6;
+    --accent: #b3261e;
+    --rule: #d8d3c4;
+    --rule-dark: #1a1a1a;
+    --serif: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    --sans: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:hover .headline, a:hover.headline { text-decoration: underline; text-underline-offset: 4px; }
+
+  .sheet { max-width: 1000px; margin: 0 auto; padding: 0 20px 64px; }
+
+  /* ===== サンプル告知 ===== */
+  .sample-note {
+    background: #fdf3d7;
+    border: 1px solid #e6d28f;
+    color: #6b5a1e;
+    font-family: var(--sans);
+    font-size: 12px;
+    text-align: center;
+    padding: 6px 12px;
+    border-radius: 0 0 8px 8px;
+    margin: 0 auto 20px;
+    max-width: 640px;
+  }
+
+  /* ===== 日付バー ===== */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+    padding: 10px 2px 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ===== 題字 ===== */
+  .masthead {
+    text-align: center;
+    padding: 30px 0 22px;
+    border-bottom: 3px double var(--rule-dark);
+  }
+  .masthead h1 {
+    font-size: 58px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-indent: 0.3em; /* 字間ぶんのセンター補正 */
+    line-height: 1.1;
+  }
+  .masthead .edition {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 0.35em;
+    text-indent: 0.35em;
+    margin-top: 10px;
+  }
+  .crawl-note {
+    font-family: var(--sans);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    text-align: center;
+    letter-spacing: 0.1em;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ===== 共通パーツ ===== */
+  .kicker {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    letter-spacing: 0.2em;
+    text-indent: 0.1em;
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+  .meta {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+  }
+  .meta .src { color: var(--ink-soft); font-weight: 600; }
+  .tags { display: inline-flex; gap: 6px; flex-wrap: wrap; vertical-align: middle; }
+  .tag {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+    padding: 1px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .excerpt { font-size: 14px; color: var(--ink-soft); }
+
+  /* ===== 一面 ===== */
+  .front { padding: 34px 2px 30px; border-bottom: 1px solid var(--rule); }
+  .front-top .headline {
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 1.45;
+    margin: 14px 0 10px;
+  }
+  .front-top .excerpt { font-size: 15.5px; max-width: 46em; }
+  .front-top .meta { margin-top: 12px; }
+
+  .front-subs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 36px;
+    margin-top: 30px;
+    padding-top: 26px;
+    border-top: 1px solid var(--rule);
+  }
+  .front-subs article + article { border-left: 1px solid var(--rule); padding-left: 36px; }
+  .front-subs .headline { font-size: 20px; font-weight: 600; line-height: 1.5; margin-bottom: 8px; }
+  .front-subs .excerpt { margin-bottom: 10px; }
+
+  /* ===== セクション ===== */
+  .section { padding: 30px 2px 8px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    border-bottom: 2px solid var(--rule-dark);
+    padding-bottom: 8px;
+    margin-bottom: 4px;
+  }
+  .section-head h2 {
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+  }
+  .section-head .count { font-family: var(--sans); font-size: 12px; color: var(--ink-faint); }
+  .section article {
+    padding: 18px 2px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section article:last-child { border-bottom: none; }
+  .section .headline { font-size: 17px; font-weight: 600; line-height: 1.55; }
+  .section .excerpt { margin-top: 4px; }
+  .section .meta { margin-top: 6px; }
+
+  /* ===== フッター ===== */
+  footer {
+    margin-top: 40px;
+    border-top: 3px double var(--rule-dark);
+    padding-top: 16px;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    letter-spacing: 0.15em;
+  }
+
+  /* ===== スマホ ===== */
+  @media (max-width: 640px) {
+    .sheet { padding: 0 16px 48px; }
+    .masthead { padding: 22px 0 16px; }
+    .masthead h1 { font-size: 42px; }
+    .masthead .edition { font-size: 10.5px; letter-spacing: 0.18em; text-indent: 0.18em; }
+    .crawl-note { font-size: 10.5px; letter-spacing: 0.04em; }
+    .front { padding-top: 26px; }
+    .front-top .headline { font-size: 24px; }
+    .front-subs { grid-template-columns: 1fr; gap: 22px; }
+    .front-subs article + article { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 22px; }
+    .section .headline { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="sample-note">※ これはデザイン確認用のサンプル紙面です（記事はぜんぶ架空やで）</div>
+
+  <div class="top-bar">
+    <span>2026年（令和8年）8月28日　金曜日</span>
+    <span>第1号</span>
+  </div>
+
+  <header class="masthead">
+    <h1>かん報</h1>
+    <p class="edition">かんちゃん専用朝刊　—　毎朝六時 刷り上がり</p>
+  </header>
+
+  <p class="crawl-note">今朝の巡回：購読サイト 14件 ／ アラート・キーワード 9件　＜ 8月27日 06:00 〜 8月28日 06:00 ＞</p>
+
+  <!-- ============ 一面 ============ -->
+  <section class="front">
+    <article class="front-top">
+      <span class="kicker">一面</span>
+      <span class="tags" style="margin-left:10px"><span class="tag">デザイン×AI</span><span class="tag">デザインシステム</span></span>
+      <a href="#"><h2 class="headline">Figma、デザインシステムの「ずれ」をAIが自動検知する新機能を発表　トークン監査が数分で完了に</h2></a>
+      <p class="excerpt">Figmaは27日、ライブラリ内のコンポーネントとデザイントークンの不整合をAIが走査し、修正候補まで提示する新機能を発表した。大規模なデザインシステム運用の監査工数を大幅に削減できるとしており、ベータ版は来月から……</p>
+      <p class="meta"><span class="src">coliss</span>　8月28日 04:12　　注目度 ★★★★★</p>
+    </article>
+
+    <div class="front-subs">
+      <article>
+        <a href="#"><h3 class="headline">人材業界、生成AI面接支援ツールの導入が急拡大　大手3社が相次ぎ発表</h3></a>
+        <p class="excerpt">候補者体験の改善を目的に、面接の文字起こし・要約から評価支援までを担うツールの導入が広がっている……</p>
+        <p class="meta"><span class="src">HR NOTE</span>　8月27日 18:40　　<span class="tags"><span class="tag">人材業界</span></span></p>
+      </article>
+      <article>
+        <a href="#"><h3 class="headline">「らしさ」はどこに宿るか——リブランディング成功企業10社に共通した意思決定の型</h3></a>
+        <p class="excerpt">ロゴ刷新の派手さではなく、社内の言葉の統一から始めた企業ほど定着率が高いという調査結果……</p>
+        <p class="meta"><span class="src">baigie.me</span>　8月27日 11:00　　<span class="tags"><span class="tag">ブランディング</span></span></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ セクション：デザイン×AI ============ -->
+  <section class="section">
+    <div class="section-head"><h2>🎨 デザイン × AI</h2><span class="count">6件</span></div>
+    <article>
+      <a href="#"><h3 class="headline">Adobe、Illustratorに「参照画像からのスタイル移植」機能　ベクターのまま質感を再現</h3></a>
+      <p class="meta"><span class="src">ICS MEDIA</span>　8月27日 15:22</p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">デザイナーの7割が「AIで作業時間は減ったが、判断の仕事は増えた」——国内実態調査2026</h3></a>
+      <p class="excerpt">単純作業の自動化が進む一方、品質判断・ディレクション業務の比重が増加。求められるスキルの重心が移りつつある。</p>
+      <p class="meta"><span class="src">デザイン白書</span>　8月27日 09:00</p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">プロンプトからLPを丸ごと生成する新サービス、公開3日で登録10万件</h3></a>
+      <p class="meta"><span class="src">TechCrunch Japan</span>　8月27日 21:05</p>
+    </article>
+  </section>
+
+  <!-- ============ セクション：人材業界 ============ -->
+  <section class="section">
+    <div class="section-head"><h2>💼 人材業界</h2><span class="count">4件</span></div>
+    <article>
+      <a href="#"><h3 class="headline">エンジニア採用、「スカウト文面の質」が返信率を最大3倍左右——2万通の分析結果</h3></a>
+      <p class="meta"><span class="src">Findy Media</span>　8月27日 12:30</p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">副業人材の活用企業が5年で4倍に　中小企業のデザイン内製化を後押し</h3></a>
+      <p class="meta"><span class="src">日経クロストレンド</span>　8月27日 07:15</p>
+    </article>
+  </section>
+
+  <!-- ============ セクション：ブランディング ============ -->
+  <section class="section">
+    <div class="section-head"><h2>🏷️ ブランディング</h2><span class="count">3件</span></div>
+    <article>
+      <a href="#"><h3 class="headline">老舗文具メーカーのVI刷新が話題　「変えない部分」の言語化に1年かけた理由</h3></a>
+      <p class="excerpt">デザイン会社との協業プロセスを全公開。ブランドの核を先に定義したことで、その後の展開判断が迷わなくなったという。</p>
+      <p class="meta"><span class="src">AXIS Web Magazine</span>　8月27日 17:50</p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">採用ブランディング、露出量より「一貫性」——応募者調査で判明した意外な決め手</h3></a>
+      <p class="meta"><span class="src">HR NOTE</span>　8月27日 10:08</p>
+    </article>
+  </section>
+
+  <!-- ============ セクション：購読サイト新着 ============ -->
+  <section class="section">
+    <div class="section-head"><h2>📚 購読サイトの新着</h2><span class="count">5件</span></div>
+    <article>
+      <a href="#"><h3 class="headline">BtoBサイトの「事例ページ」を読まれるものにする構成パターン12選</h3></a>
+      <p class="meta"><span class="src">baigie.me</span>　8月27日 11:00</p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">CSSの新しいカラー関数を実務で使う——ダークモード対応がぐっと楽になる書き方</h3></a>
+      <p class="meta"><span class="src">coliss</span>　8月27日 22:41</p>
+    </article>
+    <article>
+      <a href="#"><h3 class="headline">【ギャラリー更新】余白の使い方が美しいコーポレートサイト 8選</h3></a>
+      <p class="meta"><span class="src">muuuuu.org</span>　8月27日 19:33</p>
+    </article>
+  </section>
+
+  <footer>
+    かん報 v0.1（叩き台）　—　produced by くろえもん
+  </footer>
+
+</div>
+</body>
+</html>
