@@ -43,6 +43,12 @@
     letter-spacing: 0.08em;
     margin-bottom: 14px;
   }
+  .top-bar a {
+    color: var(--navy-soft);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .top-bar a:hover { color: #fff; }
   .masthead { text-align: center; }
   .masthead h1 {
     font-size: 52px;
@@ -204,7 +210,7 @@
   <div class="masthead-inner">
     <div class="top-bar">
       <span>%%DATE_LINE%%</span>
-      <span>%%ISSUE%%</span>
+      <span>%%ISSUE%%　%%NAV%%</span>
     </div>
     <header class="masthead">
       <h1>啓報</h1>

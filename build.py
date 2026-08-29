@@ -318,6 +318,90 @@ def section_html(section, articles, visible, maximum):
     return "\n".join(parts)
 
 
+ARCHIVE_INDEX_TEMPLATE = """<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0e1d3d">
+<title>啓報 — バックナンバー</title>
+<style>
+  :root {
+    --bg: #eef1f6; --surface: #fff; --ink: #1b2a4a; --ink-faint: #8b97ad;
+    --navy: #0e1d3d; --navy-soft: #9fb3d9; --accent: #2f6fed; --rule: #dfe5ee;
+    --gothic: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--gothic); line-height: 1.75; -webkit-font-smoothing: antialiased; }
+  .masthead-band { background: var(--navy); color: #fff; }
+  .masthead-inner { max-width: 720px; margin: 0 auto; padding: 18px 20px 24px; }
+  .top-bar { display: flex; justify-content: space-between; font-size: 12px; color: var(--navy-soft); letter-spacing: 0.08em; margin-bottom: 12px; }
+  .top-bar a { color: var(--navy-soft); text-decoration: underline; text-underline-offset: 3px; }
+  .top-bar a:hover { color: #fff; }
+  h1 { font-size: 34px; font-weight: 800; letter-spacing: 0.28em; text-indent: 0.28em; text-align: center; }
+  .edition { font-size: 12px; color: var(--navy-soft); letter-spacing: 0.3em; text-indent: 0.3em; text-align: center; margin-top: 6px; }
+  .sheet { max-width: 720px; margin: 0 auto; padding: 16px 20px 56px; }
+  .card { background: var(--surface); border-radius: 14px; box-shadow: 0 1px 2px rgba(14,29,61,.06), 0 4px 16px rgba(14,29,61,.05); padding: 22px 26px; margin-top: 16px; }
+  h2 { font-size: 15px; font-weight: 700; letter-spacing: 0.1em; border-bottom: 2px solid var(--navy); padding-bottom: 8px; }
+  ul { list-style: none; }
+  li a { display: flex; justify-content: space-between; padding: 12px 2px; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; font-size: 14.5px; }
+  li:last-child a { border-bottom: none; }
+  li a:hover .d { color: var(--accent); }
+  .d { font-weight: 700; }
+  .n { color: var(--ink-faint); font-size: 12.5px; }
+</style>
+</head>
+<body>
+<div class="masthead-band">
+  <div class="masthead-inner">
+    <div class="top-bar"><span>バックナンバー</span><span><a href="../">最新号</a></span></div>
+    <h1>啓報</h1>
+    <p class="edition">%%TAGLINE%%</p>
+  </div>
+</div>
+<div class="sheet">
+%%BODY%%
+</div>
+</body>
+</html>
+"""
+
+
+def write_archive_index(arch_dir, launch, tagline):
+    """archive/ 内の日付ファイルを走査してバックナンバー一覧を生成する。"""
+    dates = []
+    for f in arch_dir.glob("????-??-??.html"):
+        try:
+            dates.append(datetime.strptime(f.stem, "%Y-%m-%d").date())
+        except ValueError:
+            continue
+    dates.sort(reverse=True)
+
+    parts = []
+    current_month = None
+    for d in dates:
+        month = f"{d.year}年{d.month}月"
+        if month != current_month:
+            if current_month is not None:
+                parts.append("</ul></section>")
+            parts.append(f'<section class="card"><h2>{month}</h2><ul>')
+            current_month = month
+        issue = max(1, (d - launch).days + 1)
+        parts.append(
+            f'<li><a href="{d:%Y-%m-%d}.html">'
+            f'<span class="d">{d.month}月{d.day}日（{WEEKDAYS_JA[d.weekday()]}）</span>'
+            f'<span class="n">第{issue}号</span></a></li>'
+        )
+    if current_month is not None:
+        parts.append("</ul></section>")
+
+    page = ARCHIVE_INDEX_TEMPLATE.replace("%%TAGLINE%%", esc(tagline)).replace(
+        "%%BODY%%", "\n".join(parts)
+    )
+    (arch_dir / "index.html").write_text(page, encoding="utf-8")
+    return len(dates)
+
+
 # ---------------------------------------------------------------- メイン
 
 
@@ -420,10 +504,21 @@ def main():
         .replace("%%GENERATED_AT%%", f"{now:%H:%M}")
     )
 
-    out = BASE / "docs" / "index.html"
-    out.parent.mkdir(exist_ok=True)
-    out.write_text(page, encoding="utf-8")
-    print(f"✅ 刷り上がり: {out}（記事{total}件・一面{len(top3)}本）", file=sys.stderr)
+    out_dir = BASE / "docs"
+    arch_dir = out_dir / "archive"
+    arch_dir.mkdir(parents=True, exist_ok=True)
+
+    # 最新号（トップページ）とアーカイブ号は、右上のリンクだけ変えて書き出す
+    nav_latest = '<a href="archive/">バックナンバー</a>'
+    nav_archived = '<a href="../">最新号</a>　<a href="./">バックナンバー</a>'
+    (out_dir / "index.html").write_text(page.replace("%%NAV%%", nav_latest), encoding="utf-8")
+    (arch_dir / f"{now:%Y-%m-%d}.html").write_text(page.replace("%%NAV%%", nav_archived), encoding="utf-8")
+    n_editions = write_archive_index(arch_dir, launch, meta["tagline"])
+
+    print(
+        f"✅ 刷り上がり: {out_dir / 'index.html'}（記事{total}件・一面{len(top3)}本・アーカイブ{n_editions}号）",
+        file=sys.stderr,
+    )
 
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@ on:
   workflow_dispatch: # 手動ボタンでも刷れるように
 
 permissions:
-  contents: read
+  contents: write # アーカイブをリポジトリに保存するため
   pages: write
   id-token: write
 
@@ -31,6 +31,14 @@ jobs:
 
       - name: 紙面を生成
         run: python build.py
+
+      - name: アーカイブをリポジトリに保存
+        run: |
+          git config user.name "qv7x-m3kz"
+          git config user.email "250904501+qv7x-m3kz@users.noreply.github.com"
+          git pull --rebase origin main
+          git add docs
+          git diff --cached --quiet || (git commit -m "アーカイブ: $(TZ=Asia/Tokyo date '+%Y-%m-%d') の紙面" && git push origin main)
 
       - name: Pages用に紙面をアップロード
         uses: actions/upload-pages-artifact@v3

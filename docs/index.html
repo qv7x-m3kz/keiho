@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0e1d3d">
+<meta name="apple-mobile-web-app-title" content="啓報">
+<title>啓報 — 2026年8月29日 朝刊</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<style>
+  :root {
+    --bg: #eef1f6;
+    --surface: #ffffff;
+    --ink: #1b2a4a;
+    --ink-soft: #51617f;
+    --ink-faint: #8b97ad;
+    --navy: #0e1d3d;
+    --navy-soft: #9fb3d9;
+    --accent: #2f6fed;
+    --accent-weak: #e3ecfd;
+    --rule: #dfe5ee;
+    --gothic: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--gothic);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:hover .headline, a:hover.headline { color: var(--accent); }
+
+  /* ===== マストヘッド（紺帯） ===== */
+  .masthead-band { background: var(--navy); color: #fff; }
+  .masthead-inner { max-width: 1000px; margin: 0 auto; padding: 18px 20px 26px; }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--navy-soft);
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .top-bar a {
+    color: var(--navy-soft);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .top-bar a:hover { color: #fff; }
+  .masthead { text-align: center; }
+  .masthead h1 {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-indent: 0.28em;
+    line-height: 1.15;
+  }
+  .masthead .edition {
+    font-size: 12px;
+    color: var(--navy-soft);
+    letter-spacing: 0.3em;
+    text-indent: 0.3em;
+    margin-top: 8px;
+  }
+  .crawl-note {
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    text-align: center;
+    letter-spacing: 0.06em;
+    padding: 12px 16px 0;
+  }
+
+  .sheet { max-width: 1000px; margin: 0 auto; padding: 16px 20px 56px; }
+
+  /* ===== カード共通 ===== */
+  .card {
+    background: var(--surface);
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(14, 29, 61, 0.06), 0 4px 16px rgba(14, 29, 61, 0.05);
+    padding: 26px 28px;
+    margin-top: 16px;
+  }
+
+  /* ===== 共通パーツ ===== */
+  .kicker {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    letter-spacing: 0.2em;
+    text-indent: 0.1em;
+    padding: 3px 12px;
+    border-radius: 999px;
+  }
+  .meta { font-size: 12px; color: var(--ink-faint); letter-spacing: 0.03em; }
+  .meta .src { color: var(--ink-soft); font-weight: 600; }
+  .meta .score { color: var(--accent); font-weight: 600; }
+  .tags { display: inline-flex; gap: 6px; flex-wrap: wrap; vertical-align: middle; }
+  .tag {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-weak);
+    padding: 2px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .excerpt { font-size: 13.5px; color: var(--ink-soft); }
+  .empty-note { font-size: 13px; color: var(--ink-faint); padding: 16px 2px 4px; }
+
+  /* ===== 一面 ===== */
+  .front-top .headline {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 12px 0 10px;
+  }
+  .front-top .excerpt { font-size: 14.5px; max-width: 46em; }
+  .front-top .meta { margin-top: 12px; }
+  .front-subs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 32px;
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+  }
+  .front-subs article + article { border-left: 1px solid var(--rule); padding-left: 32px; }
+  .front-subs .headline { font-size: 17px; font-weight: 700; line-height: 1.55; margin-bottom: 6px; }
+  .front-subs .excerpt { margin-bottom: 8px; }
+
+  /* ===== セクション ===== */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 10px;
+  }
+  .section-head h2 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    font-size: 22px;
+    color: var(--accent);
+  }
+  .section-head .count { font-size: 12px; color: var(--ink-faint); }
+  .section article { padding: 16px 2px; border-bottom: 1px solid var(--rule); }
+  .section article:last-of-type { border-bottom: none; }
+  .section article.extra { display: none; }
+  .section.open article.extra { display: block; }
+  .section .headline { font-size: 15.5px; font-weight: 700; line-height: 1.6; }
+  .section .excerpt { margin-top: 3px; }
+  .section .meta { margin-top: 5px; }
+
+  .more-btn {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
+    padding: 10px;
+    font-family: var(--gothic);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-weak);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    transition: background 0.15s;
+  }
+  .more-btn:hover { background: #d3e2fb; }
+
+  /* ===== フッター ===== */
+  footer {
+    margin-top: 36px;
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    letter-spacing: 0.15em;
+  }
+
+  /* ===== スマホ ===== */
+  @media (max-width: 640px) {
+    .sheet { padding: 12px 12px 44px; }
+    .masthead-inner { padding: 14px 16px 20px; }
+    .masthead h1 { font-size: 38px; }
+    .masthead .edition { font-size: 10.5px; letter-spacing: 0.16em; text-indent: 0.16em; }
+    .crawl-note { font-size: 10.5px; letter-spacing: 0.02em; }
+    .card { padding: 20px 18px; border-radius: 12px; }
+    .front-top .headline { font-size: 21px; }
+    .front-subs { grid-template-columns: 1fr; gap: 18px; }
+    .front-subs article + article { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 18px; }
+    .section .headline { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead-band">
+  <div class="masthead-inner">
+    <div class="top-bar">
+      <span>2026年8月29日　土曜日</span>
+      <span>第1号　<a href="archive/">バックナンバー</a></span>
+    </div>
+    <header class="masthead">
+      <h1>啓報</h1>
+      <p class="edition">ひとり編集局、毎朝六時発行</p>
+    </header>
+  </div>
+</div>
+
+<p class="crawl-note">今朝の巡回：フィード 38本（うち取得失敗 0本） ／ 拾った記事 56件　＜ 8月28日 16:53 〜 8月29日 16:53 ＞</p>
+
+<div class="sheet">
+
+  <section class="card">
+    <article class="front-top">
+      <span class="kicker">一面</span> <span class="tags"><span class="tag">ブランディング</span><span class="tag">AI</span></span>
+      <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTFAtcGdqUHE4d0FCWVhCTnhHekF1MUEwWW1iWFREY0dUWTVvVFVwenF1UzJxbjlFcGNOSm9feFVlQnJzb3B1RG9oYW1jNnMtcHIwcGZTMmFkcnp0YWdjM0lQeTBnTQ?oc=5" target="_blank" rel="noopener"><h2 class="headline">【採用・ブランディング】文章はAIで作れる時代。「声」にしか乗らない熱量と、中小企業の発信戦略｜古川仁章</h2></a>
+      
+      <p class="meta"><span class="src">mbp-japan.com</span>　8月29日 10:04　　<span class="score">注目度 ★★★★★</span>　　<span class="tags"><span class="tag">ブランディング</span><span class="tag">AI</span></span></p>
+    </article>
+    <div class="front-subs">
+      <article>
+        <a href="https://news.google.com/rss/articles/CBMiS0FVX3lxTE5RVGdKREMyc0xibmtreHBLUi1CVUFVMTV5U0VZY1h1YklJc2JCcjJKQnk1bi1Kbks5cHNfUFd3ZjZBSVZNY1hRajFnUQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">【東京都渋谷区】企業理念をアートでブランディング！個展「crack philosophy ART gallery」開催</h3></a>
+        
+        <p class="meta"><span class="src">ガジェット通信</span>　8月28日 18:00　　<span class="tags"><span class="tag">ブランディング</span><span class="tag">アート</span></span></p>
+      </article>
+      <article>
+        <a href="https://s.response.jp/article/img/2026/08/28/415864/2238118.html?from=giga-page-gallery" target="_blank" rel="noopener"><h3 class="headline">横浜ゴム、RAG活用の生成 AI システムを本格運用…タイヤ開発をスピードアップ 1枚目の写真 ...</h3></a>
+        
+        <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　8月28日 16:54　　<span class="tags"><span class="tag">AI</span><span class="tag">写真</span></span></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">auto_awesome</span>AI</h2><span class="count">38件</span></div>
+    <article class="item">
+      <a href="https://news.yahoo.co.jp/articles/2b270947e2f4a4fa0ab729f5b23cafca50c08652" target="_blank" rel="noopener"><h3 class="headline">マンC、ファンが“ AI で デザイン ”した新サードユニフォームを発表 白地に水色×紺のサッシュ、18万 ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　8月28日 20:14　　<span class="tags"><span class="tag">デザイン</span><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://diamond.jp/articles/-/396454" target="_blank" rel="noopener"><h3 class="headline">なぜ AI の回答は「二度手間」になるのか。「グラウンディング」で実現する真の業務効率化</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 13:04　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://www.youtube.com/watch?v=2kdDN83a1X8" target="_blank" rel="noopener"><h3 class="headline">【ライブ】高市総理にチームみらい 安野代表が AI 家庭教師【LIVE】(2026年8月28日) ANN/テレ朝</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 11:40　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.bloomberg.com/jp/news/articles/2026-08-28/TKH9AWKJH6VC00" target="_blank" rel="noopener"><h3 class="headline">AI への投資熱、転換社債にも－低クーポンでも株価上昇に期待 - Bloomberg</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 11:31　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.youtube.com/watch?v=xIG60N3UaVQ" target="_blank" rel="noopener"><h3 class="headline">Nvidia&#x27;s 80 trillion yen &quot;pay later&quot; plan!? / The shock of China&#x27;s AI &quot;Kimi K3&quot; - YouTube</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 11:15　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.infoseek.co.jp/article/prtimes_000000107_000160816/" target="_blank" rel="noopener"><h3 class="headline">人と AI の協働で、お客さま一人ひとりに寄り添うコンサルティングへ - Infoseek 楽天</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　8月29日 10:01　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.nikkei.com/article/DGXZQOGN285160Y6A820C2000000/" target="_blank" rel="noopener"><h3 class="headline">OpenAIの暴走 AI 、社会へのリスク浮き彫り 専門家「行動細かく監視」 - 日本経済新聞</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 09:30　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.nikkei.com/article/DGXZQOGN28B1C0Y6A820C2000000/" target="_blank" rel="noopener"><h3 class="headline">アンソロピック、 AI ×ロボの共通規格を公開へ 実験自動化しやすく</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 09:05　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.watch.impress.co.jp/docs/news/2136675.html" target="_blank" rel="noopener"><h3 class="headline">高市総理、 AI 家庭教師で「物価高対策シミュレーター」を作る 「こういうのが欲しかった」</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 08:58　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://pc.watch.impress.co.jp/docs/news/2136398.html" target="_blank" rel="noopener"><h3 class="headline">HBMの再設計で AI 性能アップへ。NVIDIAが「NVHBM」発表 - PC Watch</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 08:40　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://kabutan.jp/news/marketnews/?b=n202608290047" target="_blank" rel="noopener"><h3 class="headline">【今週読まれた記事】 AI 半導体需要の更なる増加は“既定路線” - 株探</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 07:46　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://aws.amazon.com/jp/blogs/news/diagnostics-over-time/" target="_blank" rel="noopener"><h3 class="headline">AI コーディングエージェントは本当に良くなっているのか？ | Amazon Web Services - AWS</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 07:08　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.youtube.com/watch?v=efyk-lw2Xw8" target="_blank" rel="noopener"><h3 class="headline">【チームみらい・安野党首】 AI 政治の“課題と理想” 初めての党大会に密着 - YouTube</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 06:51　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://pc.watch.impress.co.jp/docs/news/todays_sales/2136432.html" target="_blank" rel="noopener"><h3 class="headline">Ryzen AI 9搭載ミニPCがスマイルSaleで約4万円引き！ - PC Watch</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 06:24　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://biz.chosun.com/jp/jp-it/2026/08/29/QH2G7YEISZDCPLY3MCL4JAGRE4/" target="_blank" rel="noopener"><h3 class="headline">SemifiveがASIC支援拡大 AI 需要捉える - ChosunBiz</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　8月29日 06:07　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://info.monex.co.jp/news/2026/20260828_05.html" target="_blank" rel="noopener"><h3 class="headline">AI 相場の主役エヌビディアの決算発表！次に発表を控える銘柄は？ - マネックス証券</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 05:53　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://forbesjapan.com/articles/detail/103708" target="_blank" rel="noopener"><h3 class="headline">AI は賢くなった、だが&quot;文脈&quot;は持っていない、Genspark 6.0が「SecondBrain」で変えようとする ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 05:36　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.lycorp.co.jp/ja/news/release/020773/" target="_blank" rel="noopener"><h3 class="headline">LINEヤフー、新たな AI エージェントのプロトタイプ8種を報道機関に公開 - LY Corporation</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 05:36　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://mainichi.jp/articles/20260826/k00/00m/040/367000c" target="_blank" rel="noopener"><h3 class="headline">オードリー・タン氏が提唱 民主主義のための AI の使い方 - 毎日新聞</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 04:31　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.sankei.com/article/20260828-RJSFTQBT3VMEPN5EQIQZX4TG4U/" target="_blank" rel="noopener"><h3 class="headline">「 AI エージェント」登場でネット通販激変 〝アマゾン飛ばし〟でビジネスモデル崩壊も</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 04:25　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.microsoft.com/ja-jp/customers/story/27072-daiichi-life-insurance-co-ltd-microsoft-foundry" target="_blank" rel="noopener"><h3 class="headline">第一生命が生涯設計 デザイナー の働き方を Azure ベースの AI で変革。そのために構築された ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　8月29日 01:07　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://robotstart.info/article/2026/08/28/382340.html" target="_blank" rel="noopener"><h3 class="headline">人の作業をロボット学習データに変換する「UMIデータ取得サービス」開始 東大発フィジカル AI ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　8月29日 00:52　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.karuizawa.co.jp/topics/2026/08/ai101.php" target="_blank" rel="noopener"><h3 class="headline">AI デマンド交通「かる〜も」、町内全域で10月1日から実証運行 - 軽井沢ウェブ</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　8月29日 00:31　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://codezine.jp/news/detail/29487" target="_blank" rel="noopener"><h3 class="headline">AI で広く聴き、気になる回答者は人が直接深掘り。ユニーリサーチが「リピートオファー機能」の ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　8月29日 00:24　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.oita-press.co.jp/pr/prtimes/detail?id=c22779_r211" target="_blank" rel="noopener"><h3 class="headline">【セミナー開催】「 AI 導入を阻む4つの壁」なぜ、 AI エージェントはPoCで止まるのか - 大分合同新聞</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　8月29日 00:07　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://robotstart.info/article/2026/08/28/382341.html" target="_blank" rel="noopener"><h3 class="headline">ヒューマノイド3台の息が合ったダンス映像を公開 Toborlife AI 活用のUnitree G1 | ロボスタ</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　8月28日 22:57　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.yahoo.co.jp/articles/5c7a869d4e5291ae6b5418ab4e0d5b8c28855528/images/000" target="_blank" rel="noopener"><h3 class="headline">AI 製の偽画像や動画が SNS上に拡散……人気ゲーム『ライザのアトリエ』の ... - Yahoo!ニュース</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　8月28日 21:43　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.47news.jp/14856005.html" target="_blank" rel="noopener"><h3 class="headline">米、 AI 規制の抑制主導か G20会議、マスク氏ら講演 - 47NEWS</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　8月28日 17:51　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.nihon-ma.co.jp/news/20260827_7090-8/" target="_blank" rel="noopener"><h3 class="headline">リグアが AI 研修のストリートスマートと資本業務提携へ - 日本M&amp;Aセンター</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　8月28日 17:07　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://forbesjapan.com/articles/detail/103484" target="_blank" rel="noopener"><h3 class="headline">AI 時代の競争優位性は、ビジョンから生まれる。経営層たちが禅の語らいで得た視座</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　8月28日 17:03　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://s.response.jp/article/img/2026/08/28/415838/2238042.html?from=giga-page-gallery" target="_blank" rel="noopener"><h3 class="headline">東海理化がAWS主催 AI イベントに登壇、製造業での AI 定着事例を名古屋で紹介へ…9月2日 1枚目 ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　8月28日 16:54　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://prtimes.jp/main/html/rd/p/000000046.000115171.html" target="_blank" rel="noopener"><h3 class="headline">名古屋市役所と防災をテーマにした デザイン 思考研修を2年連続で実施 - PR TIMES</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　8月28日 19:16　　<span class="tags"><span class="tag">デザイン</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.jcp.or.jp/akahata/aik26/2026-08-29/2026082901_01_0.php" target="_blank" rel="noopener"><h3 class="headline">ＡＩ のリスクを阻止する国際協定を/志位議長がよびかけ | しんぶん赤旗 - 日本共産党</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 11:30</p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.jcp.or.jp/akahata/aik26/2026-08-29/2026082903_01_0.php" target="_blank" rel="noopener"><h3 class="headline">ＡＩ をどうとらえ どう対応すべきか/志位議長の発言 | しんぶん赤旗 - 日本共産党</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 09:44</p>
+    </article>
+    <article class="item extra">
+      <a href="https://jp.reuters.com/economy/6XDPIH6VVFLGFEXWYJ3JFHLE2Q-2026-08-28/" target="_blank" rel="noopener"><h3 class="headline">アングル： ＡＩ エージェントの「暴走リスク」現実に、見直し迫られるサイバー保険 | ロイター</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　8月29日 09:25</p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.rbbtoday.com/release/prtimes2-today/20260828/1346321.html" target="_blank" rel="noopener"><h3 class="headline">彼女視点（POV）恋愛シチュエーションアニメ『ぬ 愛 彼氏（ぬまなかれし）と同棲生活』始動</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　8月29日 03:43</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.yahoo.co.jp/articles/81a05badacd76fbec81c408efd7772a2aa5a80ed" target="_blank" rel="noopener"><h3 class="headline">エンジニアと営業職が共同開発 LINEヤフー「Agent i」の裏で進む“職種の壁”の変化 …</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　8月29日 00:23</p>
+    </article>
+    <article class="item extra">
+      <a href="https://robotstart.info/article/2026/08/28/382337.html" target="_blank" rel="noopener"><h3 class="headline">JALのジェット旅客機がロボットに変身、タカラトミー「特装合体ロボ ジョブレイバー」と初 ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　8月29日 00:02</p>
+    </article>
+    <button class="more-btn" data-count="35">もっとみる（あと35件）▼</button>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">palette</span>デザインの潮流</h2><span class="count">1件</span></div>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxOZmg0b0UyZzNjWENodFBFZVRZU3ZjT05JMVdSRzRGMF81SHZMVG12d3hUQTJwQnBQMVlNS1J4aF9rMFE2SGMtc045N0ZKZmEzUENDVnhoR3NsQlppSU1zV2QzaEQxcmlRUlR0cDBGdGlsZUJxZjB4MExSUTZCV3F5bzNtWkV5YTJjS2J2U1hPNnhZWHVy?oc=5" target="_blank" rel="noopener"><h3 class="headline">9月スタートのおすすめ展覧会38選：ルーヴル美術館展、ルノワールから、蜷川実花、前橋国際芸術祭まで【2026年版】</h3></a>
+      
+      <p class="meta"><span class="src">Tokyo Art Beat</span>　8月28日 21:23</p>
+    </article>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">build</span>制作テク・Tips</h2><span class="count">0件</span></div>
+    <p class="empty-note">今朝は新着なしやで。</p>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">grid_view</span>ギャラリー</h2><span class="count">7件</span></div>
+    <article class="item">
+      <a href="https://goodwebdesignmagazine.com/ameba_blog_20th_anniversary/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=ameba_blog_20th_anniversary" target="_blank" rel="noopener"><h3 class="headline">Ameba</h3></a>
+      <p class="excerpt">アメーバブログ２０周年記念サイト ありのままが、ここにある。写真は、その瞬間を、鮮明に記録する。動画は、動きも音も、すべて保存する。かざりつけも、味つけも、自由で自在。でもなぜだろう。思い出は文字がいい。文字にする、自分……</p>
+      <p class="meta"><span class="src">Xux Webzine</span>　8月29日 10:05　　<span class="tags"><span class="tag">写真</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://goodwebdesignmagazine.com/midface/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=midface" target="_blank" rel="noopener"><h3 class="headline">中顔面短縮メガネ</h3></a>
+      <p class="excerpt">ヒロイン顔♡中顔面短縮メガネ 今日の私も、ヒロイン確定♡もっとかわいく！ちょっと盛りたい！その願い、メガネで叶えちゃお。顔の余白を自然にカバーして、中顔面をきゅっと短く見せるヒロイン顔テク！ GO TO WEBSITE ……</p>
+      <p class="meta"><span class="src">Xux Webzine</span>　8月29日 11:10</p>
+    </article>
+    <article class="item">
+      <a href="https://goodwebdesignmagazine.com/sapporobreweries-recruit/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=sapporobreweries-recruit" target="_blank" rel="noopener"><h3 class="headline">サッポロビール</h3></a>
+      
+      <p class="meta"><span class="src">Xux Webzine</span>　8月29日 10:19</p>
+    </article>
+    <article class="item extra">
+      <a href="https://goodwebdesignmagazine.com/peacestore_fc/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=peacestore_fc" target="_blank" rel="noopener"><h3 class="headline">PEACEな百貨店</h3></a>
+      <p class="excerpt">ＧＯ！ＰＥＡＣＥ！ＰＥＡＣＥな百貨店 かわいい！と手を伸ばした商品が、あなたの暮らしを彩り、実は遠い国の森を育てたり、誰かの自立を支えたりする。そんな魔法のようなお買い物体験、してみませんか？ GO TO WEBSITE……</p>
+      <p class="meta"><span class="src">Xux Webzine</span>　8月29日 10:12</p>
+    </article>
+    <article class="item extra">
+      <a href="https://goodwebdesignmagazine.com/tabio-fudge02/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=tabio-fudge02" target="_blank" rel="noopener"><h3 class="headline">KUTSUSHITAYA</h3></a>
+      <p class="excerpt">ハンサムなあの⼦の秘密は、⾜元の⼄⼥⼼。 花屋さんで働く彼女は、ハンサムな着こなしがお得意。一見クールに見えるけれど、実はかわいい色や柄に目がなくて、その乙女心はいつだって足もとにこっそり忍ばせている。ピンクに、キラキラ……</p>
+      <p class="meta"><span class="src">Xux Webzine</span>　8月29日 10:10</p>
+    </article>
+    <article class="item extra">
+      <a href="https://goodwebdesignmagazine.com/shirahone/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=shirahone" target="_blank" rel="noopener"><h3 class="headline">白骨温泉</h3></a>
+      <p class="excerpt">長野県信州松本の温泉地 白骨温泉は、長野県松本市、北アルプス山麓に佇む温泉地です。源泉はすべて天然かけ流し。湯は湧き出したときには透明で、空気に触れると乳白色に変わります。近隣には上高地、飛騨高山、乗鞍高原などの観光地。……</p>
+      <p class="meta"><span class="src">Xux Webzine</span>　8月29日 09:38</p>
+    </article>
+    <article class="item extra">
+      <a href="https://muuuuu.org/industry/building/24751.html" target="_blank" rel="noopener"><h3 class="headline">Class A Business Center</h3></a>
+      
+      <p class="meta"><span class="src">muuuuu.org</span>　8月28日 18:00</p>
+    </article>
+    <button class="more-btn" data-count="4">もっとみる（あと4件）▼</button>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">photo_camera</span>写真</h2><span class="count">1件</span></div>
+    <article class="item">
+      <a href="https://genic-web.com/articles/5574111" target="_blank" rel="noopener"><h3 class="headline">「GENIC｜45人の写真家がつなぐQ&amp;Aリレー vol.80 2026年10月号」特集詳細</h3></a>
+      <p class="excerpt">2026年9月7日（月）発売の、雑誌 GENIC10月号 vol.80 の特集は「45人の写真家がつなぐQ&amp;Aリレー」。同じ世界で生きているからこそ、聞いてみたいことがある。気になっている写真家へ。仲良しの写真家へ。憧れ……</p>
+      <p class="meta"><span class="src">GENIC</span>　8月28日 17:00　　<span class="tags"><span class="tag">写真</span></span></p>
+    </article>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">business_center</span>ビジネス・人材・ブランド</h2><span class="count">6件</span></div>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMiQ0FVX3lxTE5zTGlvUFNadEw1dlY0SUR6OTJEQW1kVHNhQVF0RUFpVVpNeTVsZVdJRUg5bGpuY3RoWnYzTmZhMFZNTGc?oc=5" target="_blank" rel="noopener"><h3 class="headline">インドネシア製品がKOFURN 2026で登場、チェセップ大使:私たちは強いブランディングを構築したい</h3></a>
+      
+      <p class="meta"><span class="src">VOI.ID</span>　8月29日 06:18　　<span class="tags"><span class="tag">ブランディング</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTFAxeWtHS1F0RHZ1Qkk0TXUtV2VmbXZEZEQzc0ZsWFExbFdNTE9Wak14cEN0bmEycTBEZ3VYTkh1QS14eXd0bGFnX0NZakxwc2U2RDNnUDRJOU8?oc=5" target="_blank" rel="noopener"><h3 class="headline">大津市が「文学のまち」ブランディング、きっかけは大河ドラマの反響 成否の鍵は…</h3></a>
+      
+      <p class="meta"><span class="src">京都新聞デジタル</span>　8月29日 05:45　　<span class="tags"><span class="tag">ブランディング</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE1BakFNRTlEbHczbmdEV3pLNXFSclB4RGZPRk1xSkdjdnBWbDViOFhwMGR2RDZZMDJWbnlvTzNxR2RycmZPQkdtWjRvWkM3LXdkRG96Xy1KY2tUZl96dWJtSnNIMFpJaUE0?oc=5" target="_blank" rel="noopener"><h3 class="headline">株式会社YORISOI、人材紹介会社向け「2026年版 Indeed求職者動向レポート」を公開</h3></a>
+      
+      <p class="meta"><span class="src">ニコニコニュース</span>　8月28日 22:15　　<span class="tags"><span class="tag">人材</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMieEFVX3lxTFBtcjN3VmZGQ25pUFNKVE9FNGpSeUZ5djljckdiRjYzTGhHSURTQ0xUWndzX0JjcG5xWlBMWVUyQW1kaTlTMjM2MV9VLWVjZWoyWnlPRTRPQVdpYjV5aV9CMk0wSFNIaHdSRFR2YzIyYnU3Q2pHeGZlTw?oc=5" target="_blank" rel="noopener"><h3 class="headline">養殖カキ「大量死」を乗り越えて…「ブランディング」で生き残り！「邑久」のカキ認知度アップを目指す地元漁協の取り組み【岡山発】</h3></a>
+      
+      <p class="meta"><span class="src">au Webポータル</span>　8月28日 21:55　　<span class="tags"><span class="tag">ブランディング</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE0taG9kbXFPaEJ3SlhZRVo1RC1rekF4MlRMRE5hQmF5VkdpVERZRjQ3OVdIQ2JNLVhILVVjMFp1U00tYjlsc25Xc19EeklCNzNTR3pEbjkzLUNoeXdWR1pkX2c0WjhQMjdpU1k0R0RTMjRMLUNPZ2c?oc=5" target="_blank" rel="noopener"><h3 class="headline">株式会社YORISOI、人材紹介会社向け「2026年版 プラットフォーム別ユーザー属性・集客戦略」を公開</h3></a>
+      
+      <p class="meta"><span class="src">ニコニコニュース</span>　8月28日 20:30　　<span class="tags"><span class="tag">人材</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5TT0RTUS12bDJzNUdHVzZSMERlREh2YXVodXpWdi1mQ2pIMGVPLUNBbm5xc003RXRfNVFsM2dyZEszdUZSRXUzZ0NZSnc5WDBHWWxrSDhTRzFjUlFRc2p2NUVHWUNtX3A3?oc=5" target="_blank" rel="noopener"><h3 class="headline">株式会社YORISOI、新卒領域の求職者送客サービスを開始</h3></a>
+      
+      <p class="meta"><span class="src">ニコニコニュース</span>　8月29日 02:15</p>
+    </article>
+    <button class="more-btn" data-count="3">もっとみる（あと3件）▼</button>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">eco</span>ライフハック</h2><span class="count">0件</span></div>
+    <p class="empty-note">今朝は新着なしやで。</p>
+  </section>
+
+  <footer>
+    啓報　—　16:53 刷り上がり ／ produced by くろえもん
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.more-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var sec = btn.closest('.section');
+      sec.classList.toggle('open');
+      var n = btn.dataset.count;
+      btn.textContent = sec.classList.contains('open')
+        ? '閉じる ▲'
+        : 'もっとみる（あと' + n + '件）▼';
+    });
+  });
+</script>
+</body>
+</html>
