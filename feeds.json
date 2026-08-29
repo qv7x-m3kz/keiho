@@ -45,7 +45,8 @@
         { "name": "前田高志", "url": "https://note.com/tmaeda/rss", "site": "https://note.com/tmaeda" },
         { "name": "前田デザイン室", "url": "https://maeda-design-room.net/rss", "site": "https://maeda-design-room.net/" },
         { "name": "Tokyo Art Beat", "url": "https://news.google.com/rss/search?q=site:tokyoartbeat.com&hl=ja&gl=JP&ceid=JP:ja", "site": "https://www.tokyoartbeat.com/" },
-        { "name": "Visional Design", "url": "https://news.google.com/rss/search?q=site:design.visional.inc&hl=ja&gl=JP&ceid=JP:ja", "site": "https://design.visional.inc/" }
+        { "name": "Visional Design", "url": "https://news.google.com/rss/search?q=site:design.visional.inc&hl=ja&gl=JP&ceid=JP:ja", "site": "https://design.visional.inc/" },
+        { "name": "KOEL DESIGN STUDIO", "url": "https://note.com/koelnote/rss", "site": "https://note.com/koelnote" }
       ]
     },
     {
