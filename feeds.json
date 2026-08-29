@@ -23,9 +23,9 @@
       "title": "AI",
       "icon": "auto_awesome",
       "sources": [
-        { "name": "Googleアラート（デザイナー and AI）", "url": "https://www.google.co.jp/alerts/feeds/01282212933122071708/5549253125001107002" },
-        { "name": "Googleアラート（AI）", "url": "https://www.google.co.jp/alerts/feeds/01282212933122071708/3287902759750817775" },
-        { "name": "Googleアラート（デザイン and AI）", "url": "https://www.google.co.jp/alerts/feeds/01282212933122071708/9621219646997431825" }
+        { "name": "Googleアラート（デザイナー and AI）", "url": "https://www.google.co.jp/alerts/feeds/01282212933122071708/5549253125001107002", "site": null },
+        { "name": "Googleアラート（AI）", "url": "https://www.google.co.jp/alerts/feeds/01282212933122071708/3287902759750817775", "site": null },
+        { "name": "Googleアラート（デザイン and AI）", "url": "https://www.google.co.jp/alerts/feeds/01282212933122071708/9621219646997431825", "site": null }
       ]
     },
     {
@@ -33,19 +33,19 @@
       "title": "デザインの潮流",
       "icon": "palette",
       "sources": [
-        { "name": "unprinted", "url": "https://www.unprinted.design/rss.xml" },
-        { "name": "JDN", "url": "https://www.japandesign.ne.jp/feed/" },
-        { "name": "Idea magazine", "url": "http://www.idea-mag.com/feed/" },
-        { "name": "freshtrax", "url": "http://blog.btrax.com/jp/feed/" },
-        { "name": "Web Designing", "url": "https://webdesigning.book.mynavi.jp/feed/" },
-        { "name": "MEMOPATCH", "url": "https://goodpatch.com/blog/feed/" },
-        { "name": "iDID", "url": "https://idid.team/feed/" },
-        { "name": "ZUNNY", "url": "https://zunny.jp/feed" },
-        { "name": "#デザイン 記事まとめ", "url": "https://note.mu/notemag/m/m57787022cedc/rss" },
-        { "name": "前田高志", "url": "https://note.com/tmaeda/rss" },
-        { "name": "前田デザイン室", "url": "https://maeda-design-room.net/rss" },
-        { "name": "Tokyo Art Beat", "url": "https://news.google.com/rss/search?q=site:tokyoartbeat.com&hl=ja&gl=JP&ceid=JP:ja" },
-        { "name": "Visional Design", "url": "https://news.google.com/rss/search?q=site:design.visional.inc&hl=ja&gl=JP&ceid=JP:ja" }
+        { "name": "unprinted", "url": "https://www.unprinted.design/rss.xml", "site": "https://www.unprinted.design/" },
+        { "name": "JDN", "url": "https://www.japandesign.ne.jp/feed/", "site": "https://www.japandesign.ne.jp/" },
+        { "name": "Idea magazine", "url": "http://www.idea-mag.com/feed/", "site": "http://www.idea-mag.com/" },
+        { "name": "freshtrax", "url": "http://blog.btrax.com/jp/feed/", "site": "https://blog.btrax.com/jp" },
+        { "name": "Web Designing", "url": "https://webdesigning.book.mynavi.jp/feed/", "site": "https://webdesigning.book.mynavi.jp/" },
+        { "name": "MEMOPATCH", "url": "https://goodpatch.com/blog/feed/", "site": "https://goodpatch.com/blog" },
+        { "name": "iDID", "url": "https://idid.team/feed/", "site": "https://idid.team/" },
+        { "name": "ZUNNY", "url": "https://zunny.jp/feed", "site": "https://zunny.jp" },
+        { "name": "#デザイン 記事まとめ", "url": "https://note.mu/notemag/m/m57787022cedc/rss", "site": "https://note.com/notemag/m/m57787022cedc" },
+        { "name": "前田高志", "url": "https://note.com/tmaeda/rss", "site": "https://note.com/tmaeda" },
+        { "name": "前田デザイン室", "url": "https://maeda-design-room.net/rss", "site": "https://maeda-design-room.net/" },
+        { "name": "Tokyo Art Beat", "url": "https://news.google.com/rss/search?q=site:tokyoartbeat.com&hl=ja&gl=JP&ceid=JP:ja", "site": "https://www.tokyoartbeat.com/" },
+        { "name": "Visional Design", "url": "https://news.google.com/rss/search?q=site:design.visional.inc&hl=ja&gl=JP&ceid=JP:ja", "site": "https://design.visional.inc/" }
       ]
     },
     {
@@ -53,13 +53,13 @@
       "title": "制作テク・Tips",
       "icon": "build",
       "sources": [
-        { "name": "コリス", "url": "https://coliss.com/feed" },
-        { "name": "PhotoshopVIP", "url": "http://photoshopvip.net/feed" },
-        { "name": "デザインのコツ。", "url": "https://design-kotu.com/feed/" },
-        { "name": "デザインメモ 2.0", "url": "https://designmemo.jp/feed/" },
-        { "name": "Fuyuna Blog", "url": "https://fuyuna.net/feed" },
-        { "name": "0.5秒を積み上げろ", "url": "https://efficiencydesign.info/feed/" },
-        { "name": "DTP Transit 別館", "url": "https://note.mu/dtp_tranist/rss" }
+        { "name": "コリス", "url": "https://coliss.com/feed", "site": "https://coliss.com/" },
+        { "name": "PhotoshopVIP", "url": "http://photoshopvip.net/feed", "site": "https://photoshopvip.net/" },
+        { "name": "デザインのコツ。", "url": "https://design-kotu.com/feed/", "site": "https://design-kotu.com/" },
+        { "name": "デザインメモ 2.0", "url": "https://designmemo.jp/feed/", "site": "https://designmemo.jp/" },
+        { "name": "Fuyuna Blog", "url": "https://fuyuna.net/feed", "site": "https://fuyuna.net/" },
+        { "name": "0.5秒を積み上げろ", "url": "https://efficiencydesign.info/feed/", "site": "https://efficiencydesign.info/" },
+        { "name": "DTP Transit 別館", "url": "https://note.mu/dtp_tranist/rss", "site": "https://note.com/dtp_tranist" }
       ]
     },
     {
@@ -67,10 +67,10 @@
       "title": "ギャラリー",
       "icon": "grid_view",
       "sources": [
-        { "name": "muuuuu.org", "url": "https://muuuuu.org/feed" },
-        { "name": "S5-Style", "url": "https://api.s5-style.com/rss/designs/gwd" },
-        { "name": "Xux Webzine", "url": "https://goodwebdesignmagazine.com/feed/" },
-        { "name": "ベイジTV", "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC8QYI0UDOudS6i2g8bIDllg" }
+        { "name": "muuuuu.org", "url": "https://muuuuu.org/feed", "site": "https://muuuuu.org/" },
+        { "name": "S5-Style", "url": "https://api.s5-style.com/rss/designs/gwd", "site": "https://www.s5-style.com/" },
+        { "name": "Xux Webzine", "url": "https://goodwebdesignmagazine.com/feed/", "site": "https://goodwebdesignmagazine.com/" },
+        { "name": "ベイジTV", "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC8QYI0UDOudS6i2g8bIDllg", "site": "https://www.youtube.com/channel/UC8QYI0UDOudS6i2g8bIDllg" }
       ]
     },
     {
@@ -78,9 +78,9 @@
       "title": "写真",
       "icon": "photo_camera",
       "sources": [
-        { "name": "ENCOUNTER", "url": "https://news.google.com/news/rss/search?q=site%3Ahttps%3A%2F%2Fencounter.curbon.jp%2F%202&hl=ja-JP&gl=JP&ceid=JP:ja" },
-        { "name": "GENIC", "url": "https://genic-web.com/media.rss" },
-        { "name": "レタッチャー / 大谷キミト", "url": "https://note.mu/ret/rss" }
+        { "name": "ENCOUNTER", "url": "https://news.google.com/news/rss/search?q=site%3Ahttps%3A%2F%2Fencounter.curbon.jp%2F%202&hl=ja-JP&gl=JP&ceid=JP:ja", "site": "https://encounter.curbon.jp/" },
+        { "name": "GENIC", "url": "https://genic-web.com/media.rss", "site": "https://genic-web.com/" },
+        { "name": "レタッチャー / 大谷キミト", "url": "https://note.mu/ret/rss", "site": "https://note.com/ret" }
       ]
     },
     {
@@ -88,12 +88,12 @@
       "title": "ビジネス・人材・ブランド",
       "icon": "business_center",
       "sources": [
-        { "name": "ベイジの日報", "url": "https://baigie.me/nippo/feed/" },
-        { "name": "knowledge / baigie", "url": "https://baigie.me/officialblog/feed/" },
-        { "name": "アプリマーケティング研究所", "url": "https://note.mu/marketing/rss" },
-        { "name": "はたらくビビビット", "url": "https://hataraku.vivivit.com/feed" },
-        { "name": "Google News（人材業界）", "url": "https://news.google.com/rss/search?q=%E4%BA%BA%E6%9D%90%E6%A5%AD%E7%95%8C&hl=ja&gl=JP&ceid=JP:ja" },
-        { "name": "Google News（ブランディング）", "url": "https://news.google.com/rss/search?q=%E3%83%96%E3%83%A9%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0&hl=ja&gl=JP&ceid=JP:ja" }
+        { "name": "ベイジの日報", "url": "https://baigie.me/nippo/feed/", "site": "https://baigie.me/nippo" },
+        { "name": "knowledge / baigie", "url": "https://baigie.me/officialblog/feed/", "site": "https://baigie.me/officialblog" },
+        { "name": "アプリマーケティング研究所", "url": "https://note.mu/marketing/rss", "site": "https://note.com/marketing" },
+        { "name": "はたらくビビビット", "url": "https://hataraku.vivivit.com/feed", "site": "https://hataraku.vivivit.com/" },
+        { "name": "Google News（人材業界）", "url": "https://news.google.com/rss/search?q=%E4%BA%BA%E6%9D%90%E6%A5%AD%E7%95%8C&hl=ja&gl=JP&ceid=JP:ja", "site": "https://news.google.com/search?q=%E4%BA%BA%E6%9D%90%E6%A5%AD%E7%95%8C&hl=ja&gl=JP&ceid=JP:ja" },
+        { "name": "Google News（ブランディング）", "url": "https://news.google.com/rss/search?q=%E3%83%96%E3%83%A9%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0&hl=ja&gl=JP&ceid=JP:ja", "site": "https://news.google.com/search?q=%E3%83%96%E3%83%A9%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0&hl=ja&gl=JP&ceid=JP:ja" }
       ]
     },
     {
@@ -101,8 +101,8 @@
       "title": "ライフハック",
       "icon": "eco",
       "sources": [
-        { "name": "あなたのスイッチを押すブログ", "url": "https://bamka.info/feed/" },
-        { "name": "リベラルアーツ大学", "url": "https://liberaluni.com/feed" }
+        { "name": "あなたのスイッチを押すブログ", "url": "https://bamka.info/feed/", "site": "https://bamka.info/" },
+        { "name": "リベラルアーツ大学", "url": "https://liberaluni.com/feed", "site": "https://liberaluni.com/" }
       ]
     }
   ]

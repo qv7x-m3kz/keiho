@@ -420,6 +420,98 @@ def write_archive_index(arch_dir, launch, tagline):
     return len(editions)
 
 
+SOURCES_TEMPLATE = """<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0e1d3d">
+<title>啓報 — 巡回先一覧</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<style>
+  :root {
+    --bg: #eef1f6; --surface: #fff; --ink: #1b2a4a; --ink-soft: #51617f; --ink-faint: #8b97ad;
+    --navy: #0e1d3d; --navy-soft: #9fb3d9; --accent: #2f6fed; --rule: #dfe5ee;
+    --gothic: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--gothic); line-height: 1.75; -webkit-font-smoothing: antialiased; }
+  .masthead-band { background: var(--navy); color: #fff; }
+  .masthead-inner { max-width: 720px; margin: 0 auto; padding: 18px 20px 24px; }
+  .top-bar { display: flex; justify-content: space-between; font-size: 12px; color: var(--navy-soft); letter-spacing: 0.08em; margin-bottom: 12px; }
+  .top-bar a { color: var(--navy-soft); text-decoration: underline; text-underline-offset: 3px; }
+  .top-bar a:hover { color: #fff; }
+  h1 { font-size: 34px; font-weight: 800; letter-spacing: 0.28em; text-indent: 0.28em; text-align: center; }
+  .edition { font-size: 12px; color: var(--navy-soft); letter-spacing: 0.3em; text-indent: 0.3em; text-align: center; margin-top: 6px; }
+  .lede { font-size: 11.5px; color: var(--ink-faint); text-align: center; letter-spacing: 0.06em; padding: 12px 16px 0; }
+  .sheet { max-width: 720px; margin: 0 auto; padding: 16px 20px 56px; }
+  .card { background: var(--surface); border-radius: 14px; box-shadow: 0 1px 2px rgba(14,29,61,.06), 0 4px 16px rgba(14,29,61,.05); padding: 22px 26px; margin-top: 16px; }
+  h2 { font-size: 15px; font-weight: 700; letter-spacing: 0.1em; border-bottom: 2px solid var(--navy); padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  h2 .count { font-size: 11.5px; color: var(--ink-faint); font-weight: 400; margin-left: auto; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24; font-size: 20px; color: var(--accent); }
+  ul { list-style: none; }
+  li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 11px 2px; border-bottom: 1px solid var(--rule); font-size: 14px; }
+  li:last-child { border-bottom: none; }
+  li a { color: inherit; text-decoration: none; font-weight: 700; }
+  li a:hover { color: var(--accent); }
+  .name { font-weight: 700; }
+  .dom { color: var(--ink-faint); font-size: 11.5px; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="masthead-band">
+  <div class="masthead-inner">
+    <div class="top-bar"><span>巡回先一覧</span><span><a href="../">最新号</a>　<a href="../archive/">バックナンバー</a></span></div>
+    <h1>啓報</h1>
+    <p class="edition">%%TAGLINE%%</p>
+  </div>
+</div>
+<p class="lede">%%LEDE%%</p>
+<div class="sheet">
+%%BODY%%
+</div>
+</body>
+</html>
+"""
+
+
+def write_sources_page(config, out_dir):
+    """feeds.json のセクション定義から巡回先一覧ページを生成する。"""
+    parts = []
+    total = 0
+    for sec in config["sections"]:
+        rows = []
+        for src in sec["sources"]:
+            total += 1
+            site = src.get("site")
+            if site:
+                dom = urlparse(site).netloc.removeprefix("www.")
+                rows.append(
+                    f'<li><a href="{esc(site)}" target="_blank" rel="noopener">{esc(src["name"])}</a>'
+                    f'<span class="dom">{esc(dom)}</span></li>'
+                )
+            else:
+                rows.append(
+                    f'<li><span class="name">{esc(src["name"])}</span>'
+                    f'<span class="dom">アラートRSS</span></li>'
+                )
+        parts.append(
+            f'<section class="card"><h2>'
+            f'<span class="material-symbols-outlined">{esc(sec["icon"])}</span>{esc(sec["title"])}'
+            f'<span class="count">{len(sec["sources"])}本</span></h2>'
+            f'<ul>{"".join(rows)}</ul></section>'
+        )
+    page = (
+        SOURCES_TEMPLATE.replace("%%TAGLINE%%", esc(config["meta"]["tagline"]))
+        .replace("%%LEDE%%", f"啓報が毎朝巡回しているフィードの一覧（全{total}本）")
+        .replace("%%BODY%%", "\n".join(parts))
+    )
+    src_dir = out_dir / "sources"
+    src_dir.mkdir(parents=True, exist_ok=True)
+    (src_dir / "index.html").write_text(page, encoding="utf-8")
+    return total
+
+
 # ---------------------------------------------------------------- メイン
 
 
@@ -527,14 +619,16 @@ def main():
     arch_dir.mkdir(parents=True, exist_ok=True)
 
     # 最新号（トップページ）とアーカイブ号は、右上のリンクだけ変えて書き出す
-    nav_latest = '<a href="archive/">バックナンバー</a>'
+    nav_latest = '<a href="sources/">巡回先</a>　<a href="archive/">バックナンバー</a>'
     nav_archived = '<a href="../">最新号</a>　<a href="./">バックナンバー</a>'
     (out_dir / "index.html").write_text(page.replace("%%NAV%%", nav_latest), encoding="utf-8")
     (arch_dir / f"{now:%Y-%m-%d}.html").write_text(page.replace("%%NAV%%", nav_archived), encoding="utf-8")
     n_editions = write_archive_index(arch_dir, launch, meta["tagline"])
+    n_sources = write_sources_page(config, out_dir)
 
     print(
-        f"✅ 刷り上がり: {out_dir / 'index.html'}（記事{total}件・一面{len(top3)}本・アーカイブ{n_editions}号）",
+        f"✅ 刷り上がり: {out_dir / 'index.html'}"
+        f"（記事{total}件・一面{len(top3)}本・アーカイブ{n_editions}号・巡回先{n_sources}本）",
         file=sys.stderr,
     )
 
