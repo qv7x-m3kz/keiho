@@ -36,9 +36,14 @@ jobs:
         run: |
           git config user.name "qv7x-m3kz"
           git config user.email "250904501+qv7x-m3kz@users.noreply.github.com"
-          git pull --rebase origin main
           git add docs
-          git diff --cached --quiet || (git commit -m "アーカイブ: $(TZ=Asia/Tokyo date '+%Y-%m-%d') の紙面" && git push origin main)
+          if git diff --cached --quiet; then
+            echo "紙面に変更なし、保存スキップ"
+          else
+            git commit -m "アーカイブ: $(TZ=Asia/Tokyo date '+%Y-%m-%d') の紙面"
+            git pull --rebase origin main
+            git push origin main
+          fi
 
       - name: Pages用に紙面をアップロード
         uses: actions/upload-pages-artifact@v3
