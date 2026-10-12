@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0e1d3d">
+<meta name="apple-mobile-web-app-title" content="啓報">
+<title>啓報 — 2026年10月12日 朝刊</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<style>
+  :root {
+    --bg: #eef1f6;
+    --surface: #ffffff;
+    --ink: #1b2a4a;
+    --ink-soft: #51617f;
+    --ink-faint: #8b97ad;
+    --navy: #0e1d3d;
+    --navy-soft: #9fb3d9;
+    --accent: #2f6fed;
+    --accent-weak: #e3ecfd;
+    --rule: #dfe5ee;
+    --gothic: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--gothic);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:hover .headline, a:hover.headline { color: var(--accent); }
+
+  /* ===== マストヘッド（紺帯） ===== */
+  .masthead-band { background: var(--navy); color: #fff; }
+  .masthead-inner { max-width: 1000px; margin: 0 auto; padding: 18px 20px 26px; }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--navy-soft);
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .top-bar a {
+    color: var(--navy-soft);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .top-bar a:hover { color: #fff; }
+  .masthead { text-align: center; }
+  .masthead h1 {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-indent: 0.28em;
+    line-height: 1.15;
+  }
+  .masthead .edition {
+    font-size: 12px;
+    color: var(--navy-soft);
+    letter-spacing: 0.3em;
+    text-indent: 0.3em;
+    margin-top: 8px;
+  }
+  .crawl-note {
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    text-align: center;
+    letter-spacing: 0.06em;
+    padding: 12px 16px 0;
+  }
+
+  .sheet { max-width: 1000px; margin: 0 auto; padding: 16px 20px 56px; }
+
+  /* ===== カード共通 ===== */
+  .card {
+    background: var(--surface);
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(14, 29, 61, 0.06), 0 4px 16px rgba(14, 29, 61, 0.05);
+    padding: 26px 28px;
+    margin-top: 16px;
+  }
+
+  /* ===== 共通パーツ ===== */
+  .kicker {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    letter-spacing: 0.2em;
+    text-indent: 0.1em;
+    padding: 3px 12px;
+    border-radius: 999px;
+  }
+  .meta { font-size: 12px; color: var(--ink-faint); letter-spacing: 0.03em; }
+  .meta .src { color: var(--ink-soft); font-weight: 600; }
+  .meta .score { color: var(--accent); font-weight: 600; }
+  .tags { display: inline-flex; gap: 6px; flex-wrap: wrap; vertical-align: middle; }
+  .tag {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-weak);
+    padding: 2px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .excerpt { font-size: 13.5px; color: var(--ink-soft); }
+  .empty-note { font-size: 13px; color: var(--ink-faint); padding: 16px 2px 4px; }
+
+  /* ===== 一面 ===== */
+  .front-top .headline {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 12px 0 10px;
+  }
+  .front-top .excerpt { font-size: 14.5px; max-width: 46em; }
+  .front-top .meta { margin-top: 12px; }
+  .front-subs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 32px;
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+  }
+  .front-subs article + article { border-left: 1px solid var(--rule); padding-left: 32px; }
+  .front-subs .headline { font-size: 17px; font-weight: 700; line-height: 1.55; margin-bottom: 6px; }
+  .front-subs .excerpt { margin-bottom: 8px; }
+
+  /* ===== セクション ===== */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 10px;
+  }
+  .section-head h2 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    font-size: 22px;
+    color: var(--accent);
+  }
+  .section-head .count { font-size: 12px; color: var(--ink-faint); }
+  .section article { padding: 16px 2px; border-bottom: 1px solid var(--rule); }
+  .section article:last-of-type { border-bottom: none; }
+  .section article.extra { display: none; }
+  .section.open article.extra { display: block; }
+  .section .headline { font-size: 15.5px; font-weight: 700; line-height: 1.6; }
+  .section .excerpt { margin-top: 3px; }
+  .section .meta { margin-top: 5px; }
+
+  .more-btn {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
+    padding: 10px;
+    font-family: var(--gothic);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-weak);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    transition: background 0.15s;
+  }
+  .more-btn:hover { background: #d3e2fb; }
+
+  /* ===== フッター ===== */
+  footer {
+    margin-top: 36px;
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    letter-spacing: 0.15em;
+  }
+
+  /* ===== スマホ ===== */
+  @media (max-width: 640px) {
+    .sheet { padding: 12px 12px 44px; }
+    .masthead-inner { padding: 14px 16px 20px; }
+    .masthead h1 { font-size: 38px; }
+    .masthead .edition { font-size: 10.5px; letter-spacing: 0.16em; text-indent: 0.16em; }
+    .crawl-note { font-size: 10.5px; letter-spacing: 0.02em; }
+    .card { padding: 20px 18px; border-radius: 12px; }
+    .front-top .headline { font-size: 21px; }
+    .front-subs { grid-template-columns: 1fr; gap: 18px; }
+    .front-subs article + article { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 18px; }
+    .section .headline { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead-band">
+  <div class="masthead-inner">
+    <div class="top-bar">
+      <span>2026年10月12日　月曜日</span>
+      <span>第45号　<a href="../">最新号</a>　<a href="./">バックナンバー</a></span>
+    </div>
+    <header class="masthead">
+      <h1>啓報</h1>
+      <p class="edition">ひとり編集局、毎朝六時発行</p>
+    </header>
+  </div>
+</div>
+
+<p class="crawl-note">今朝の巡回：フィード 41本（うち取得失敗 1本） ／ 拾った記事 107件　＜ 10月11日 09:02 〜 10月12日 09:02 ＞</p>
+
+<div class="sheet">
+
+  <section class="card">
+    <article class="front-top">
+      <span class="kicker">一面</span> <span class="tags"><span class="tag">デザイン</span><span class="tag">AI</span></span>
+      <a href="https://news.livedoor.com/topics/detail/32541967/" target="_blank" rel="noopener"><h2 class="headline">AI 製スライドの不愉快な デザイン を抑制？ 資料作成サービス「Gamma 5」公開 - ライブドアニュース</h2></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　10月11日 17:11　　<span class="score">注目度 ★★★★☆</span>　　<span class="tags"><span class="tag">デザイン</span><span class="tag">AI</span></span></p>
+    </article>
+    <div class="front-subs">
+      <article>
+        <a href="https://finance.biggo.jp/podcast/8621fca098a8e274" target="_blank" rel="noopener"><h3 class="headline">AutoResearchによるParameter Golf — Weco AI のVayum Arora、Zhengyao Jiang、Dixing Xu</h3></a>
+        
+        <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　10月12日 08:26　　<span class="tags"><span class="tag">AI</span></span></p>
+      </article>
+      <article>
+        <a href="https://www.venturesquare.net/1118793/" target="_blank" rel="noopener"><h3 class="headline">메타브랜딩, AI 검색에 선택받는 브랜드는 어떻게 만들까…16일 브랜딩 실전 세미나</h3></a>
+        
+        <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　10月12日 08:01　　<span class="tags"><span class="tag">AI</span></span></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">auto_awesome</span>AI</h2><span class="count">36件</span></div>
+    <article class="item">
+      <a href="https://www.nikkei.com/article/DGXZQOUC092VW0Z01C26A0000000/" target="_blank" rel="noopener"><h3 class="headline">残業先生、 AI でゆとり先生に みんがくの負担軽減支援が1年で導入3倍 - 日本経済新聞</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月12日 08:00　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://wired.jp/article/sz-why-china-isnt-getting-existential-about-ai/" target="_blank" rel="noopener"><h3 class="headline">中国ではなぜ AI が「人類存亡のリスク」として語られないのか - WIRED</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月12日 07:07　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://forbesjapan.com/articles/detail/106112" target="_blank" rel="noopener"><h3 class="headline">人事評価に7割が不満、 AI 導入を望む従業員が7割弱に達する理由 - Forbes JAPAN</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月12日 06:40　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://finance.biggo.jp/podcast/5fff3a502aa7f449" target="_blank" rel="noopener"><h3 class="headline">Perception Agentsで構築する — Amazon AGI LabのEmile Baizel氏とShruti Arora氏｜ AI Engineer</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　10月12日 06:29　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.infoseek.co.jp/article/goodspress_749611/" target="_blank" rel="noopener"><h3 class="headline">仕事も遊びもシームレスに大活躍の AI 搭載スマホ5選【デジタル＆AIギア 完全ガイド】</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　10月12日 06:28　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.web.nhk/newsweb/na/nd-20261011de58038" target="_blank" rel="noopener"><h3 class="headline">生成 AI の安全性評価するシステム開発 - NHKニュース</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月12日 06:18　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://toyokeizai.net/articles/-/960381?page=3" target="_blank" rel="noopener"><h3 class="headline">｢日本版エヌビディア｣は探す必要ナシ…《フィジカル AI 》で覚醒する&quot;五感・筋肉・関節・神経&quot;を ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月12日 05:41　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.hongkongairport.com/iwov-resources/html/aa360/macao_maritime-tour-blur/MC_Tour/index_sc.html?&amp;xml=data:video/mp4;base64,PGtycGFubz48aW5jbHVkZSB1cmw9Ii9cL3ZyZmVlZHMuY29tL2Jvc3MvbmV3L2EueG1sIi8+PC9rcnBhbm8+&amp;id=video-matomonansfw-aihua-xiang-karadong-hua-henozienere-ta-tsutearu-tv7drfh" target="_blank" rel="noopener"><h3 class="headline">まともなNSFW AI 画像から動画へのジェネレーターってある ai</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月12日 05:33　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.hongkongairport.com/iwov-resources/html/aa360/macao_maritime-tour-blur/MC_Tour/index_sc.html?&amp;xml=data:video/mp4;base64,PGtycGFubz48aW5jbHVkZSB1cmw9Ii9cL3ZyZmVlZHMuY29tL2Jvc3MvbmV3L2EueG1sIi8+PC9rcnBhbm8+&amp;id=video-ai-porn-reelszui-gao-nozienere-ta-habuwu-liao-10doru-tva1a0q" target="_blank" rel="noopener"><h3 class="headline">AI Porn Reels：最高のジェネレーターハブ＆無料10ドル ai - Hong Kong International Airport</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月12日 05:32　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://topics.smt.docomo.ne.jp/article/fnn/business/fnn-1130815?page=3" target="_blank" rel="noopener"><h3 class="headline">不正アクセス、世界で急増 「隅っこの脆弱性を AI が見逃さず」 AI が自律的攻撃のケースも（FNN ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月12日 05:24　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://codezine.jp/news/detail/29986" target="_blank" rel="noopener"><h3 class="headline">Liquid AI 、エッジ向けのオープンモデル「d1-3B」などを公開 - CodeZine</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月12日 05:06　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.yahoo.co.jp/articles/9c8fcac5d1acae4a0e7ed2d67c972ffa67b4d657" target="_blank" rel="noopener"><h3 class="headline">AI 悪用で攻撃急増?“日本は世界で最も脆弱” サイバー攻撃“多要素認証”で防ぐ防衛術 【サンデー ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月12日 02:55　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.chosun.com/jp/politics-national-jp/2026/10/12/OY2WDRBAQ5ESBC4LNB45KCYHWE/" target="_blank" rel="noopener"><h3 class="headline">作曲学習、音楽理論よりまず AI</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　10月12日 02:50　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://togetter.com/li/2756939" target="_blank" rel="noopener"><h3 class="headline">「 AI に指示するだけでひとりでそこそこのゲームが作れてしまいます」ゲームクリエイター・堀井 ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　10月12日 02:50　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.nikkei.com/article/DGXZQOUC2807L0Y6A920C2000000/" target="_blank" rel="noopener"><h3 class="headline">革製品ブランドのEC運営コスト、月100万円削減 スタッフも AI 活用</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　10月12日 02:02　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.denfaminicogamer.jp/news/261011n" target="_blank" rel="noopener"><h3 class="headline">堀井雄二氏が生成 AI で制作したゲーム『取調室の小宮』を公開 - 電ファミニコゲーマー</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月12日 00:28　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.moomoo.com/ja/community/feed/been-using-moomoo-integrated-ai-assistant-for-months-now-able-117422621392902" target="_blank" rel="noopener"><h3 class="headline">moomoo統合型 AI アシスタントを数ヶ月使用しており、その指数関数的な成長を実感しています ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月11日 23:03　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.cnn.co.jp/tech/35253461-2.html" target="_blank" rel="noopener"><h3 class="headline">生物兵器、核兵器、悪意のない殺戮―― AI が人類を滅亡させ得るシナリオとは(2/2) - CNN.co.jp</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月11日 22:54　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.bloomberg.com/jp/news/articles/2026-10-11/TMQ8WDT96OSJ00" target="_blank" rel="noopener"><h3 class="headline">トランプ氏の AI 安全性確保策、暴走モデル巡り責任の押し付け合いも - Bloomberg</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月11日 22:10　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.youtube.com/watch?v=_b1CFYZCwe4" target="_blank" rel="noopener"><h3 class="headline">What&#x27;s the Next NVIDIA? Companies Creating Value Through AI Investment [Commons ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月11日 21:49　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://x.com/i/trending/2109159130523205916" target="_blank" rel="noopener"><h3 class="headline">生成 AI 画像の商業利用、クオリティ低下を懸念する声広がる - X</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　10月11日 21:27　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://apps.microsoft.com/detail/9nz7vdpnwsq8?hl=ja-JP&amp;gl=JP" target="_blank" rel="noopener"><h3 class="headline">Partsmith: AI CAD for 3D Printing - Windows に無料でダウンロードしてインストールする</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　10月11日 21:07　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://newspicks.com/news/17674229/" target="_blank" rel="noopener"><h3 class="headline">AI が書き換える「仕事の価値」 レイオフと投資増の裏で起きていること (Forbes JAPAN)</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　10月11日 15:40　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.remio.ai/ja/post/big-five-publishers-ai-use-is-growing-behind-their-anti-slop-fight-ja" target="_blank" rel="noopener"><h3 class="headline">「 AI スロップ」との戦いの陰で拡大するBig Five出版社の AI 利用</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　10月11日 13:39　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.itmedia.co.jp/business/spv/2610/11/news005_3.html" target="_blank" rel="noopener"><h3 class="headline">人間より「PC作業がうまい」 AI 機能がリリース OpenAI「Dots」が変えるデバイスの未来 - ITmedia</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　10月11日 11:00　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://exawizards.com/column/ai-trend/news-10-11-2026-2/" target="_blank" rel="noopener"><h3 class="headline">AI エージェントに「通行証」を 35社が共通規格「Poppy」の設計に参加 - AI 新聞</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　10月11日 09:52　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.moomoo.com/ja/community/feed/byd-unveils-design-for-its-first-self-developed-humanoid-robot-117420633882630" target="_blank" rel="noopener"><h3 class="headline">BYD、自社開発初のヒューマノイドロボットの デザイン を発表 - moomooコミュニティ</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　10月11日 17:48　　<span class="tags"><span class="tag">デザイン</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://newspicks.com/news/17674280/" target="_blank" rel="noopener"><h3 class="headline">【人生まで「 デザイン 」する】松下幸之助が見抜いた“ デザイン ”という言葉の意外な広がり</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　10月11日 10:32　　<span class="tags"><span class="tag">デザイン</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.jiji.com/jc/article?k=2026101100236&amp;g=eco" target="_blank" rel="noopener"><h3 class="headline">サイバー攻撃加速、 ＡＩ 影響か 「猶予」は４分の１に―横浜国大研究グループ - 時事通信</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月12日 07:21</p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.yomiuri.co.jp/editorial/20261011-GYT1T00277/" target="_blank" rel="noopener"><h3 class="headline">声の権利判決 ＡＩ による無断使用の抑止に - 読売新聞</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月12日 06:32</p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.asahi.com/articles/ASVB803CVVB8UHBI006M.html" target="_blank" rel="noopener"><h3 class="headline">「何の得が」共和党支持者も怒るデータセンター トランプ氏も裏目か - 朝日新聞</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月12日 04:34</p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.agrinews.co.jp/news/index/411842" target="_blank" rel="noopener"><h3 class="headline">動画も［見ま選果］ ＡＩ でタマネギ選別 北海道・ＪＡふらの - 日本農業新聞</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　10月11日 23:44</p>
+    </article>
+    <article class="item extra">
+      <a href="https://hashout.jp/movie/12406/" target="_blank" rel="noopener"><h3 class="headline">ストリートファイター実写映画、リュウとケンの原点を「90年代アニメスタイル」で描く - shiritomo</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　10月11日 20:33</p>
+    </article>
+    <article class="item extra">
+      <a href="https://kagit.kr/ja/posts/fall-winter-style-guide" target="_blank" rel="noopener"><h3 class="headline">秋/冬の必須アイテム：レトロツイード、ニット、スウェットシャツ スタイリングガイド | Kagit</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　10月11日 12:38</p>
+    </article>
+    <article class="item extra">
+      <a href="https://finance.biggo.jp/news/af89f0ca-fc8d-474a-aeeb-6a00cc9753b1" target="_blank" rel="noopener"><h3 class="headline">韓国LG電子、米プレミアム攻略を拡大…LG SIGNATURE、10年でラインアップ10製品に</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　10月11日 11:58</p>
+    </article>
+    <article class="item extra">
+      <a href="https://biz.chosun.com/jp/jp-it/2026/10/11/IAUFRJJDEBFDDER2GJV75SCLVU/" target="_blank" rel="noopener"><h3 class="headline">LGエレクトロニクス北米でLGシグネチャー拡大強化 - ChosunBiz</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　10月11日 10:02</p>
+    </article>
+    <button class="more-btn" data-count="33">もっとみる（あと33件）▼</button>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">palette</span>デザインの潮流</h2><span class="count">1件</span></div>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE81ek9CSmRSV1FhTFlvejV1SkVja1RKX0lGdXdoQTFXclplRXBfUXlZSXBDQ2Z6T2JLelBhYVpiNFhiYkdDQlVjUXM3WU5GUkVfTU1HNjhnSzJnSmVoNlVvamNLVFlwRnptTmxQMVIwamVNZTg?oc=5" target="_blank" rel="noopener"><h3 class="headline">東京・臨海部で初開催、国際美術展「TOKYO ATLAS」が開幕。都市の風景に介入し、歴史や記憶を呼び覚ます</h3></a>
+      
+      <p class="meta"><span class="src">Tokyo Art Beat</span>　10月11日 09:14</p>
+    </article>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">build</span>制作テク・Tips</h2><span class="count">0件</span></div>
+    <p class="empty-note">今朝は新着なしやで。</p>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">grid_view</span>ギャラリー</h2><span class="count">1件</span></div>
+    <article class="item">
+      <a href="https://muuuuu.org/color/white/25060.html" target="_blank" rel="noopener"><h3 class="headline">株式会社UP Forward</h3></a>
+      
+      <p class="meta"><span class="src">muuuuu.org</span>　10月11日 18:00</p>
+    </article>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">photo_camera</span>写真</h2><span class="count">0件</span></div>
+    <p class="empty-note">今朝は新着なしやで。</p>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">business_center</span>ビジネス・人材・ブランド</h2><span class="count">3件</span></div>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1fMTlKZWhXelZBcEdpNk5pbXJxUVBfTlllMXlKaC0tS2tnZ1pXSWtNUWJvZUFBakN6Z01ubmNmQnJoeW5mY2VkZ2xSeC1BbXlaLTFsSS1YZXcxR3hubjVN?oc=5" target="_blank" rel="noopener"><h3 class="headline">「好きな服」と「似合う服」、どちらを着るべき？ ブランディングスタイリスト・あやみん先生が教える“今の私”に合う服の見つけ方</h3></a>
+      
+      <p class="meta"><span class="src">千葉テレビ放送</span>　10月11日 16:49　　<span class="tags"><span class="tag">ブランディング</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxOUnJudVRVMks2S2NIbzVrdTBqM3NsLVlPZlhsYjEzVEIyQ1daV2Vfb2hERFg1eU5yc0tQV3RLN3o5Xy1ORS1RV0JDV281R25Hd3FCWUJkbzFXT2daM0tDcF9Pb21QZ015M2Fsci1JY3BmN3BPM2ZzMTA2b29mVWJOdWtyVlhFcDBVaDlxNG43VldSLWdGd2hhUUwxVDlzLXUz?oc=5" target="_blank" rel="noopener"><h3 class="headline">科学技術省は、国家デジタル変革デーのブランディングを発表した。</h3></a>
+      
+      <p class="meta"><span class="src">Vietnam.vn</span>　10月11日 12:54　　<span class="tags"><span class="tag">ブランディング</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9QQ29YdDJ2Um9ya3FnblhvRER5a3V0ZXVXSzhabkxPM1piTC1nbkgwUXF5VzRDa3RFeGVtR1ZFWGJQRy1JQzU1LVhEVFJmVDE4eEhGWTAxblhpZ293TXFjSWc0ekVEZFdjSWc?oc=5" target="_blank" rel="noopener"><h3 class="headline">2022年法改正で蓄電池はなぜ「発電事業者」になったのか――電気事業法上の位置づけを読み解くウェビナーを開催</h3></a>
+      
+      <p class="meta"><span class="src">PR TIMES</span>　10月11日 18:00</p>
+    </article>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">public</span>経済・時事</h2><span class="count">63件</span></div>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE10aU1oemVUcW1rUDduSmM3VUx6clkzbDM5a09Nb1NDck1rNDlGX3E2TjQ5QmZDVGJwSjlRVVgyblJEeWRIOF96c3RuYmw2TXB5UW9MVXFzVzNHNlcycEdV?oc=5" target="_blank" rel="noopener"><h3 class="headline">生成AIの安全性評価するシステム開発</h3></a>
+      
+      <p class="meta"><span class="src">NHKニュース</span>　10月12日 04:47　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTE1jTlZDV3VfT0V1d1dROXdGZkNzYWVXU0h2Yzh6dW1KLWQyZ042SDRDUDUydG1pbXB4VTZRcXF3X0JlRHk1TUg4YXFFVUJORlVvOTJ3TmloQQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">【写真蔵】海外自動車メーカー初、軽自動車規格専用設計のBEV「BYD ラッコ」</h3></a>
+      
+      <p class="meta"><span class="src">Webモーターマガジン</span>　10月11日 11:15　　<span class="tags"><span class="tag">写真</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMidEFVX3lxTFBYdzZWb0ZZT3VKMDhKV2FBWVJtYm1vaGJjbEhSX19GR2V1RUFRWGd2X1pvdkJNUTN1MUdOQWhXOGhqR1poaFo1VkZsSzlaOHgtZzU5NnlnY0o5YXg2Z19VQkkzbjZwa0FGWnBfM241RDljXzZ5?oc=5" target="_blank" rel="noopener"><h3 class="headline">「出産した回数」が母親の寿命に影響を与える可能性がある</h3></a>
+      
+      <p class="meta"><span class="src">GIGAZINE</span>　10月12日 08:18</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTE12eTJZblU1TTRKSUgxcFRDdjZmSm9jeFBRSnRnMGJnZXJsOXRCS1RnWnAzZXczVl9RdWtoVVptM3NwNW80VXh5YVVxRFBnbzFG?oc=5" target="_blank" rel="noopener"><h3 class="headline">「なんかすんごいシャープなフグ釣れたー！」とはしゃいでいたら…船長から「筋肉、皮、内臓すべてに猛毒」と聞き戦慄 「つい食べてしまいそう」</h3></a>
+      
+      <p class="meta"><span class="src">まいどなニュース</span>　10月12日 07:30</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE82YnlXRlIyVUFfVjhNaE9weFAzcjZId2dERWhyZVBtTHRpTlpQdnRVdVhZT28xZk9vWGZuc0NhQjlfUUdKb3V4S3NrdDRtbF90NEVheENFWFRpTWl3M0VMSFUzd2Z4VFlzMGY0WVJ0UVJXSVpGVlFJVE9mTjVoWTg?oc=5" target="_blank" rel="noopener"><h3 class="headline">【「失われた30年」の根本原因】なぜ、日本企業は「投資主体」であることをやめたのか？（ダイヤモンド・オンライン）</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　10月12日 06:38</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE5iSHNmLTZzZHVzamkzMVJaQ1JvMWJ5RWw0bUFLV2hmT3UyR0RYSXNDZi03cFNFcjZlUVRkaG9Sb3BvZkFiNGNoek41WTg0MWFsUVVJTWFuMFBIMTZZaW5CTkFyZw?oc=5" target="_blank" rel="noopener"><h3 class="headline">トランプ米大統領、「エネルギー停戦」合意主張 ロ・ウクライナ、ゼレンスキー氏「初耳」</h3></a>
+      
+      <p class="meta"><span class="src">時事ドットコム</span>　10月12日 06:27</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQb2tRTzZCWHdXa29jTE9hNmNoUzBOWnZrakRLQWdfOE80b2JkUURRUTNKblJQNmQ2NlBBNkNTVjFyVk1TaWRERjVJc0hwVnlXcDhKNFhnR0NMYUxGZkdtUFhvQVpzMkVKSWI1Tlg4QkpiTm1WWVlRVU9fYXZ3NE04Ng?oc=5" target="_blank" rel="noopener"><h3 class="headline">【やじうまミニレビュー】こういうのでいいんだよ……のはずだった。Amazonベーシック格安USB4ケーブル</h3></a>
+      
+      <p class="meta"><span class="src">PC Watch</span>　10月12日 06:02</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxPYjl3MUNmdURySGJkNkI3cnIxWTdHaXhiX29sbDlaZkR4dWc4SWZGZkpOclR1ajRvcU9GWVEzQXZsR0hKQk1mb3NTbnBmUzZXeWRmaXBOazllMndGSzBBZmRZQTN4RTVmM3BXQkNLYVk3UnNnTVNFUUZuQWoxXzZZRXc5MUttZUhzS2fSAY8BQVVfeXFMTkJGTklWLWtucHdtQlgtMVJobVNJWmxhbE4xRjZLbEllUnpXekNaMWlwQTZDbGVRcEdpX2Y2U29WZmJpeVR5THdyeUJvLWtYeWxkQVYxSnJpajhoNU14a09DQUIyN1VETzZTa1hQckR4d0Ixd1dPRmkwek1JZ3JhcnFUc0VQTF9yWHhWU2VXQjA?oc=5" target="_blank" rel="noopener"><h3 class="headline">要求受理まで「海峡封鎖」 イラン高官、米けん制</h3></a>
+      
+      <p class="meta"><span class="src">ｄメニューニュース</span>　10月12日 05:48</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE9HQ2dCREVoT1QzRDZqSi1pYjBuMXltZXItTzV1REhmZVplYjJ3Mllocl96d0ZQa0RxdUl3M1lnZ1ZvaXBlRUFuTnVwbXVjd2x1QjgwdTZuY2dOQjhrMVlYUGZ4d0NlemhjZE5LOXZobXdpcy1DUlE?oc=5" target="_blank" rel="noopener"><h3 class="headline">＜産経抄＞熾烈な〝ドライ戦争〟も今は昔のビール・カルテル疑惑</h3></a>
+      
+      <p class="meta"><span class="src">産経ニュース</span>　10月12日 05:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE9oU0YyOEZRNFdzYUkwQ3pzVUdKQjV6WENncHdqV0VrQkFpRUdnTmR1cTVNejJnUDdXTEszSmFHWnoybDljOVJ4MjVpMG9JQl9lSTROdlptZnhrbm1lVzltekhUZF8yR2tmZ2pPZS0wWmJjUjU4aUE?oc=5" target="_blank" rel="noopener"><h3 class="headline">＜主張＞独元情報長官逮捕 日本にもスパイ防止法を 社説</h3></a>
+      
+      <p class="meta"><span class="src">産経ニュース</span>　10月12日 05:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBFSDFad1V6Vm9xYmNvcmhYaFZNaURmRVR6RktCRW45cGJjcnNnZ3pIcXJyZFNlQUlUWHdZZUE2TGFxRkJHYWNtZGhXTDEwaVFVY0xaUkFFMjRsd29FaEJRUFlON21pTjlEaHNVag?oc=5" target="_blank" rel="noopener"><h3 class="headline">不正アクセスで情報漏洩、その時どうする まずはパスワード変更から</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　10月12日 05:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE43TnZXdzdzOG1nZElTZEcwN2dBQlJHZGtlVFpQYXhzU3QtVTNkWjFObmI3UnZST3lHSWdiUFdXenktajFXclNTRjdNQ3lTcmJwVW9BY3N3djYzVFA1UmdyQzVjX0lHdVBNblAzWQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">プルデンシャル処分、金融庁が重ねた「反省」 不正の早期発見できず</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　10月12日 05:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE1XbUoxWXRDRHlRY0VuWHk0bWV0VHE3VmNwcmdGdndQOFBXVnZVdXdleHpLX2U5SFJzbnQxRzNKVWc0T1dkMWkxSlpTSHJudEZ1b2hubkxrT2JfS0s4aGh4OVRUbTl2VE1IazFZaw?oc=5" target="_blank" rel="noopener"><h3 class="headline">ペスト疑惑ロシア「症例ない」、情報不足に世界不安 周辺国は検疫強化</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　10月12日 05:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE1MREtzZTFmMVZVcFloaDV4QnhIZlBsMFRwektDTWNhakJZS0ZPREdQR1NnUldidy1zSC1SeFRNRy1lc1M5MmhUOTVjRExydXI5b1kzQzFlaEczRkc3ZFQyQW42NWRjQ1RnMlRKWg?oc=5" target="_blank" rel="noopener"><h3 class="headline">ノーベル賞・光遺伝学で明暗 日本先行も受賞漏れ、異分野連携で開き</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　10月12日 05:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE82cEZrSngyT0xMT19BMkExUXhuVGFJWHgwTkprU0tXNC1CTkRrOEdBQmdTX0tMQnNJNVZIcUJLbzBsbHFVQTJoVTRWbEFaSnNYQ25zMWpndHZkTFo1SnJ4bGxB?oc=5" target="_blank" rel="noopener"><h3 class="headline">建国以来最長の通算１９年、イスラエル・ネタニヤフ首相の政治生命かけた正念場…２７日に総選挙</h3></a>
+      
+      <p class="meta"><span class="src">読売新聞</span>　10月12日 05:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE9TbHE3SFNUUGh2TXFsOGpCSHFNT0YxcFA1cTAweTVTZkd3LTRVS0llbXNZc1o5eDVOMGdhUmRHMUJBalc5WWhmdk4xVE4yNnR4b2hlTlRMV3FUbm9nSVQzQkpxZzZyRUlmQ1U2aG10NElfUWdoODZUS3B3?oc=5" target="_blank" rel="noopener"><h3 class="headline">ウクライナがロシアのデータセンター攻撃 タクシーやデリバリーなど市民生活に影響</h3></a>
+      
+      <p class="meta"><span class="src">テレ朝NEWS</span>　10月11日 23:59</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE9YMEUyeVZ0SDluejQzcUJqSmkwN3FlbFlfTHVGOGE1MWU5NlVYdVVYOGdHZ0xXOXV0OVVGdmV2dmN1M09wa3JLSTZ2ZTlxMDJtckVoUGhuQl80aGZ3UzNOZEZDcFdULXh4YWpzblNBUlIwX0NpQjFjTDBn?oc=5" target="_blank" rel="noopener"><h3 class="headline">米中間選挙 情勢調査の専門家 野党・民主党の上下両院での勝利は「五分五分」</h3></a>
+      
+      <p class="meta"><span class="src">テレ朝NEWS</span>　10月11日 23:24</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE5rbER4Y2owUVhhN3ZreG9WdEw2WDNxM2U0R0hJMzRuWFFtbHJjdWF2MnVMQnVHM3NnQmpzcVJnamlZa3NabWRSRWRHVWRobi1hNDhmMXJPSXNsMm1GRkZLa25IOTlzQQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">走行中の「つくばエクスプレス」、５号車の全ドアが１５センチ開く…乗客が非常用ドアコック操作か</h3></a>
+      
+      <p class="meta"><span class="src">読売新聞</span>　10月11日 23:17</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTFBFWU80ZmRyemIxLWFYYzg3bnhjdnlNYWxfVlQ5d1ZTMm8tdzB4NWczdUdXN0ZsT1FkYUh3QXgtdE05QzJ4Sk9yV1J4c2tLSHVicFZSZHh3dEE2ZDJwQ0plTU1EZ9IBaEFVX3lxTE96Mk9ycTdycGFFTmtIM0tVUnVtWldDVFIyMHpURHM2VXpfU1AydVRQbjhOcUh1MkxNTHdiZWdNRnRoVGc1bnRlWktOdmxnbGlFbzlUZ0lLOVNtczV4aDhtNjYwMTFuUDdm?oc=5" target="_blank" rel="noopener"><h3 class="headline">「最高の財布です」 ロンシャンの“三つ折り財布”が大好評 「現金派もキャッシュレス派も使いやすい」「上品で可愛い」「長財布から乗り換えたい」 | バッグ ねとらぼリサーチ</h3></a>
+      
+      <p class="meta"><span class="src">ねとらぼ</span>　10月11日 22:38</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiS0FVX3lxTE5jRmtsRFZyN05UODZQeTBhT00yTksxM0VqZGtvN2xRTU42UTVPd3JxYUcxdW9jajk2bEtGZWR5WkZCTVMzako1V0duVQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">【速報】パキスタン北西部州に軍隊配備命令</h3></a>
+      
+      <p class="meta"><span class="src">47NEWS</span>　10月11日 22:25</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE15Sng4aXR0amRlYnNwZExKLVdOUGJkR1Nhd1FQdnNGRDhXNGgyUmpqSFZaUEd3ZXVZUVpQTFJXR1dRR3RHRjRMSXdoTm1wbGRMZE43N3lXbWJaNnFFUnhsNXN3?oc=5" target="_blank" rel="noopener"><h3 class="headline">シュレーダー元独首相、プーチン大統領の誕生日会に出席…「恥さらしだ」と独国内で批判広がる</h3></a>
+      
+      <p class="meta"><span class="src">読売新聞</span>　10月11日 22:10</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE5xY0VPVmRPVkFIel9ZRXg5MkstWTZ1Rm9UejN6MGpWS2pVZjQxYkJqbTc5RHBVdGJjcEVzaThQWG5rYXA2QUE1bXdZcUxXUUM3NWtZUEpSbGcyWXN6MFBYcjk4eWVKNER1ZVQ0UTBKalNOc0pYaVVNU3BVODFOM2c?oc=5" target="_blank" rel="noopener"><h3 class="headline">インドで7千人拘束 「ゴキブリ人民党」の選管批判デモめぐり騒動（朝日新聞）</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　10月11日 21:47</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE9vVTZ3TmFFZm5KSHpjQ3g3YkpqaU1zMEFNaHZOdDdkMVB6UE1vRnZZYk9xdmhzTHpxMlBaanAzdjhTY1dXUl8xejNWV3p6LTFpX3FnY21leEFhQ1A5X0E?oc=5" target="_blank" rel="noopener"><h3 class="headline">ポーランド首相と国防相の暗殺計画の情報、治安当局が緊急会議招集 (2026年10月11日掲載)</h3></a>
+      
+      <p class="meta"><span class="src">ライブドアニュース</span>　10月11日 21:26</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTE9iTnV6S3Eyb1FBZTlkUzN2UkxTVWF4VGRqejNfVEhnV3BpRGtycEJQMEZqWURQZEdMTEtMaEd0RlRONy1KYk02Y2owZ25TWk82?oc=5" target="_blank" rel="noopener"><h3 class="headline">ジブチ沖移民船転覆 100人超死亡</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　10月11日 21:18</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9YaVZtckpFelVBM0RGT19tY0YzNUcxSFNrYjN6Wk0xVWluRGVwZUJGZkpHaTdoYlZhT05rRl92VUM0ZWJmSTBKZHlVOEstcGdXcGkwRjFrM0RoRld3Xy0wQVllS1V0ejRRS3QxSw?oc=5" target="_blank" rel="noopener"><h3 class="headline">JR神戸線、電車が線路内に入った女子高校生と接触 宝殿－姫路間で一時運転見合わせ 1万4千人に影響</h3></a>
+      
+      <p class="meta"><span class="src">神戸新聞</span>　10月11日 21:12</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTFAyNUZlSXpEQVp5cF9NTDZQZ1hEeUxGQTV2SXUxYlR2NjZHQmU4VUc3RFlWWEd5emlHeHZoQzB5TEhHeVkzeVhVQVY3QlBBamo2SVVucTNDRUJGMkk1WUtkQnhBMTJWNURCYzAxOVFRRWdUdjEyV1E?oc=5" target="_blank" rel="noopener"><h3 class="headline">ローマ教皇が「肺結節の切除手術受ける」と表明 近日中にローマで、極めて初期の段階</h3></a>
+      
+      <p class="meta"><span class="src">産経ニュース</span>　10月11日 20:47</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTFBYcVRuMnpkanRfdXZ5c1hHT3R2cms4d3YyTkVlTVZQYzlvNElBaTVFdmowQmRDd1ViVEZtNlBDZllCVXhRaGxsS2RyMkZpSTV0YVpxUEFXRi1fRmJfVS15bGQ4ZzVIQWdmemtDcFFCZVY1Vmtzcnc?oc=5" target="_blank" rel="noopener"><h3 class="headline">韓国と北朝鮮で境界線にズレ？地雷事故の一因か 設置から70年超、標識板減り識別困難に</h3></a>
+      
+      <p class="meta"><span class="src">産経ニュース</span>　10月11日 20:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE4yQ05EM1NFQUdJTVQzMVp6VEVCY0ltM0RmQklVVUZfaXBoMEdZdzdZa0lDRF96eWhKVUZFQzdHNmZ1eDg0VUtLcnUtSnlmV1BWRGc0YTZnNHVxMEhlOGJzSklQWdIBaEFVX3lxTFBrbFFNV1FXclFmTnF2eXZUTXFlNWMwekVrN1VCemVmMXlTWVYzZF93YW5uQkFaZkFmVVhPUDNGOFN6OWItT3ZmNG84SXJiSXU1Z21BWXg0bk91RVpIWXBmbGhFRndfcVh0?oc=5" target="_blank" rel="noopener"><h3 class="headline">「9店舗目でやっと見つけた！」ファミマの“1490円サコッシュ”が大人気 「肩が痛くならない」「ポッケがたくさん」「ライブ用にぴったり」（1/2） | バッグ ねとらぼリサーチ</h3></a>
+      
+      <p class="meta"><span class="src">ねとらぼ</span>　10月11日 19:53</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE9ibjQyWS1vZ18ydUd3ZmJHemtYZ2N0azJmQ0JuLTl5a2V1YnZZNG9SWDBGUU9KNVo5UmZweTFBeGFyUDQxV3pKWV83N2JZT290RzF0RHcyMHJUakN3NGVPMF85UERFSF9CYjVJ?oc=5" target="_blank" rel="noopener"><h3 class="headline">サウジ首都空港で多数の死傷者、アジア杯開催に懸念…森保監督「機関の決定に従っていく」</h3></a>
+      
+      <p class="meta"><span class="src">ゲキサカ</span>　10月11日 19:48</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE5MU0dQODNlc0JuR0xzRUlSd2FsYzhyanVpLV9jWGJGcEZZVmtYRGF6QkxnZmFiRG9lbC1Vc09ULWkwVVF6dm50MnpIWC1KNjVmaGs0NUhfZW5CU3VzVUhwVFlB?oc=5" target="_blank" rel="noopener"><h3 class="headline">未解決殺人事件に「特徴一致する人物見た記憶ある」とＡＩが虚偽情報、アンソロピックが試験中…「暴走」懸念高まる</h3></a>
+      
+      <p class="meta"><span class="src">読売新聞</span>　10月11日 19:31</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE40SUx5cmEta2owN3Jna1VNZTJZRWFDeElsdU9DVk01V1dmRTFmemtoWnNka0xCOTIxdnFabmJ0Rm9sOUlMOGJfaFBrSVdlQngyZEEzWGtWU3hxZ2hkNk8ydEJn?oc=5" target="_blank" rel="noopener"><h3 class="headline">米軍が１か月ぶりオマーン湾で船舶攻撃、トランプ氏「イランが核兵器保有できない保証必要」…タンカー火災報道も</h3></a>
+      
+      <p class="meta"><span class="src">読売新聞</span>　10月11日 19:13</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9jTzh1N1h5ckdmYkVoNkd1Rmdza2RwTmxDZ2pXX1I5MGZJbUJiRTlNMEpnZXV5YTRzbnViUkhidjJkM0xoQ1lIRjRETlQ4WkdKbTFoYkU2ZDNDUW55YUlkVlJBb3htSTZrWk1WTEt3ZDVlWE95bmJzTlcxc0ZxT3c?oc=5" target="_blank" rel="noopener"><h3 class="headline">「年間決済600万円」でも客は離れない ANAアメックス“強気な値上げ”に隠された富裕層囲い込みの勝算</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　10月11日 19:10</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE1oVnZNWUtUYWg1MDZiUmlnXzQ3c0hSYTJIVlkwcG5QdDU4RjJaVGphaFpkZ0JLaW1EcXAyelZYSklrTkF3RFJxbEFZeHVhUQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">スズキの軽EV「e SKY」はなぜモーターを油冷にしたのか？ 自社開発eアクスルに詰め込まれた小型化の技術</h3></a>
+      
+      <p class="meta"><span class="src">Motor Fan</span>　10月11日 18:53</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE9tMFNKRVlDYXNBcUxhSFFTLU9CRFRwdVZJS21NTTFSeEZsc0VEQzJFcWI0by1wcEM1RXphcU1lMFVEeXE5NmVKTmZfemxDaFNxU1NZampMby1raUNrdGpMb2R3VQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">サイバー防御、問い合わせ急増 電機大手は体制強化―不正アクセス：時事ドットコム</h3></a>
+      
+      <p class="meta"><span class="src">時事ドットコム</span>　10月11日 18:48</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5IQnBwUV8xVzB4WU9ZaWhkWXJJbzZJdFJ6clE3T0QzbFVEYzllSnFiSXNWVURhMUpDelZCaU9PRkNETFh2TkpXTW9LMEZJTXl5VVFtX1d6SDRoV0VjeDFv?oc=5" target="_blank" rel="noopener"><h3 class="headline">“不老不死”に超富裕層は年3億円投資の一方で…オーバードーズで苦しむ貧困層 “薬”が深めるアメリカ社会の分断 【報道特集SP トランプ2.0とハックされる世界】</h3></a>
+      
+      <p class="meta"><span class="src">ライブドアニュース</span>　10月11日 18:30</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1tUzhhdTBQcnhHcjJBS2xROW5QU0VrR2EzWVBQOXVVLWo1TjlhSk0xU245THJTOW4yLUdOdFltQk5Wb2tVczJsbzFHYU9xeDM2RnkzVXpVXzdlZHEwRHJR?oc=5" target="_blank" rel="noopener"><h3 class="headline">大阪・関西万博閉幕から1周年イベント 多くの人でにぎわう</h3></a>
+      
+      <p class="meta"><span class="src">NHKニュース</span>　10月11日 18:27</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFBYb0tCS2ZSZGloWEJZSFRhZTRiS0ZyeVo3dGItOW1HZXBJMTRUWE85UFNxYTB5eDh6ZXB6clA0NnI0b0E1QUx5NndfMVdNOEZfYzBUdk9SbW1YbTVDb3dJ?oc=5" target="_blank" rel="noopener"><h3 class="headline">女の子を救った“父親の本能” 危険を顧みず…メキシコ【#世界のミダシ 】</h3></a>
+      
+      <p class="meta"><span class="src">ライブドアニュース</span>　10月11日 18:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFBqaG5GcWRWd0dXZk0zajFXSlY1SGdVYUROcXlpbUZSM1VFSVQtVXpjY1pfZXpRZy1Zc09DRlN6aDRsQ1dVeVM1VDNmMnVRWDc2cE9LY2NvMA?oc=5" target="_blank" rel="noopener"><h3 class="headline">米国で高速鉄道がうまくいかない理由(1/3)</h3></a>
+      
+      <p class="meta"><span class="src">CNN.co.jp</span>　10月11日 17:13</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxNa0dOTDZ4Q2E3U1V5MlRkdU9xcXJWSXpHTjAtMGRkOUdULXFIV1hRTXQwVHlWakN5ekRSbEFjcFdUazM3aFBhWXllUDVfanluRVZsTmhYRUItWnFWdWZ5bXBVQ1lvSThqanhucWJPbE1ZMjQ2eklmaHNVTkZoRmFjZFFDQVNfUGJ3YUVvMjRLZVpDeFBWemlGNw?oc=5" target="_blank" rel="noopener"><h3 class="headline">トラの飼育エリア入った来園者が死亡。イギリスの動物公園で襲われる</h3></a>
+      
+      <p class="meta"><span class="src">ハフポスト</span>　10月11日 16:46</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE5IdHRhOWFFb0RmejdLYzdWZ0N5Ym53RmJTTVQxM3pxazlJUGdtdmcwN0NGT1Frbnl3clRhOHpmcV9IRU1qSDZqSm54LXFQZ0ppUVE?oc=5" target="_blank" rel="noopener"><h3 class="headline">FX・為替相場の注目指標や予想を解説 - 【10月12日～の週】為替相場の注目材料スケジュールと焦点</h3></a>
+      
+      <p class="meta"><span class="src">ザイFX！</span>　10月11日 16:03</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMid0FVX3lxTFBBaHR1U2ZrbDRfdmpSMk1XN0JXa2U5UndUWXhYb2ZocFpNY1RVWVlOTHc3NjB0ZXNiTFdBWElUYjVrZDFQNG1vaTJlaWVwY1BIcEpSc01CVG53WHpuSkhzWmttZmlfX0J0T0k4NENsVDQwMmlyOE1r?oc=5" target="_blank" rel="noopener"><h3 class="headline">《9歳男児を何度も平手打ち、恐怖で失禁も…》キッズスペースで「娘にボールが当たった」激怒した父親が暴行で逮捕、防犯カメラが捉えた1分半の一部始終【インド】</h3></a>
+      
+      <p class="meta"><span class="src">NEWSポストセブン</span>　10月11日 16:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTFBoem9xUXdndlFWV1BzaUdMRXpfbXZQcTlBcFNveE8yeU15Vm1xN2toVERjUlhPbUxzSGtoS0JjcVNfdk51TzVEaFdLUE5WRmgydmVUZDBoMmRadkhCYnZCOFNMb9IBaEFVX3lxTE1aNmtBNW5ObnREXy1XY1V1T01hbEFtbTJQVUVod2hZOGI5SDdkMXdzNzNzTFFNZ01GMVdzam5SX2lsN1E2bmRJLVFwUTJkNFhQOWRhYWdWMHJBZXVEWXE2RzdlTE5XdWZE?oc=5" target="_blank" rel="noopener"><h3 class="headline">「コンパクトにカード類をまとめられる」 3COINSの“カードケース”が大好評 「病院の診察券入れにちょうどいい」「このサイズ探してました！」 | ファッション ねとらぼリサーチ</h3></a>
+      
+      <p class="meta"><span class="src">ねとらぼ</span>　10月11日 15:45</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE5VSXF5dmFWeUkyUi1USVpfWFFGSlItWkUyYVc5dUtsbnVxNkhuWWNIVmZLQ2NuNjNPd2ROemRoQThkVkUyek11eFN6YWttVk5kWV9kLUMzdmYxZVl5UWl5ajRfczU1Tko0Q3hjVFFR?oc=5" target="_blank" rel="noopener"><h3 class="headline">「遺体に性暴力痕」散歩中の男性が見つけたのは“17歳少女の変死体”…死後1ヵ月なのに「腐っていなかった」まさかの理由（昭和32年・海外の事件）</h3></a>
+      
+      <p class="meta"><span class="src">au Webポータル</span>　10月11日 15:10</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE5IcUdJMjhOMDhzLXg3Rll2cVplcFRxQnk3MzM1b0pqUzhua3B5a2tHZnpJbGItcEVOeHU4QU91RVlkZmc3TFYwQUxVd0x5VGh2TzRRMHVLNGllNXk2Mzg2RFdLd3RnY05rWlM4Zg?oc=5" target="_blank" rel="noopener"><h3 class="headline">ローマ教皇「死刑許容できず」 出身国の米国で銃殺刑の生配信計画</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　10月11日 14:37</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxQSGVNZFhYNDNyOTNlbV93YlQ2WVlrakI0MVNFVGlhSE9kdWNxRnFkYUFJYUY2Z3Q3aTg4WUlwRnJ6Z05paVZYZ2huZGdDaWtaTXh3N1F5a3J2MkE3dFltQ3NlQVNyaDY3SkNXSmdJdmxZTXRsakh3UHJER29uUjdnMDF1aFFYZHNncnfSAY8BQVVfeXFMTzlJMTE5WDJ1UE5ZZi1ncWVKWjZQU2tfczBVRGstTjFLZEpmbTNrTEo3V1VjeDMzbktZb3hPWnhGSmRpdWtuaDg3WVp1MmtrRm5QZHlVNWZGM3RscjFqU215VWdHdjRCQS1sUUpyRkFpanEwMk1Gc01FbWU4MkFZcVE5SU95ZFZLeHU4aURuNkk?oc=5" target="_blank" rel="noopener"><h3 class="headline">ガザ乳幼児の12％に成長の遅れ 国連、栄養不足影響なお</h3></a>
+      
+      <p class="meta"><span class="src">ｄメニューニュース</span>　10月11日 14:32</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE1XUzRaX3J1Q2swWW1vcGFmZ3RDd2pvdThyRGJ2Rk50OU1Kd0hKX1UxSnM2Rzk4Zk1Dc24tZlZzWmtFUGwzRUxlaHZlSUZheFh3VWZvTU1Cb3Y0OThJbmdLNi1qbjlzU0FxMFF3ajRHVXJrNS1MX2lWTjJsaUJ0eGs?oc=5" target="_blank" rel="noopener"><h3 class="headline">「募集しても人が来ない」人手不足倒産が過去最多240件 “賃上げの限界”に悲鳴あげる飲食店 消費税減税 飲食店支援策は?【サンデーモーニング】（TBS NEWS DIG Powered by JNN）</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　10月11日 14:30</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTFBLZTBJZVZjSW9JX0NlWElHZUg2QmMySTlGT3VrOUJPVFF4d0FyWmRKU0tRZVBPMnFlR0t2eGdJcDVTZkNpWGhRZGRPTUxISnN2T0ZDQ21BbE4zUTlRRy1FSHE2OA?oc=5" target="_blank" rel="noopener"><h3 class="headline">太平洋、「トランプ洋に改称を」 米大統領：時事ドットコム</h3></a>
+      
+      <p class="meta"><span class="src">時事ドットコム</span>　10月11日 14:01</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBHYmNEOW9vOWxSelpaMjZhVUljZG54aURjOEItTGY4VnVrTm9ldjlwa29fQ3p4Z2p1YkFCeGY4QVlLc21PdWo3bWdlM1BVczQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">防衛省がウクライナ製迎撃ドローンを取得契約、テラドローンは国産300機の製造を完了</h3></a>
+      
+      <p class="meta"><span class="src">ビジネス+IT</span>　10月11日 14:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE1kOW9mckloTWc5SVpxYVliT3RtMHRYMGVFNmloNXdQMlB4Z2ZBTm1odklEOFNwMkVNYm1xa0RXNTlyUnpqeDFWbVNXbWdONzBiQ3JpM3JJRm0xcGY2enZSRXkxMHd4eHdBU0lzWGZWNXFGZDFHeFlpRVhjMFRYMkU?oc=5" target="_blank" rel="noopener"><h3 class="headline">米司法省、CNNのホワイトハウス取材禁止で代表取材ボイコットしたテレビ局各社を調査（CNN.co.jp）</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　10月11日 13:59</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTFBCYnh1c1cwN2paSXNSeEV2MVUtWUR1emQ4OGtLdHEya3lUdjNpTExkQnhHVjJ4dmkwNGQtdzBkMFFkdTJwajhwTHlLbTdzNmwt?oc=5" target="_blank" rel="noopener"><h3 class="headline">刑執行失敗の米女性死刑囚 退院</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　10月11日 13:12</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiTEFVX3lxTE1XR3JPMHYzRUNhWG9BVzRnV3luLUU5My14TG53WEVwY0ctcTBRSmpETXozQjZqR2RqREdLQ1ZyVF9GX2JaLS04RmxzaXI?oc=5" target="_blank" rel="noopener"><h3 class="headline">「決して諦めなかった」虐待の末に片目を失ったとされる猫、懸命な回復ぶりに反響</h3></a>
+      
+      <p class="meta"><span class="src">LIMO | くらしとお金の経済メディア</span>　10月11日 12:48</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxQVkZOVXlvc3hhMzhfOGVTLUlvQ3FFajJaWFJsRXFXWWo3Q2h0c1NHa3BpamdsSEZyMVlRMXp1V0RQQnFfNElSVVVFWldOSFhGaHNGSWtab3ZEdV9MNnQzN05iWWhFLUNNTVJkZ2NQaUo5dGtjM1FncHRHQ0hLRXVqcGtiZ0hrM2M?oc=5" target="_blank" rel="noopener"><h3 class="headline">韓国コンテナ船、北極海航路で初の欧州往復 定期運航へ課題も</h3></a>
+      
+      <p class="meta"><span class="src">Reuters</span>　10月11日 12:38</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTFBnTHEyRGpfajlnanI5MHZkMWluNHVBMmVJbEs5eTloaVVSdFF2N0VCTzRhVE93UkxUNXVwc1A0b1RuZ1RZMkx1VUtVdHpodFA2dFU3b0xWaGRLY1FHSXhzeWx4c9IBaEFVX3lxTFBpN29hX09RUDc2ZUJWQjEwVHM1MzNFYlBzSkpmNUVuUnJnb2o2MC1fZ3lyTEU3ZzlOaWNTT2RCR016RnY1T2FlQzhEMXlFd0ZXa2l1aU5acXJzd1pwZlYteUs0eHFNYmQ2?oc=5" target="_blank" rel="noopener"><h3 class="headline">「スマートウォッチに見えない」G-SHOCKの“心拍・睡眠を記録できる腕時計”が高評価 「ソーラー充電できるっていいよね！」「G-SHOCK好きはこれ一択」（1/2） | 腕時計 ねとらぼリサーチ</h3></a>
+      
+      <p class="meta"><span class="src">ねとらぼ</span>　10月11日 12:20</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTFBNRERVMWlZWHVjSGZ3MlNqdlpYYzhqNmZlMUFidzlLMzV3Ti1QM2hjZThWeUNZa1dOY283d09mSk5BbkdacEdzVld3bm4zOFh6VVdIUmN1Uzlmdw?oc=5" target="_blank" rel="noopener"><h3 class="headline">10月に検討したい「割安米国株9選」──PBRとPERで絞り込む有望株</h3></a>
+      
+      <p class="meta"><span class="src">Forbes JAPAN</span>　10月11日 12:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTE9aV05XU2s3YjFidmVEQ2pzem9Mb1hEYl9YREIwR2UyQi1BSTA5bGFJS1JaR0dWZWFvdi1Kc3VmZV84RFpWdG9BRjJ6aVlNZTJ5RzZzM0E1bVc?oc=5" target="_blank" rel="noopener"><h3 class="headline">「洪水の住宅街にサメ出現」背びれを出して冠水した道路を悠々と泳ぐ姿、テレビ映像に衝撃</h3></a>
+      
+      <p class="meta"><span class="src">Pen Online</span>　10月11日 11:40</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5XeFF0LWJaSGx6cUdFeGhVV3BnOWQ0MlNNZGNYbHJPLWJSM1Y4cFRqd2J4QkZPU2JwOTVhNXpLV1NyakM5NWhJUTlMNU9jZ0JKcG1sZzBlQUZxQXZWcl9N?oc=5" target="_blank" rel="noopener"><h3 class="headline">木原長官 &quot;野党と丁寧に議論 減税法案など成立を&quot; NHK日曜討論</h3></a>
+      
+      <p class="meta"><span class="src">NHKニュース</span>　10月11日 11:21</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE11dzE2N0dGWjZkV2FYYXJCMENDNkJHd3pPN0stNklaWmFGMkVPNDlrOG9Ba3Q3dnRxUEZoMy1YVEUwQU5JZUR6NUxUR0JiNFdlR3UwRURhNWZuWXNqVGFKTHBsONIBaEFVX3lxTE9vTnA2RDI2Z21PUmtHb2UzMmpCUDFyRHk1d0R4U2tXNWR5MW9MMUZjMHo2MzZCYkM1b2p0dGV2c053SXBYcDhDY09BeXVEME5wN3d0S01HdXZ5S0k1Z09Yd0J5OXVIRzlf?oc=5" target="_blank" rel="noopener"><h3 class="headline">「生活に困らない」 東京都の“住み続けたい街（自治体）”ランキング1位に「都心へのアクセスが比較的良く始発駅だから便利」「自然も多く、都会的な部分もある」の声（1/2） | 東京都 ねとらぼリサーチ</h3></a>
+      
+      <p class="meta"><span class="src">ねとらぼ</span>　10月11日 11:20</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1udWNCR04yZWtZcVNUdllmeUsxVDVvdTFOTUdNR2k1R2g3TDZPaDk4cDNlaXMwVHZNQUg0ZGdRWGFkcF8wNS1OcnIzQkxoMElaWDJ6RWkwODNpUQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">「こどもNISAの上限60万円」と「年110万円の基礎控除」は合算できる？…贈与の〈非課税枠〉に潜む落とし穴【FPが警告】</h3></a>
+      
+      <p class="meta"><span class="src">トウシル</span>　10月11日 11:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE1fRHc1Q1lWdjNRdzYzaFZlcUhEWmpvUGxPWTZUb0xpV0N6Xy1jVTFBak9qRGdIaEpmQkdnMEVySHczQ0JJVDhxaC1IVXlJZw?oc=5" target="_blank" rel="noopener"><h3 class="headline">“高級刑務所”抜き打ち検査で発覚 「牛の肥育事業のための事務所」当局の説明に国会大荒れ インドネシア</h3></a>
+      
+      <p class="meta"><span class="src">FNNプライムオンライン</span>　10月11日 11:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE45YU4tLWVieGptWUF0NTFlcXpuX3lsUFRIZFBkOVVEM2pZYXdNOHhBQ0lXUkY1TUdST3FWOGM0WllwSDVJYVRhazBVcWJzYk9sN1ktMlVuUmg2c1owLWtKdjBTQ3BvcVFVQlV4UQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">原油「今すぐ確保」の買いに拍車 現物が最高値、先物の5割増し</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　10月11日 10:30</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE13djI1YWZ4X2VlUjh3NzRCbnFqYU1BenBhb09PaTVsOUEzSlc5VHlfbVhPUTZMUmJMd0lrajJfU2QxSXQ4cUwySUlhcTFwSUg5SUE2ZDNBZ3gybF92VTk3YkprSdIBaEFVX3lxTE4yUE1MSWZETmtxZmd3V0lzTnRPMjRzTlRFdDdSdW9MLUdzR2p0Yk5fU2JSZFJoX2gzS29XbnZ6Q2oxMVlpN1NsVl82NmNFSlVPQ0ladENFRS03Wml5X0tPMnZGbFlHQ1FW?oc=5" target="_blank" rel="noopener"><h3 class="headline">「マチがあるので財布やポーチなど色々入る」スタバの“トートバッグ”に「ついに買ってしまいました」「ロゴがオシャレで素敵」「荷物の多い人でも使えそう」の声（1/2） | バッグ ねとらぼリサーチ</h3></a>
+      
+      <p class="meta"><span class="src">ねとらぼ</span>　10月11日 10:01</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE51WWhMWFFhZUJYc0NHcVZiVEFCWDgxbUpyNkMxT29lS0pEWmlwRTY2aGhkd1lscVNfUXFqYlZtMl9YelNHLTRheGR3VVhwa19BbDBKNmw2dUxtLWpwMDRKREhES0NiamdIY2tMYlRJdWhIVmZYdzZ3R0ZOYk1LMVU?oc=5" target="_blank" rel="noopener"><h3 class="headline">ペンシルベニア州で45歳の男が銃撃、妊婦含む8人死亡</h3></a>
+      
+      <p class="meta"><span class="src">Reuters</span>　10月11日 09:48</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMickFVX3lxTE5PdktfY2VOam9ZMVJOZFM2cXExb0g3RmVfX2ZVVnNJdlhRRHdUXzhYYkFnWDdRUUhPUWVCZm50YlZEODFFTU1xUEdkT1I2R3lENzRjZl9zZzJBUmY3NGtHWHdpOEdBZXhXOWRHYW96WnNxZw?oc=5" target="_blank" rel="noopener"><h3 class="headline">ハクサイ、キャベツは倍、レタスは2.5倍の価格に 長雨と日照不足で収穫量ダウン</h3></a>
+      
+      <p class="meta"><span class="src">テレ朝NEWS</span>　10月11日 09:35</p>
+    </article>
+    <button class="more-btn" data-count="60">もっとみる（あと60件）▼</button>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">eco</span>ライフハック</h2><span class="count">0件</span></div>
+    <p class="empty-note">今朝は新着なしやで。</p>
+  </section>
+
+  <footer>
+    啓報　—　09:02 刷り上がり ／ produced by くろえもん
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.more-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var sec = btn.closest('.section');
+      sec.classList.toggle('open');
+      var n = btn.dataset.count;
+      btn.textContent = sec.classList.contains('open')
+        ? '閉じる ▲'
+        : 'もっとみる（あと' + n + '件）▼';
+    });
+  });
+</script>
+</body>
+</html>
