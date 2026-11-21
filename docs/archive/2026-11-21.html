@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0e1d3d">
+<meta name="apple-mobile-web-app-title" content="啓報">
+<title>啓報 — 2026年11月21日 朝刊</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<style>
+  :root {
+    --bg: #eef1f6;
+    --surface: #ffffff;
+    --ink: #1b2a4a;
+    --ink-soft: #51617f;
+    --ink-faint: #8b97ad;
+    --navy: #0e1d3d;
+    --navy-soft: #9fb3d9;
+    --accent: #2f6fed;
+    --accent-weak: #e3ecfd;
+    --rule: #dfe5ee;
+    --gothic: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--gothic);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:hover .headline, a:hover.headline { color: var(--accent); }
+
+  /* ===== マストヘッド（紺帯） ===== */
+  .masthead-band { background: var(--navy); color: #fff; }
+  .masthead-inner { max-width: 1000px; margin: 0 auto; padding: 18px 20px 26px; }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--navy-soft);
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .top-bar a {
+    color: var(--navy-soft);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .top-bar a:hover { color: #fff; }
+  .masthead { text-align: center; }
+  .masthead h1 {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-indent: 0.28em;
+    line-height: 1.15;
+  }
+  .masthead .edition {
+    font-size: 12px;
+    color: var(--navy-soft);
+    letter-spacing: 0.3em;
+    text-indent: 0.3em;
+    margin-top: 8px;
+  }
+  .crawl-note {
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    text-align: center;
+    letter-spacing: 0.06em;
+    padding: 12px 16px 0;
+  }
+
+  .sheet { max-width: 1000px; margin: 0 auto; padding: 16px 20px 56px; }
+
+  /* ===== カード共通 ===== */
+  .card {
+    background: var(--surface);
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(14, 29, 61, 0.06), 0 4px 16px rgba(14, 29, 61, 0.05);
+    padding: 26px 28px;
+    margin-top: 16px;
+  }
+
+  /* ===== 共通パーツ ===== */
+  .kicker {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    letter-spacing: 0.2em;
+    text-indent: 0.1em;
+    padding: 3px 12px;
+    border-radius: 999px;
+  }
+  .meta { font-size: 12px; color: var(--ink-faint); letter-spacing: 0.03em; }
+  .meta .src { color: var(--ink-soft); font-weight: 600; }
+  .meta .score { color: var(--accent); font-weight: 600; }
+  .tags { display: inline-flex; gap: 6px; flex-wrap: wrap; vertical-align: middle; }
+  .tag {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-weak);
+    padding: 2px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .excerpt { font-size: 13.5px; color: var(--ink-soft); }
+  .empty-note { font-size: 13px; color: var(--ink-faint); padding: 16px 2px 4px; }
+
+  /* ===== 一面 ===== */
+  .front-top .headline {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 12px 0 10px;
+  }
+  .front-top .excerpt { font-size: 14.5px; max-width: 46em; }
+  .front-top .meta { margin-top: 12px; }
+  .front-subs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 32px;
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+  }
+  .front-subs article + article { border-left: 1px solid var(--rule); padding-left: 32px; }
+  .front-subs .headline { font-size: 17px; font-weight: 700; line-height: 1.55; margin-bottom: 6px; }
+  .front-subs .excerpt { margin-bottom: 8px; }
+
+  /* ===== セクション ===== */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 10px;
+  }
+  .section-head h2 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    font-size: 22px;
+    color: var(--accent);
+  }
+  .section-head .count { font-size: 12px; color: var(--ink-faint); }
+  .section article { padding: 16px 2px; border-bottom: 1px solid var(--rule); }
+  .section article:last-of-type { border-bottom: none; }
+  .section article.extra { display: none; }
+  .section.open article.extra { display: block; }
+  .section .headline { font-size: 15.5px; font-weight: 700; line-height: 1.6; }
+  .section .excerpt { margin-top: 3px; }
+  .section .meta { margin-top: 5px; }
+
+  .more-btn {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
+    padding: 10px;
+    font-family: var(--gothic);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-weak);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    transition: background 0.15s;
+  }
+  .more-btn:hover { background: #d3e2fb; }
+
+  /* ===== フッター ===== */
+  footer {
+    margin-top: 36px;
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    letter-spacing: 0.15em;
+  }
+
+  /* ===== スマホ ===== */
+  @media (max-width: 640px) {
+    .sheet { padding: 12px 12px 44px; }
+    .masthead-inner { padding: 14px 16px 20px; }
+    .masthead h1 { font-size: 38px; }
+    .masthead .edition { font-size: 10.5px; letter-spacing: 0.16em; text-indent: 0.16em; }
+    .crawl-note { font-size: 10.5px; letter-spacing: 0.02em; }
+    .card { padding: 20px 18px; border-radius: 12px; }
+    .front-top .headline { font-size: 21px; }
+    .front-subs { grid-template-columns: 1fr; gap: 18px; }
+    .front-subs article + article { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 18px; }
+    .section .headline { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead-band">
+  <div class="masthead-inner">
+    <div class="top-bar">
+      <span>2026年11月21日　土曜日</span>
+      <span>第85号　<a href="../">最新号</a>　<a href="./">バックナンバー</a></span>
+    </div>
+    <header class="masthead">
+      <h1>啓報</h1>
+      <p class="edition">ひとり編集局、毎朝六時発行</p>
+    </header>
+  </div>
+</div>
+
+<p class="crawl-note">今朝の巡回：フィード 41本（うち取得失敗 1本） ／ 拾った記事 161件　＜ 11月20日 10:50 〜 11月21日 10:50 ＞</p>
+
+<div class="sheet">
+
+  <section class="card">
+    <article class="front-top">
+      <span class="kicker">一面</span> <span class="tags"><span class="tag">デザイン</span><span class="tag">UI</span><span class="tag">UX</span></span>
+      <a href="https://forest.watch.impress.co.jp/docs/bookwatch/techlibnew/2158329.html" target="_blank" rel="noopener"><h2 class="headline">SEO・ノーコードからTailwind CSS/UXまで！ Web制作とUX・UI デザイン の書籍が読み放題</h2></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　11月21日 00:30　　<span class="score">注目度 ★★★★★</span>　　<span class="tags"><span class="tag">デザイン</span><span class="tag">UI</span><span class="tag">UX</span></span></p>
+    </article>
+    <div class="front-subs">
+      <article>
+        <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE9UMkVQeHlaMlBqUnJhcUk5YkNwYXBsdi1iNGduenF1VXNmTHBfTHlfX0ZRUEg3WmNOTWQxQjNvU18yRlNfY21GenFQUlhjU2JGSERRTzlMWDJsR1E?oc=5" target="_blank" rel="noopener"><h3 class="headline">malna、「人材紹介事業のためのAIグロースパートナー」サービスの提供を開始 集客から入社までをAIで診断</h3></a>
+        
+        <p class="meta"><span class="src">共同通信PRワイヤー</span>　11月20日 15:00　　<span class="tags"><span class="tag">AI</span><span class="tag">人材</span></span></p>
+      </article>
+      <article>
+        <a href="https://www.excite.co.jp/news/article/Prtimes_2026-11-21-53929-56/" target="_blank" rel="noopener"><h3 class="headline">AI 時代の“企業と社会の関係性”を デザイン する専門チーム「 AI Dialogue &amp; Relations Team」に ...</h3></a>
+        
+        <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　11月21日 03:28　　<span class="tags"><span class="tag">デザイン</span><span class="tag">AI</span></span></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">auto_awesome</span>AI</h2><span class="count">47件</span></div>
+    <article class="item">
+      <a href="http://www.excite.co.jp/news/article/Prtimes_2026-11-20-135002-182/" target="_blank" rel="noopener"><h3 class="headline">Anfini、田中研之輔教授監修「 AI 時代のキャリアデザイン研修」の提供を開始 - エキサイト</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月20日 13:10　　<span class="tags"><span class="tag">デザイン</span><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://finance.biggo.jp/news/00b854f6-23ed-448e-ba2a-abb1925f284b" target="_blank" rel="noopener"><h3 class="headline">謎の AI モデル「Gestalt」がブラインドテストで設計ランキング首位、Elo 1931で人間 デザイナー を ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月21日 09:45　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://news.yahoo.co.jp/pickup/6603360" target="_blank" rel="noopener"><h3 class="headline">「リーマン予想」生成 AI が証明か - Yahoo!ニュース</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 08:29　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://dhbr.diamond.jp/articles/-/14884" target="_blank" rel="noopener"><h3 class="headline">生成 AI が創造的なプロセスを圧縮することの弊害 - DIAMOND ハーバード・ビジネス・レビュー</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月21日 07:21　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.gaitame.com/media/entry/2026/11/20/120634" target="_blank" rel="noopener"><h3 class="headline">S&amp;P500見通し（11/20〜11/27）｜ AI 株を巡り新たな疑心暗鬼 - 外為どっとコム</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 06:59　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://kabutan.jp/news/marketnews/?b=n202611210123" target="_blank" rel="noopener"><h3 class="headline">【今週読まれた記事】 AI 期待の剥落後に残るものは - 株探</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 06:51　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://newsdig.tbs.co.jp/articles/withbloomberg/3100577" target="_blank" rel="noopener"><h3 class="headline">ソフトバンクG株急落、 AI 株総崩れ－アンソロピックIPO後も懸念消えず - TBS NEWS DIG</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 06:08　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://newsdig.tbs.co.jp/articles/withbloomberg/3102844" target="_blank" rel="noopener"><h3 class="headline">AI 株に世界的な売り、上場2日目のアンソロピック株急落で心理的変化 - TBS NEWS DIG</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 05:54　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://diamond.jp/articles/-/403914" target="_blank" rel="noopener"><h3 class="headline">日本株はなぜ「 AI 失望売り」で全面安になったのか？浮かび上がった「次の主役企業」</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 05:24　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://wired.jp/article/beware-the-new-ai-fueled-ransomware-boom/" target="_blank" rel="noopener"><h3 class="headline">ランサムウェア攻撃、急増の背景に AI の存在 | WIRED.jp</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 05:01　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.newprinet.co.jp/%E3%83%96%E3%83%A9%E3%82%A4%E3%82%BF%E3%83%BC%E3%83%BB%E3%83%AC%E3%82%A4%E3%82%BF%E3%83%BC%E3%80%80%E5%8D%B0%E5%88%B7%E4%BC%9A%E7%A4%BE%E5%90%91%E3%81%91%E3%80%8Cweb%E3%82%B5%E3%82%A4%E3%83%88" target="_blank" rel="noopener"><h3 class="headline">ブライター・レイター 印刷会社向け「Webサイト見直しサービス」を提供 独自 AI 「Koetsu」による ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月21日 04:00　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.yahoo.co.jp/articles/5853a4ffc518e0d11cef668e50a86219cbf90981" target="_blank" rel="noopener"><h3 class="headline">ドンキの AI 社員「近藤 あい 」が正式デビュー 販促POPや動画で活躍へ 運営元「すでに裏に20人 ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月21日 03:55　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.tv-asahi.co.jp/news_economy/articles/000549400.html" target="_blank" rel="noopener"><h3 class="headline">3000円超下落 今後どうなる 日経平均急落と“ AI 巨大企業” - テレ朝NEWS</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 03:53　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://jbpress.ismedia.jp/articles/-/98128" target="_blank" rel="noopener"><h3 class="headline">韓国で AI が若者の仕事を奪い始めた？経験なき新卒は門前払いも…就職先として日本企業人気が ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 03:08　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.unite.ai/ja/brizy-ai-195-generated-images-website-sections/" target="_blank" rel="noopener"><h3 class="headline">Brizy AI 1.9.5、ウェブサイト用画像を生成し、セクションごとの再編集にも対応 - Unite.AI</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　11月21日 02:39　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.jetro.go.jp/biznews/2026/11/2ac03ef345d0aeb9.html" target="_blank" rel="noopener"><h3 class="headline">米FRB理事、 AI が金融安定にもたらし得る影響について講演(米国) | ビジネス短信 - ジェトロ</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 02:38　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.watch.impress.co.jp/docs/news/2158164.html" target="_blank" rel="noopener"><h3 class="headline">Mac版Geminiに「Computer use」 PC作業を AI が代行 - Impress Watch</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 02:27　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://japan.zdnet.com/article/35255155/" target="_blank" rel="noopener"><h3 class="headline">グーグルの AI エージェント「Spark」が「Tasks」に名称変更--制限付きながら無料で利用可能に</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 02:08　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.gaitame.com/media/entry/2026/11/20/200000" target="_blank" rel="noopener"><h3 class="headline">FX実践解説、ドル円急落「 AI ブーム、調整 or 終焉」（2026年11月20日） - 外為どっとコム</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 02:05　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.web.nhk/newsweb/na/nd-20261120de78808" target="_blank" rel="noopener"><h3 class="headline">株価 3000円超の下落 AI ・半導体業界の先行き懸念でほぼ全面安 - NHKニュース</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 02:02　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://natgeo.nikkeibp.co.jp/atcl/news/26/112000641/" target="_blank" rel="noopener"><h3 class="headline">AI を支える巨大データセンター、わずか数百棟で州1つ分の電力 - ナショナルジオグラフィック</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 02:02　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.yahoo.co.jp/articles/5ca828ada80dfdd2df84f9db905b7546e78bb734" target="_blank" rel="noopener"><h3 class="headline">AI が洗い出した脆弱性、直ったのは99件中55件 GitHubとマイクロソフトが示した現実</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 01:52　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://japan.cnet.com/article/35255191/" target="_blank" rel="noopener"><h3 class="headline">Canva、生成 AI 機能をオフにできる新設定を導入 - CNET Japan</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月21日 00:51　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://biz.chosun.com/jp/jp-society/2026/11/20/AIDFXWCWEREMXM2SPLX2ILH7WM/" target="_blank" rel="noopener"><h3 class="headline">漢陽サイバー大、 AI 基盤に専攻を自由設計 27年に学部改称 - ChosunBiz</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　11月21日 00:26　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.creativevillage.ne.jp/category/crv_event/180920/" target="_blank" rel="noopener"><h3 class="headline">より良い体験を考えるための「UX思考」を学ぶシリーズ Vol.2 ユーザーの本当の課題を見つける ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月21日 00:06　　<span class="tags"><span class="tag">UX</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://mainichi.jp/articles/20261120/pr2/00m/020/941000c" target="_blank" rel="noopener"><h3 class="headline">軽量フルカラー AI スマートグラス向け「Ultralite Color」OEMプラットフォームを発表（PR TIMES）</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　11月21日 00:00　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.nikkei.com/article/DGXZQOUF1981O0Z11C26A1000000/" target="_blank" rel="noopener"><h3 class="headline">「生成 AI 普及で今後の仕事に不安」8割超 住友生命の全国調査 - 日本経済新聞</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月20日 21:12　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://robotstart.info/article/2026/11/20/382655.html" target="_blank" rel="noopener"><h3 class="headline">フィジカル AI 企業のAgile Robots、5億ドルを資金調達 ソフトバンクが主導しNVIDIAや ... - ロボスタ</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月20日 20:43　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.4gamer.net/games/991/G999110/20261120014/" target="_blank" rel="noopener"><h3 class="headline">「Stellar Blade」キム・ヒョンテ氏と「バイオハザード」三上真司氏が対談。物語の伝え方や AI と ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　11月20日 20:10　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://webtan.impress.co.jp/n/2026/11/20/53608" target="_blank" rel="noopener"><h3 class="headline">中小企業での生成 AI 活用、導入の壁は費用やリスクより「使い道」【エフアンドエム調べ】</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　11月20日 18:31　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://finance.biggo.jp/news/9b6a26904e02f635" target="_blank" rel="noopener"><h3 class="headline">元Anthropicのエンジニア、「 AI の『異星の知能』への恐怖は間違いだった」と語る――開発者は ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　11月20日 18:12　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://ideasforgood.jp/2026/11/20/work-beyond-ai-era/" target="_blank" rel="noopener"><h3 class="headline">【12/1@千代田】 AI 時代の先にある「はたらく」はどんな形？空間と仕組みの兆しから未来の働き ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月20日 15:02　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://jp.fashionnetwork.com/news/-tinker-tailor-%E3%81%8C-ai%E3%82%92%E6%B4%BB%E7%94%A8%E3%81%97%E3%81%9F%E5%8F%97%E6%B3%A8%E7%94%9F%E7%94%A3%E5%9E%8B%E3%83%95%E3%82%A1%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%A8%E3%81%97%E3%81%A6%E3%83%AD%E3%83%BC%E3%83%B3%E3%83%81%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F,1886943.html" target="_blank" rel="noopener"><h3 class="headline">「Tinker Tailor」が、 AI を活用した受注生産型ファッションプラットフォームとしてローンチしました</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月20日 13:49　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.excite.co.jp/news/article/Prtimes_2026-11-20-143690-17/" target="_blank" rel="noopener"><h3 class="headline">AI 搭載の新サービス2種を同時リリース！月額1000円のデジタル図面管理「ズバンLINK」と</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月20日 13:10　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://monoist.itmedia.co.jp/mn/articles/2611/20/news029.html" target="_blank" rel="noopener"><h3 class="headline">車体形状を変えながら空力性能を AI 予測、AutodeskがNVIDIAとの技術統合を計画 - MONOist</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月20日 13:09　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.value-press.com/pressrelease/384777" target="_blank" rel="noopener"><h3 class="headline">クリエイターコミュニティ「CREATORS COMPLEX」が「Adobe Firefly Camp」に出展！生成 AI を ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月20日 12:18　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://carcareplus.jp/article/2026/11/20/16596.html" target="_blank" rel="noopener"><h3 class="headline">ハンコックタイヤ、レッドドット デザイン 賞2026で9賞受賞…エアレスタイヤなど最高賞2作品</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　11月21日 01:31　　<span class="tags"><span class="tag">デザイン</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://mediamixi.jp/news/19432/" target="_blank" rel="noopener"><h3 class="headline">吉本興業が運営を受託したジャパン・ハウスロサンゼルス「JAPAN CRAFT –百工の デザイン 」展 ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　11月20日 22:23　　<span class="tags"><span class="tag">デザイン</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.teu.ac.jp/news/nid00000840.html" target="_blank" rel="noopener"><h3 class="headline">東京工科大学×三井 デザイン テック 共創プロジェクト第3弾を実施 ― 『モダンリビング』編集長の ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　11月20日 20:20　　<span class="tags"><span class="tag">デザイン</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.reuters.com/jp/opinion/W7LWJWKKFVM7ZL7NN36Y53JOZU-2026-11-20/" target="_blank" rel="noopener"><h3 class="headline">ビットコイン、7月以来初の6万ドル割れ ＡＩ 株安でリスク資産に売り - Reuters</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 06:53</p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.reuters.com/jp/markets/bonds/UB4KZ7VMJNMSBJARQZ2RD6LBEM-2026-11-20/" target="_blank" rel="noopener"><h3 class="headline">アンソロピック10％超安、 ＡＩ 業界への懸念根強く ハイテク株連れ安 - Reuters</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（AI）</span>　11月21日 06:21</p>
+    </article>
+    <article class="item extra">
+      <a href="https://prtimes.jp/main/html/rd/p/000005243.000003670.html" target="_blank" rel="noopener"><h3 class="headline">【2028年卒向け】クリエイティブ業界の営業職を学ぶ！ C&amp;R社「業界・職種研究セミナー</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月21日 01:34</p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.youtube.com/watch?v=xtttVf3Jd5o" target="_blank" rel="noopener"><h3 class="headline">東京株、一時２８００円超安 ＡＩ ・半導体中心に売り - YouTube</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　11月20日 22:27</p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.advertimes.com/20261120/article563496/" target="_blank" rel="noopener"><h3 class="headline">クリエイティブが経営コンサルに参入～広告会社のクリエイターは、いつから「広告をつくる人 ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイン and AI）</span>　11月20日 20:52</p>
+    </article>
+    <article class="item extra">
+      <a href="https://webtan.impress.co.jp/e/2026/11/20/53585" target="_blank" rel="noopener"><h3 class="headline">数字からは見えない本音を引き出す「ユーザーインタビュー」の進め方 | Web担当者Forum</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月20日 19:06</p>
+    </article>
+    <article class="item extra">
+      <a href="https://jp.acrofan.com/detail.php?number=132438" target="_blank" rel="noopener"><h3 class="headline">自分にあった幸せを見つけるヒント集『自分の心に耳を傾ける フィンランドで見つけ ... - ACROFAN</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月20日 17:26</p>
+    </article>
+    <article class="item extra">
+      <a href="https://www.creativevillage.ne.jp/category/crv_event/181027/" target="_blank" rel="noopener"><h3 class="headline">はじめてのClaude Code・Codex活用セミナー ChatGPT・Claudeのチャット利用から一歩先へ ...</h3></a>
+      
+      <p class="meta"><span class="src">Googleアラート（デザイナー and AI）</span>　11月20日 12:16</p>
+    </article>
+    <button class="more-btn" data-count="44">もっとみる（あと44件）▼</button>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">palette</span>デザインの潮流</h2><span class="count">4件</span></div>
+    <article class="item">
+      <a href="https://webdesigning.book.mynavi.jp/article/38107/" target="_blank" rel="noopener"><h3 class="headline">GoogleがWeb制作向けAIスキルを正式公開。幅広いWebブラウザに対応するコード生成を支援</h3></a>
+      <p class="excerpt">Web Designing記者が、Webに携わる人向けにニュースをピックアップ。話題の本質を整理し、実務に役立つポイントをコンパクトにまとめました。 Google LLCのChromeチームは11月10日、AIコーディン……</p>
+      <p class="meta"><span class="src">Web Designing</span>　11月20日 15:00　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://webdesigning.book.mynavi.jp/article/38104/" target="_blank" rel="noopener"><h3 class="headline">Adobeが外部AIとのMCP連携を予告。2027年初頭に限定ベータを提供予定</h3></a>
+      <p class="excerpt">Web Designing記者が、Webに携わる人向けにニュースをピックアップ。話題の本質を整理し、実務に役立つポイントをコンパクトにまとめました。 Adobe Inc.は2026年11月10日（現地時間）、年次イベント……</p>
+      <p class="meta"><span class="src">Web Designing</span>　11月20日 13:00　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://www.japandesign.ne.jp/news/2026/11/91158/" target="_blank" rel="noopener"><h3 class="headline">クリエイティブワークに没入できる静寂空間を実現。オーディオテクニカが新型イヤホン「ATH-TWX9MK3」を発売</h3></a>
+      <p class="excerpt">株式会社オーディオテクニカが、フラッグシップ完全ワイヤレスイヤホン「ATH-TWX9MK3」を2026年11月20日に発売した。カラーバリエーションは、ブラックとベージュの2色展開。 オンライン会議やリモートワーク、クリ……</p>
+      <p class="meta"><span class="src">JDN</span>　11月20日 17:25</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxNTjc2cVVGLVpQV0d3UXMyejA3ZnpXbXhSdGU5TDNqQk1CZlRENHE0Q1ZFUFdGbzFRYXdESkRIZ3UtSW5RWGpXMHp3MFlpZWxxZjVVRnhqWF9jRFllaG0tQlRmWmdvMU5lZGJZRmNCNFdBMXBISkY2blhNY09oQmxZTm1PbUJoN3J3RWc?oc=5" target="_blank" rel="noopener"><h3 class="headline">「オルセー美術館所蔵 いまを生きる歓び」（上野・東京都美術館開館）レポート。印象派の名画とともにたどる、自然や暮らしに宿る美しさ</h3></a>
+      
+      <p class="meta"><span class="src">Tokyo Art Beat</span>　11月20日 16:01</p>
+    </article>
+    <button class="more-btn" data-count="1">もっとみる（あと1件）▼</button>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">build</span>制作テク・Tips</h2><span class="count">0件</span></div>
+    <p class="empty-note">今朝は新着なしやで。</p>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">grid_view</span>ギャラリー</h2><span class="count">6件</span></div>
+    <article class="item">
+      <a href="https://goodwebdesignmagazine.com/kiramekibloom/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=kiramekibloom" target="_blank" rel="noopener"><h3 class="headline">岡咲美保</h3></a>
+      <p class="excerpt">１ｓｔワンマンライブキラメキブルーム 岡咲美保１ｓｔワンマンライブＭｉｈｏＯｋａｓａｋｉ１ｓｔＬＩＶＥ２０２４～キラメキブルーム～ｓｕｐｐｏｒｔｅｄｂｙａｎｉｍｅｌｏ特設サイト。 GO TO WEBSITE The po……</p>
+      <p class="meta"><span class="src">Xux Webzine</span>　11月21日 05:53</p>
+    </article>
+    <article class="item">
+      <a href="https://muuuuu.org/taglist/topjs/25320.html" target="_blank" rel="noopener"><h3 class="headline">株式会社サイバーエージェント DXコンサルティング本部</h3></a>
+      
+      <p class="meta"><span class="src">muuuuu.org</span>　11月20日 18:00</p>
+    </article>
+    <article class="item">
+      <a href="https://goodwebdesignmagazine.com/ise-seaparadise/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=ise-seaparadise" target="_blank" rel="noopener"><h3 class="headline">伊勢シーパラダイス</h3></a>
+      <p class="excerpt">三重県伊勢市のゼロ距離水族館 ゼロ距離水族館伊勢シーパラダイス気分はまさに飼育スタッフ！海の生き物たちとゼロ距離でふれあおう。他の水族館と何かが違う…そう、伊勢シーパラダイスには生き物とお客様を隔てる柵がありません！だか……</p>
+      <p class="meta"><span class="src">Xux Webzine</span>　11月20日 13:15</p>
+    </article>
+    <article class="item extra">
+      <a href="https://goodwebdesignmagazine.com/oidai-life/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=oidai-life" target="_blank" rel="noopener"><h3 class="headline">追手門学院大学</h3></a>
+      <p class="excerpt">ＧＡＴＥｏｆＴＨＥＦＵＴＵＲＥ 追手門学院大学には、個性的な先輩たちや、キャンパスライフを充実させるための施設が盛りだくさん。ここから、あなたの未来を開いてみませんか。 GO TO WEBSITE The post 追手……</p>
+      <p class="meta"><span class="src">Xux Webzine</span>　11月20日 12:58</p>
+    </article>
+    <article class="item extra">
+      <a href="https://goodwebdesignmagazine.com/feature-ciaopanic_typy/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=feature-ciaopanic_typy" target="_blank" rel="noopener"><h3 class="headline">メガネの愛眼</h3></a>
+      <p class="excerpt">ＣＩＡＯＰＡＮＩＣ＿ＴＹＰＹ×メガネの愛眼コラボ めがね・サングラス・コンタクトレンズ・補聴器等をご提供する眼鏡専門店。 GO TO WEBSITE The post メガネの愛眼 first appeared on X……</p>
+      <p class="meta"><span class="src">Xux Webzine</span>　11月20日 11:36</p>
+    </article>
+    <article class="item extra">
+      <a href="https://goodwebdesignmagazine.com/usinc/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=usinc" target="_blank" rel="noopener"><h3 class="headline">U.S Inc.</h3></a>
+      <p class="excerpt">総合プロデュースカンパニー 私たちは、企業・事業・組織の変革を通じて、よりよい体験を生み出す、変革カンパニーです。 GO TO WEBSITE The post U.S Inc. first appeared on Xu……</p>
+      <p class="meta"><span class="src">Xux Webzine</span>　11月20日 11:09</p>
+    </article>
+    <button class="more-btn" data-count="3">もっとみる（あと3件）▼</button>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">photo_camera</span>写真</h2><span class="count">1件</span></div>
+    <article class="item">
+      <a href="https://genic-web.com/articles/2141774" target="_blank" rel="noopener"><h3 class="headline">スクエアに広がる私の世界「アナログのわくわく感と自分で表現を決められる楽しさが両立」by Mayu Yamaguchi｜“チェキ” instax SQUARE 2™︎</h3></a>
+      <p class="excerpt">スクエアフォーマットでどんなシーンも印象的に写し出すアナログインスタントカメラ「“チェキ” instax SQUARE 2™︎」が新登場。気分に合わせて「ウォーム」と「クール」に色調を切り替えられる「ムードフィルター」や……</p>
+      <p class="meta"><span class="src">GENIC</span>　11月20日 18:00</p>
+    </article>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">business_center</span>ビジネス・人材・ブランド</h2><span class="count">11件</span></div>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE85cHJ4Y1pvb1Q0NkoyaUxYNklmSmxSZ2J2U3hBYVBUTzdrSEFNd0JDRi1BTXY1QnBGOUZkck5KOTdwc2ZIaEFpVktMckJBdy1uUjlTNElpLS0xenU4RElROGlIX1hkaHRoTkE?oc=5" target="_blank" rel="noopener"><h3 class="headline">三軒茶屋の抹茶スタンド「TEA TATAMO!」が「Matcha Stand Tatamo」へリブランディング。店舗デザインとロゴを刷新</h3></a>
+      
+      <p class="meta"><span class="src">PR TIMES</span>　11月20日 19:00　　<span class="tags"><span class="tag">ブランディング</span><span class="tag">デザイン</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFA2cEZsQ2dFQUM3ekVWTExOSDM1Mk1GelRVbm4zdERhSDc3WkkwLVZxTmRyc2NfM3lkWmZUMldxQWxzZm1lN3NQdXlHQnNmdU91REFIRjdmcmU5Z25lejI0U2hCZ1VFaF9v?oc=5" target="_blank" rel="noopener"><h3 class="headline">リメディ、M&amp;A総合研究所の人材紹介パートナー表彰で法人・個人の2冠、法人部門は3年連続</h3></a>
+      
+      <p class="meta"><span class="src">ニコニコニュース</span>　11月21日 01:30　　<span class="tags"><span class="tag">人材</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE1kUXpDaS13WTNvNF9rX0pyZFdubjl5Yjk2dFNVQmxqckp6Tkg4bG0xTDlxZWlmMkV0eE11dUd4d21LTHlOLWIwNGkzMmNsbDhXYkZqa2hSdy1aTk9DWDJwTGNnZFZfd29PNmZ6dTdIRHRtU1E?oc=5" target="_blank" rel="noopener"><h3 class="headline">美容・化粧品専門のブランディング＆PR会社「株式会社マヴェリック」が公式サイトを開設</h3></a>
+      
+      <p class="meta"><span class="src">Excite エキサイト</span>　11月20日 22:10　　<span class="tags"><span class="tag">ブランディング</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFA1S201eE8tVmprTVFzRm5TTFNKcGlSY25WZjlabVh6UldGTk56RGIyckxDM0Z3N1JGX0N5T3Vzc3BqeUd1YlU5SFVpYWVOXzJPeFcwaUhXak5uclBMTE9rNEx3d3RRcVVCS0E?oc=5" target="_blank" rel="noopener"><h3 class="headline">ブランド力を数値化する「B-SCORE」が、総務省後援「ASPIC AI・クラウドアワード2026」で受賞</h3></a>
+      
+      <p class="meta"><span class="src">PR TIMES</span>　11月20日 16:34　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9aeEZBTVIzaEFJUmtsdGx0eFJfRzAzb1NPeEw4aF9nRTlJRDFkaWRZNnNfQjZuSHBmWmpsUVEtbS03UThKTFlrMFJoT0RRWGtLQi1BTEl3cnloSXJGNm9KRHhDZUV1QXJmdUE?oc=5" target="_blank" rel="noopener"><h3 class="headline">アイコネクト×マルキンアド、問い合わせ獲得とブランディングを融合したWebサイトリニューアル支援サービスを開始</h3></a>
+      
+      <p class="meta"><span class="src">PR TIMES</span>　11月20日 13:00　　<span class="tags"><span class="tag">ブランディング</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiTEFVX3lxTE0wRGhvUjRNQ0Nia21XQ3BfNkp4bXhRUnJHaU9NVXhkQTJ5bkxjeHpaRkZkeklQRmQ4ckw4MmZHbFVaZWdDaFFDQk9TTlk?oc=5" target="_blank" rel="noopener"><h3 class="headline">企業価値を高める真のBtoBブランディング――「目指す姿」起点で展開するコンサル・イベント・PRの三位一体のブランディングとは？</h3></a>
+      
+      <p class="meta"><span class="src">ダイヤモンド・オンライン</span>　11月20日 13:00　　<span class="tags"><span class="tag">ブランディング</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE5sc2xQZmI0Z1RUODM4ZmxjVkUzekNDclZsT3lFc2wwd3JHbFd1YXRNQWloM013eGZZV3ZPOW9XV1lLUFdqM0FjaXZ2WWp4SlJvQ0lVeHlxWUFsQ190RnJzUnd0Ti1kRGs3aUE?oc=5" target="_blank" rel="noopener"><h3 class="headline">2027年、人材ビジネスはどこで戦い、どう稼ぐか ― 矢野経済研究所ほか4者が市場・求人・利益率のデータで読み解く【12/22・1/13 オンライン開催】</h3></a>
+      
+      <p class="meta"><span class="src">PR TIMES</span>　11月20日 11:00　　<span class="tags"><span class="tag">人材</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9FVTRJclp0REJOdjZpS3hWMHBwNGcwdFZ2ZExvcnlnWVkxcERlUk9rQlM1WVRnM24wR1BQeTFVSV91aWJ6QUxJN0U3U1VuZUlTaUNLMUtJc2ltNThqSTNIblhDMzUtVjJU?oc=5" target="_blank" rel="noopener"><h3 class="headline">リノベーションブランド「ハコリノベ」が「the haco」へブランド名を変更。新たな世界観を掲げ、リブランディングを実施（PR TIMES）</h3></a>
+      
+      <p class="meta"><span class="src">毎日新聞</span>　11月20日 10:53　　<span class="tags"><span class="tag">ブランディング</span></span></p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1ERldmVGZIT3loa09ndER2WVR2VU9rZ0Q5dkdCOXBBQ18xN2RNaC1fdnoxVjh1TEswZ0RYVktfc3ZCSS1GMUJ6NnhUZXpDWDJudF9ydnJlTk5rSTdFZTAwNGxGZlo5UlNybkE?oc=5" target="_blank" rel="noopener"><h3 class="headline">カリフォルニアの蓄電池はなぜここまで増えたのか――約13000MWを支える市場設計を読み解くウェビナーを開催</h3></a>
+      
+      <p class="meta"><span class="src">PR TIMES</span>　11月20日 18:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1uSWJDSHgyUlJLU2hGaWItNUFSa2hPWUxxMzdTV3ROZ2FVNUxXMDlaRkVCaF91clBVU1k0cGZad0w2cFNIVEVkdzU3VW56WjdPd1NKQVZfcmhwbEdEcnFjRnZ5YVdZZmdLZmc?oc=5" target="_blank" rel="noopener"><h3 class="headline">地域新電力と蓄電池はどう組み合わさるのか――岐阜県恵那市の地産地消モデルを読み解くウェビナーを開催</h3></a>
+      
+      <p class="meta"><span class="src">PR TIMES</span>　11月20日 18:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE5FRDJZUmI3ZjgxY1lyTkJkY3MxMlhFQWZzcmpiRlFCbVFoTklLazNJaTVMTGZMaDV0ZlptT0l3QnhEUTdhdVpTS2N4S25tVXlwbjluVGtIMUlaSmxHS2VwcnJBNUxtZGZoN1E?oc=5" target="_blank" rel="noopener"><h3 class="headline">株式会社YORISOI、事業拡大に向け2027年1月にCA5名の採用を計画。「転職.com」の求職者支援体制を強化</h3></a>
+      
+      <p class="meta"><span class="src">PR TIMES</span>　11月20日 14:10</p>
+    </article>
+    <button class="more-btn" data-count="8">もっとみる（あと8件）▼</button>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">public</span>経済・時事</h2><span class="count">89件</span></div>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE5EVGRiRkRZczhqLS1oVl9aU1lwSDlrTlZ0YldKdkVTTjdkME9hME5WYmdPV21fdnItVVpGeHhDQzZjcGMtN0hoTWdkTk1NNThLclRLMVJESFNwMko5Rnc?oc=5" target="_blank" rel="noopener"><h3 class="headline">APEC声明で米大統領に配慮「AI」の呼称を使わず「新興技術」と言い換え (2026年11月20日掲載)</h3></a>
+      
+      <p class="meta"><span class="src">ライブドアニュース</span>　11月20日 22:10　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE9VSzQ3ZGRMR05TWXRjSk5XNDBUZ0JoSHJiV3JESUMtUGwzVEhsU0swUEJMcWJabjd1S2s5VmVDeWw0bC1Pc193d0RCWG1fZDZRSlhZZUNxdS1mQQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">AIデータセンター需要の疑念で銅価格が急落、6カ月ぶり水準</h3></a>
+      
+      <p class="meta"><span class="src">Forbes JAPAN</span>　11月20日 13:30　　<span class="tags"><span class="tag">AI</span></span></p>
+    </article>
+    <article class="item">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE5TcVBDMnJ4aG5zTEpva1hzbWMyd05KNmxMdlEtdmhOanM5Vy1FelhLeFRhUjBzbWgzZ3Noa29vVGFwU2hLVERiaTR1LXBXaFFyMGtwdW45eExaU0lIX0QxU1BTUlJsQnpMQk5sa0dnLUdVUVhkM2dWMTZnNlFQNEU?oc=5" target="_blank" rel="noopener"><h3 class="headline">ロシアの首都を震撼させた“ドローン”の凄まじい破壊力…「ロシア=ウクライナ戦争」の数年でなぜここまで進化したのか</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　11月21日 09:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFBZTG5Wa2NldUdmZW05NTlaXzU2eGk3XzJwTDFUTmdFaThSNlZfVXozZ0g1Y1RsMHdMaWdpVGVXVGVQYzJOQWU1YmpIX2ZOU2xFQ1huY18tR0x1X1BfTjEyaFRBR1N2dzh2d1hnbFVxVXVXNnNwLURhV1ZIYkNYMVE?oc=5" target="_blank" rel="noopener"><h3 class="headline">米民主党、トランプ氏を「恥さらし」と批判「独裁者のことばかり気にしている」（ＡＦＰ＝時事）</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　11月21日 08:58</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxQcUx3Smw1ZWN1UmdJVGZjLV9TaUQ0UnZjbmZhWXZTQTdqZ0VYTHgzMGsxVDFxRTh1WjhDTDhORmhidUdZY2JxRjZlMk9tX1hfcFplbVRJQ2xodmhQR1pNbkFwOUVTcU9aV3V3LWdSWGVsM00tZ1dQc3dQbGlCQ0l2YzFrWkx3SDRw?oc=5" target="_blank" rel="noopener"><h3 class="headline">「置き配」で盗難されたら自己責任？国交省が新ガイドライン案、宅配51億個時代に変わる受け取りの常識</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　11月21日 08:43</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFB4YWlDZVlBeVJUQ05RWVFCY0JNTE1ZSkQ2X2JPdWFjdEhEMUFaNkZYLUxHczJFSjI5QURkSjhfVzVIN3ByeEhOWURNU2R6dmRZWmRUYWZzc1EyNWpfaUhJSG05UjV6WjBRb0QtWXVaNE9PXzJncnh0U3o5czlGdW8?oc=5" target="_blank" rel="noopener"><h3 class="headline">再び全候補に常任理事国の不支持 次期国連総長、年内選出不透明（時事通信）</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　11月21日 08:33</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE1LTUVnM3lxWkxuVThGTXM5SVkyOThiUWdudjU3Y2tLaURZLV9PYkxoQ0x0dm81eGcySjZlMDJOQmItUV91MElWdlZKV0hpNURuVXJIVDN6eXVyRXV1V1pHWmxHWnV2cjBtd2plY2k4cG1wQTM5RXpIU1dUMFN6Q28?oc=5" target="_blank" rel="noopener"><h3 class="headline">NY市場5日続落 ダウ一時1000ドル超安 ナスダック指数も5%下落 アンソロピック株は公開価格割れ寸前</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　11月21日 08:27</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxNUG9zYnJTbXYxZ1FST3U2ME90VkhJQVlacmdUNzVoblFMSHBHVDVqQTFXWi1td204dzhEcnZTMFJMWnhETHF2NnBvX29xcW5sWWMya0kxcENEY0FnVVBELXNnUHRnazJzOERXRGtJS1ZVVWFSX01DTnNDWi14T1p6OGFzbFRIUQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">アングル：ＡＩブームの恩恵届かぬ韓国個人投資家、株乱高下で消費も冷え込む</h3></a>
+      
+      <p class="meta"><span class="src">Reuters</span>　11月21日 08:08</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE54bU9lc2t2cHh0S25Ddm96YkstbjNJNFJSVmduOWhHUWwzN0NEZEVtMHlKd0o1Q0VWa1ZmejZlNHJnZGh3UmdTWGdmQUxSM2tGcDM1bUNpdUtldw?oc=5" target="_blank" rel="noopener"><h3 class="headline">アンソロピック株、取引開始1時間で11％安──史上最大約15兆円のIPO直後</h3></a>
+      
+      <p class="meta"><span class="src">Forbes JAPAN</span>　11月21日 07:30</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxNM0pDQm1GdlhuYzV1WnltVHQxQ1JmejMwX05SelFEdkFnTUVXSmVrbDlESDJzQWxSa1BZUUJhRnUwcjBJMk1OLS15X3QyQVZLYk1adTZzendMQU5EUnVpSUhEb01oXzJQMzNqWW1CVGY1UVdwc1hHdkk3MF81OVJjbl9SSzRLTmM?oc=5" target="_blank" rel="noopener"><h3 class="headline">イラン、外交で米との戦争終結望む 仲介者通じ連絡継続＝外相</h3></a>
+      
+      <p class="meta"><span class="src">Reuters</span>　11月21日 07:22</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxNb09yVHJEc2R4V2NyWjVYQ3BUV293RXpnRVlpcFh6al81bFZYT1B0SWV1NHlud3ctSnJSYkFTbGViMlp4NllGUUpYenJkTXZWeFltTlA5Yk5WajBnYWlDTEVPR0pFR3NwdlZaeEJZQ1laMDJTSV9WZkp0X0w4aGhicQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">「携帯電話機17.2%上昇」は誤り？10月の物価統計で見るiPhone値上げの本当の影響</h3></a>
+      
+      <p class="meta"><span class="src">セレクトラ</span>　11月21日 06:45</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxQQ19JTFpHN2Y5UllsdW5CQjVlNDBsYllocnJ5WHdONHNYb1FqQm9MX0FXc3h2OWhoRjNQTkg4YllQeG42YkpOdGpCOWVsckEtOXcwRmxKSGU4MUdvYVZmNUVnSEc3WTMzaUh5TFc4VHVkQnZubXZyVU5TZVdsRVp3V25TcTlqMnZQWlE?oc=5" target="_blank" rel="noopener"><h3 class="headline">欧州代表団 ウ協議準備で訪露の用意（時事通信）</h3></a>
+      
+      <p class="meta"><span class="src">ｄメニューニュース</span>　11月21日 06:42</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9CUzJ2Z1VzUjBYU0E4V2Rac21uZDRVRkhCbDExZU5hd3luZGY2RlNNSWdKSGVCeGJ6d2wybkRmbWhiRlRsek1Ya0VNMU1BQmZHMkd3bG5hVHpTcXJRanNFY21ieDFzMV9lS2U3a1QxbllWY3ZrOTRCNjhtbGY1eGs?oc=5" target="_blank" rel="noopener"><h3 class="headline">トランプ大統領 データセンターの国外建設認めず 建設なら「莫大な税金かける」（TBS NEWS DIG Powered by JNN）</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　11月21日 06:41</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE9CLVJaNVdVSGI4YkU0UWxuRUNqQWRJWFQwLU1KaGlPcXpoZGk2NnY0R2RGSEx3UWV5OEZ3WVRQbUJqZ1FLUmpLREx2Ul96bFN2a2pyVkY1YXhPMVlwZXc?oc=5" target="_blank" rel="noopener"><h3 class="headline">黄金マスクの別名 墓の奥に何か (2026年11月21日掲載)</h3></a>
+      
+      <p class="meta"><span class="src">ライブドアニュース</span>　11月21日 06:30</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxPb0otai1IUEh2aEhNRFlUVzdxNWFBWExXZXF0VmxrUHJKN3Z2c1E1REYybWg5UlBnQ0NPS0FrQ3NrUWZ4NWdmblozdHBScm5xdXh6WFF5SW9KNUZ1RjdkRUxjWHBPek12SEc1WUloMGNLakZMbHBlUkhabE1zYzF5czhUQmRadlI1T3ZicGQ3VkU4YVM4c2VqYUNQNA?oc=5" target="_blank" rel="noopener"><h3 class="headline">高インフレ抑制に追加利上げ必要、現行の金利水準は不十分＝クックＦＲＢ理事</h3></a>
+      
+      <p class="meta"><span class="src">Reuters</span>　11月21日 06:25</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE85cklRdnROcU9UUDBlSmxtUXIwc3VBR1ZncDliVG95X1BmMkZIaUpHa2ZnaW9Ga1RmUkgzRW9ua1NKRURFWmFHXzhuRWxuWnR6dXZNQldfRkN5c0dDQ2c?oc=5" target="_blank" rel="noopener"><h3 class="headline">ロンドンでひったくり男逮捕 ドローンと通行人の連係 (2026年11月21日掲載)</h3></a>
+      
+      <p class="meta"><span class="src">ライブドアニュース</span>　11月21日 06:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxOWGNzTjRMbU50bjdzZ3hQc3VXazAyaGY3ekJFMGFCMXZoZHZ2M0hQaWFMaUxNTGJTY1RvWFNYUnlILVJjdnNMSUs4ano4bHFKb2F6U2RIZHJ6aTdXN2dsSlZ2bnJBbEh6OWJWVzBYZEZNMW10bmgzM20yWkZjUjJNeVJQLXdiV1VHYkE?oc=5" target="_blank" rel="noopener"><h3 class="headline">アンソロピック創業者ブラウン氏、トランプ口座に多額寄付へ＝関係筋</h3></a>
+      
+      <p class="meta"><span class="src">Reuters</span>　11月21日 05:49</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9yaHNVeGpla3FzNVNST2pvV291VGtDcTdNQVBlYU92ZWYyVl9mT0d1OFQ4cHlWZmdrNVRNRFdDanhfWlpmeU9nWG15WlZ3NmxOaUtIOHBvdnA1Z041dXQ4M05DUC0zV1BiNUREMA?oc=5" target="_blank" rel="noopener"><h3 class="headline">NVIDIA、株価14%急落 米SECが会計処理を調査とロイター報道</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　11月21日 05:42</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE5ubDlfaURIUGJkZV96cWZVVWpWbVFrdXlrMXpKN2VUMV9ZakdVTmUyRU03cnZDdjNhXzNUSnZyVUcxVFVQZ21VdjhWR3hyc0U1aGRBZ213WU5Ecl85bmtHRnBwV3JvUjAzb1ptSg?oc=5" target="_blank" rel="noopener"><h3 class="headline">ドイツ国防相「ばかげている」発言で米次官に謝罪 ウクライナ巡り</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　11月21日 05:01</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTFBRSU1QMnl1S0NWVExuMWN5YmQyTTc3QjUzY2RqMFJkNm5naWZ6aXNlVDNaNVd3OUd5eklpb3d3eHF6UDEyVjZQUWxEOHR2ZS1sVk1HOU1Fdld2NXliTDZmaEhBTEJCNEttMjRRSlpJcjM5U1ZqNWc?oc=5" target="_blank" rel="noopener"><h3 class="headline">＜産経抄＞ヤルタ密約は教訓だが、中国の米中露物語は無理筋</h3></a>
+      
+      <p class="meta"><span class="src">産経ニュース</span>　11月21日 05:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTFBFOVdzRXptWHRfQjg1QTJtUjhfQWREaXdqZU1mTWJQNXRrWGpYLV9yUjVXYWNWdjVuVnU0TmZqalZyLWF5QVoxM0FLZWZsSlJMcEZNYWVDOUN4WXFXeElSa3hwOUQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">ホンダ、６人乗りの大型ＳＵＶ投入へ…「アヴァンシア」来春発売</h3></a>
+      
+      <p class="meta"><span class="src">読売新聞</span>　11月21日 05:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTFBPbVNtUWo0a1VGbmZSZk0wMmE1R09MTHlUV0dhSWxjSnhCX1JaWl9raXNqeksxY21xVGxaY3JNd3h1YjlLY2RwS3VZbDIySXQtS1BlSjktTDI3Z0pTWEVZUFBR?oc=5" target="_blank" rel="noopener"><h3 class="headline">ロヒンギャへのジェノサイド認定、ミャンマー親軍政権は反発…救済実現には大きな壁</h3></a>
+      
+      <p class="meta"><span class="src">読売新聞</span>　11月21日 05:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTFBfZy1JeGhQTVVQdTM0UGxpN2lHdjRKdlVzcVJwUWxXR3BQLUlRNHgxYXhKSTNYSy0yR3g0XzhSczg3VTNvTk93ZUs1Z2F5U0lnRmZmdWVXMVd0SFZKUlYtU1ZR?oc=5" target="_blank" rel="noopener"><h3 class="headline">英首相がＥＵ再加盟に意欲…ＥＵ側は歓迎も条件面は妥協せず、国内世論も割れハードルは高く</h3></a>
+      
+      <p class="meta"><span class="src">読売新聞</span>　11月21日 05:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFA2VDZaN2QxcUczSVZsVDBFd043S3d4RkcwTzlmMUtDWGJxTXVHV0xpS3BNZ05WTHR5UnpJa3lyV0hyTll1NHM4cHhEWHFLQllKV0NkZ3BBZEh6Ty1Pa3NoblhJQmNacEhVdUo5UlQ3aHk0dFdwQV9Kb2kyaXRjY1E?oc=5" target="_blank" rel="noopener"><h3 class="headline">トランプ氏、金利高すぎ ＦＲＢは「政治的」と主張（ロイター）</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　11月21日 04:28</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE1SdzlPdk5Ya0pkSFFLNHhYLWwwV3dpY0Z4bjE0UWlUQ3pmdkJ6N0RhUDFZYjI0UEV4RjhOcUs0LVZoTXowY1V4dDlPbUhUcW1HNjBnN1pn?oc=5" target="_blank" rel="noopener"><h3 class="headline">グラングリーン大阪「うめきたの森」オープン 吉村・大阪府知事「大阪の素晴らしい財産に」確信</h3></a>
+      
+      <p class="meta"><span class="src">jocr.jp</span>　11月21日 03:10</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxObm1IcGFnSC1ZQUdidmV2S3dfOVY4NTNlVXVoTDN6YXFSTnZZaFlWY213Y3ZUSmh6VUR5M1hfOFJYdUhJemNtRUs5dl9WM0U1TVNVRG8tVHlvbmVsRHFWVkNKSE1ycXpoNDdyMDhDVUJMU0xBTlRUUmlreTNEVUxIaWRWQ0hsQdIBiwFBVV95cUxOd2U5LVhhVTd5Mjl5UW55M09NTndjRFJCTUFXdFA4TXRtN1JJX2VqSlZTMDc4cGR2T3V4T2lOZXJDRnhrVi1QaEF3V1pEQURZbVV1WkpZMHhzUm9LbEd4bVB2RVcydkFuMXlRY3VrZEFXVzM1aWZtQ0lGeFRGRl9YN2M0ZDRCMnVCbXpR?oc=5" target="_blank" rel="noopener"><h3 class="headline">ヨーロッパ各地で学生ら大規模デモ「防衛費より教育」生活環境の改善と未来の投資訴え</h3></a>
+      
+      <p class="meta"><span class="src">ｄメニューニュース</span>　11月21日 02:36</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxPNEpodkZ4LWU0UnNSMnlPVHJ4NVN2Nm1PLWo3cGZaNFdZZm1MQWU0eVZqdmdCMy00bUZudUlIQnBBUWx6dThLellIS3dSNTVXTWxDc09lNUh2QVJyeXYyNXgtUTRjRlJRZ0ljUlBMd1ZGb0U3NTBTU1ZsU0c1SkRpVU1udUtwZXhXa19TWVFCTmo2ZFNoYV9HZTB1Yw?oc=5" target="_blank" rel="noopener"><h3 class="headline">ベセント米財務長官、ＦＲＢに大幅利上げの回避求める</h3></a>
+      
+      <p class="meta"><span class="src">Reuters</span>　11月21日 01:16</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMie0FVX3lxTFBjcWlMemdUQ2hCejNZTVc0SllCOERGT3ZZUzFmSnlKb2pRRGNid1g0a0s5WVhGZ05adGI1MDdId0ZreW9VYXdLLUVndkVieVF3LThKQVNCRjVpdEE0eG4ycXRUekJpRHNzN3ZBNGFQTWNiRlZJYVRDbVJMUQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">【速報】ビットコインが6万ドル割れ、7月以来約4カ月半ぶり</h3></a>
+      
+      <p class="meta"><span class="src">CRYPTO TIMES</span>　11月21日 00:54</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTE92aTlUUVJZUWs5dWgtczMxZWxSbDlUNEVZcXR3QW1jUkxkQW9JUkVZQXJja2pRNzRZQVJxZXdHbEJXZW5qLVlmbGJxMVAxSFVybnRkR0hwYw?oc=5" target="_blank" rel="noopener"><h3 class="headline">リニアのトンネル工事 地表付近の川で複数か所から気泡 川の水噴き上げていると報告も JR東海は工事停止して因果関係調査</h3></a>
+      
+      <p class="meta"><span class="src">TBS NEWS DIG</span>　11月21日 00:46</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBTSDFCTmVzMEtPSlg0d1I5WUxtYVJ6RkhKTUwySGRvdUR0SmV5TFViSzFCYjlFNWE5N0xQR1BMQmlMY0FxNGg3OWI5MXFZV2lZdlNjTzl6RkNPUVBwVFVJSndIMGE1M0dUdDJHRQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">春秋（11月21日）今年の単語</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　11月21日 00:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE1zSjVsTzVwdXo4RThNUUZUMzVJZ3RhTjNoWW1qUkZwRndwZ19rdlhGbmJaa3VOb003WDN6QjBJV0RYU1RveDIzYkozWnFTZXJkY0E?oc=5" target="_blank" rel="noopener"><h3 class="headline">【ＮＹ為替オープニング】安全資産購入続く、トランプ米大統領会見やベッセント米財務長官インタビューに注目</h3></a>
+      
+      <p class="meta"><span class="src">ザイFX！</span>　11月20日 23:55</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE9BYVJhT3RYc0dJWThpaGgxZlBLQVY1dWJWWEwybDRTckppck9rdzRFS2U5ZHgyUmxZNHk4c0wxRE5za1FHcC1fTnlZQzhyRG0wTzJIdEdXTGpsVFhLZnFJX1lwTdIBaEFVX3lxTFA2eWNid1VfbWNzdG5MWTJyVmtTYVUwN0E3WkNQUGVtWHN4UmR0eWhkd1BsV3lzaTV3NjdyRW1qcmpZcHpHVm0wVjRfYXlROUdvMDVIMVBYcUlLY2oxTk8xdC1LVTRiNTNn?oc=5" target="_blank" rel="noopener"><h3 class="headline">英軍、ロシア・中国・イラン・北朝鮮へのサイバー攻撃作戦を公式に認める</h3></a>
+      
+      <p class="meta"><span class="src">財経新聞</span>　11月20日 23:40</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxNZHE2ODhpQlpnUWMyMTlKZlR6VklKaEJMV3VGeGJ1UGdfUHVSaEZ2Yy1QcFFDWEVKamdiaGtpNWhNZFpYREdTT1hoZGxlMmdvV0FjNS1nQzVKY2Zma0ZhQnlWMVgyREpRXzkxNXhzVnNzenUwUGl0bExaOUpSVFVMOXBxRU1Ydw?oc=5" target="_blank" rel="noopener"><h3 class="headline">エストニア、対ロ国境を少なくとも6カ月閉鎖へ ロは対抗措置警告</h3></a>
+      
+      <p class="meta"><span class="src">Reuters</span>　11月20日 23:17</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5MS2c0akxfTWtLQzlJbDQxdFUyQjc0Sjhra3QyQmhrUkRxUVJlRnB0SDR3V2U1MjUzaXlIMGRpeEhSU1hUMjByNDNXZ2RReXp0VUhHR20xNmc1b1FUWENZ?oc=5" target="_blank" rel="noopener"><h3 class="headline">大崎電気 ネット上に技術情報の掲載確認 ランサムウエア攻撃で</h3></a>
+      
+      <p class="meta"><span class="src">NHKニュース</span>　11月20日 22:28</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE12dlVtMG5LLU5HS1B1LTg2cGRybjlvOUF4SDZDNWJDT3Q5V1RyaHhQb0l5RDJCcHdRMzU1bDBUZGZyVnR1WWFqSkdVdGhkcVNmZHpobFJxNzRyeGZtNWow?oc=5" target="_blank" rel="noopener"><h3 class="headline">EV補助金 きょうで申請受け付け終了</h3></a>
+      
+      <p class="meta"><span class="src">NHKニュース</span>　11月20日 22:18</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMickFVX3lxTE41WkZrWkNqaFhpODV4SDJjRlFoVVhMREJ1YVBnMzVqa3VDbnZBN0tBaW5BVjBfdlZjbWthNFFOaURRZzZSdWxIMzNZb3FoQ3c5ZEExU3dITEMzOU5BaUVrYUluemdlT2dhci11bE5xMGZPdw?oc=5" target="_blank" rel="noopener"><h3 class="headline">タマホームが不正請求の疑いを初めて認める</h3></a>
+      
+      <p class="meta"><span class="src">テレ朝NEWS</span>　11月20日 22:08</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE9NM2ZCYmpLLUtnOFFiOGpTZG1IZHdWY1FQdDdMYWRLZ2hndXE5WUxMOXU4UXE2NVNrdGk2ajZlRmdQR2NrUExCVlRuOUVLbHhUN1NQbA?oc=5" target="_blank" rel="noopener"><h3 class="headline">ブルーライトカットのめがね、目の負担軽減の助けにならず 23年国際研究で結論</h3></a>
+      
+      <p class="meta"><span class="src">CNN</span>　11月20日 21:53</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE9ES21ndmJQd1JQd3VWRjN0MlBNMGtxQWlIZ0tSMlBlX2o3WEVGMGpkWFRJTmk5TGpHUzJPQm10RzNBWWFVc294TWgxOGNmaVVZRVZ4bTc3V1pBT2p4cm1RUGZRamllTWVmdloxbnNlajdiZHdhTVZVOExR?oc=5" target="_blank" rel="noopener"><h3 class="headline">【速報】ポーランドに巡航ミサイルやドローン着弾 「ロシアから発射」被害なし</h3></a>
+      
+      <p class="meta"><span class="src">テレ朝NEWS</span>　11月20日 21:41</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFBEcF9QVGl6RTA4d3lDaC1GNGVYRzFGTkdjMEl5QlJUNTFVbExvVkFlcVNOOWcyT1FicENseFI2R0NNbi1MSTQ1aUlOOEJTTzJ0RDAzLUZkSjV0bkhSNExz?oc=5" target="_blank" rel="noopener"><h3 class="headline">タイタニック号より巨大な伝説の客船が海中へ…全長302メートル、最後の瞬間を捉えた衝撃映像</h3></a>
+      
+      <p class="meta"><span class="src">ニューズウィーク日本版</span>　11月20日 21:28</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1fMW9ZLUJfRENkQlJxdTZHSkxjX3lncW1xRkhqWm5PSzFLWFhBMzFEa1hBMGZYb2VEa3RzbnotNThBMDNfbUZhS0x1YUd6UFI4ZHA1djBNQ3YydGtnR0FzeUZGOEs0WUZQQUE?oc=5" target="_blank" rel="noopener"><h3 class="headline">デジ庁、政府機関向けファイル共有サービスで漏えいか 7月末から第三者がアクセス</h3></a>
+      
+      <p class="meta"><span class="src">ITmedia</span>　11月20日 21:18</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE43bzliazhDTkc2NFllVGd3eTZHV2d6azhBVVRqR1NVU2FlU09ROWJWcVUydEdWX2VGX0drblRhLWJiRnprNHNFNGJQbjh5LVBfam0ySDlDb3BzNmYzOE1zTExPZWpiNGRLMnNqdA?oc=5" target="_blank" rel="noopener"><h3 class="headline">ZOZO、1518万人分の顧客情報流出 委託先に不正アクセス</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　11月20日 21:03</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFB3Ukx2a1UxZ3N2VkI4M2NwaXRnc3JYb01pRjBiTElsLVV1ekFpR29FcFkzUWp0OXJPdlM4YzVlVHNTd0tYNWNHa29tZUc2NVdnSGlIc0J0eDR1cVJDeDJv?oc=5" target="_blank" rel="noopener"><h3 class="headline">「空を飛ぶカエル」の新種を発見…研究者が驚いた、ゼリー状の塊で子育てする奇妙な生態</h3></a>
+      
+      <p class="meta"><span class="src">ニューズウィーク日本版</span>　11月20日 20:58</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiRkFVX3lxTE5VUjNmaFIxb3hrN0xZY18taUFtT2loN0NWUXNXT0E4d2FfRXkzYkZ1UUFfOXlwNE15Rl9nM3hRRXMxazItaWc?oc=5" target="_blank" rel="noopener"><h3 class="headline">令和に残る“現行名車” 所有する喜びもイイね 往年のスタイルと現代の技術が融合した「レトロスポーツ」バイク3選</h3></a>
+      
+      <p class="meta"><span class="src">VAGUE(ヴァーグ)</span>　11月20日 20:42</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxQVkhLVFkzeXc0VFM0LXRKMTV6ZFJ0eHozWlRlcmRBb2d1dndOcjR5VXNSbW9LLUVEYUNPVXpBdldPQ01YYWVSVnJDR040ZDE0aS1BRFJacFAzYTI5VTE4WDA4aFBjYWlRX3dyRll1VE9NSUVLZnM1YmVfV1FsN1g1bXZ5R3lpR1k5?oc=5" target="_blank" rel="noopener"><h3 class="headline">敵「え、そっち？」 味方「こっちです」 えぇ…!? 英海軍の新型デコイ発射機は「回ります」 試験結果に担当者も絶賛</h3></a>
+      
+      <p class="meta"><span class="src">carview!</span>　11月20日 20:12</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE93RVVwREhiUDhwSkhnSmNDWmREdXhmeUdMOXVrUUZHbEFBUkNNaC04Qk1TSzFmNkVCTVkxWDJKMzlncVh6d3VmbUoyOTJLS3psaHdIeGhoZi0yZEhSc1E?oc=5" target="_blank" rel="noopener"><h3 class="headline">第704回ロト7の当選番号、抽選結果（2026年11月20日）</h3></a>
+      
+      <p class="meta"><span class="src">新潟日報</span>　11月20日 19:37</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxPSkhqR1l5dWtNRVdvWUM5cTVrd1FVTFJaelBCZnF5Qzh5YXpRRC13UldReDNEQTE4a3BTd2xnS0pIM3pKQWtPYmg0SEJjY2pOeklFXzRNSFlMOW1CRVhrbnVfcWNWOGU4dmdKOUlIS19HNDFTaUJYd2NTazlIUU9HbUkweG9tejQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">イラク治安部隊、親イラン武装組織カタイブ・ヒズボラ拠点に展開 | ロイター</h3></a>
+      
+      <p class="meta"><span class="src">Reuters</span>　11月20日 19:36</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5fYzNLQ0t1eklmajdVWXp3V1J2X01PbzZWRjdiX3UyWEhwS3BLUFhPUTJrQmppUWNaMHpfWWlqWFY0a21ScUkxNHZLUmVCTDl4bDZSbFpjSEZBVkdQbmt3?oc=5" target="_blank" rel="noopener"><h3 class="headline">巨大タンカーが観光クルーズ船に激突…わずか22分で転覆、衝突から沈没までの衝撃映像</h3></a>
+      
+      <p class="meta"><span class="src">ニューズウィーク日本版</span>　11月20日 19:18</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1hdnJ0cmVXd3NocFBURkFFRkVJdjJLa0xjeTlxRkVva3RoVjdDQnpXTWJNdWtvakU2dVltNWIzUTd1blN0SVZkSEtkYjBQYWhuaXJ4ZUF4OUU5U3VPejdIbTFRVkVyQjg?oc=5" target="_blank" rel="noopener"><h3 class="headline">麻生コンクリート 無届けで汚水処理変更、工場外排出 県が立ち入り [福岡県]</h3></a>
+      
+      <p class="meta"><span class="src">朝日新聞</span>　11月20日 19:10</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE5FbFFxaE9tdTNlQVZhQkpwN2NNWEdXa05JVHNFaG1jUFE1NXIyYWZvWHlaaEZNNEEwMWlxRTRxSE1aLXFNajczTzRvSGt4dGlzYm9TLXhiamZmLXJkclRPUjdicXNjb3RNa1UyRg?oc=5" target="_blank" rel="noopener"><h3 class="headline">茂木外相「中国はアジアの覇権国ではない」 米中ロ首脳会談で</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　11月20日 19:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxNVnF0UFFlYU9xTlA2RVlhTFdXbzBGNFp6TmFNd1lyazZCalFYcFh5eVBRekowZGxJNnlXZmVJY0FtQ0FXQ2FBUjl6NEtBVmdaVHVEYkNMcE9NQ0tHX1VHdHR4STl6NUFxRFEzYTJpWTlSanZoR3FfS1ctSnBsWW9IZUIyUFo1bmw2eXp3dGlUT2tLZ2YyNDlQNVhZZDRNakxy0gGmAUFVX3lxTE12ZE5RYWtobTZxaDVUaWE1WWtGNkZkekU1d0VqSHlrTm9QRHM1MXRkcXpralVLVGZtNk56V002LWZsNy1TNjNmSmFTbjhoeVUxLTF2bC1XMWQ0RHY2RmVuaVJZaVY5VEZZV0JDSXR2UGJ6a2hKOFFsMmkzdFF4U3l0OTZyNmpONm9UTDFBVHpnSzI1eEVYbVlOc2czaFZYRjJMTlVpMlE?oc=5" target="_blank" rel="noopener"><h3 class="headline">習氏が豪州やASEAN首脳と個別に会談 前日の米中露会談への「祝意」も受ける</h3></a>
+      
+      <p class="meta"><span class="src">ｄメニューニュース</span>　11月20日 18:35</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE1QbUxfNHl6RDNJaFI5cGNBbEg5S0FIc3RncDVqWWdxcUR3UERfS0hjcGI0ZU1NLWR4NjV2dmJmdEpQXzhWclJldmRhVm1xRGFZMmc?oc=5" target="_blank" rel="noopener"><h3 class="headline">AEON Pay、利用者が読み取るコード決済を停止 委託先のインフォキュリオンに不正アクセスで</h3></a>
+      
+      <p class="meta"><span class="src">CNET Japan</span>　11月20日 18:33</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE1UZ0RZTzZPQjU5TnJLUXh2OFk2RHNmWUE0TnRFSEE5WkZjdmt5Q0luN2Zxek0yUGxnb0xYdWxYVklCQzJJek9rOGFoUFZ2dDZ5d0xrUWFuX0E3TVNEWlZlbEZ3SkxnVkFsMXE4OQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">ロンドン株、続落で始まる 独・仏株も下落</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　11月20日 17:31</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMid0FVX3lxTE05NEJld3dYcWxxbXhEanhlMHJ6MXN0bEZ5VmtFN2lCYXJ6bng0Rm5vcUF6eHBKM2oxTjMzem1KMUl3aG1rQ284cDdkUlYzYXVJMUxFUWF5NldJcWNBVDhGS1d3ek1Oci1hZndIeTZ5TXVwY25QTks4?oc=5" target="_blank" rel="noopener"><h3 class="headline">SKハイニックス、キオクシアHDの筆頭株主へ－保有債券を株式転換</h3></a>
+      
+      <p class="meta"><span class="src">Bloomberg.com</span>　11月20日 17:30</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFBCVGpwd3pDYmZwbUl2Y3lZNG9melkwR3ByT0xrTmRUOENid0JGWjhjazdNLXVQX0NvVVczRzlVbWl5bmQwU1NrZTRMRnh4dnpmX1p3YnVrZkdNZGh4S0xv?oc=5" target="_blank" rel="noopener"><h3 class="headline">日本とサウジアラビア 原油の備蓄可能量3倍で合意</h3></a>
+      
+      <p class="meta"><span class="src">NHKニュース</span>　11月20日 17:26</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5CeXNjVEJCU2l6aS1QWTc1c0h3VTRiQnh0aVp6QTgwU0tEM0FRTG8zMExCR2ZoQ2dkQ0xFbWZTaWYzMzBKbnRBLTdmYVVzek12N05fZV9rQ1JaQ3pDbk9j?oc=5" target="_blank" rel="noopener"><h3 class="headline">不正アクセス履歴保全チーム『警察庁FFF』発足式</h3></a>
+      
+      <p class="meta"><span class="src">NHKニュース</span>　11月20日 17:26</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE95cVltd1lzVWNoV2Q3SWFMMWoybHhobzV4d1JqcmZ5a0dKbTRtaHh3dGt1bnd0RXUwTmJ0dkU2cmxzbU1fNk1yYUR6Y1M2b3hUZllVM0twMzdpSUlxZ1d3M0RldDJhZlhwNHdCc1ptdUpuOWZzUjBmYVFpYUxLQjA?oc=5" target="_blank" rel="noopener"><h3 class="headline">ヘンリー王子、必要ならロシアと戦うため軍に復帰する用意 英メディアに発言（CNN.co.jp）</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　11月20日 17:22</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTFBsM290ajl6SzRxU0NGdHllU1Zzei1SMENNZjRVOHFzTmFGa1lsa2V5OFktY1lDN1Z6TlNPMmdkTU8tclQyS2xEeGpWVzBtajR4Q0FwejF3OVpMalZDaWFKS2xNbUc?oc=5" target="_blank" rel="noopener"><h3 class="headline">明治がアイスやチーズなど値上げへ、「スーパーカップ」２０５円に…一部商品は内容量減も</h3></a>
+      
+      <p class="meta"><span class="src">読売新聞</span>　11月20日 17:10</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9oU2dCY09iNjJ3THFHMHJqZGl4T3pkaWJmeVVwVmVzR0FMaEoweTJwaWdMNUR4bWFsSTJFTEdXN0hibHpQTkVhNTRtMXBZekg5Z3EyNkVpZzNNdmxtTmxXSDNpY1UyS0RydklDN1FvbVdKb2FpdFdLdTZ1SHZGMFk?oc=5" target="_blank" rel="noopener"><h3 class="headline">ＪＴがロシア事業巡り「減配」、筆頭株主の政府の配当収入は予算額上回る見込み…片山財務相「支障全くない」</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　11月20日 17:06</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiS0FVX3lxTE1EU3hVYjM4VVV2dFpRSkVfbGZUcld1VEtSMk5OT2EzdjMySDBRYzhXT2tsWHNlMkdxZHY0T3NBVTFySHVvcTVHa0FWSQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">【速報】住基データ問題、ゲーム起動で感染か</h3></a>
+      
+      <p class="meta"><span class="src">47NEWS</span>　11月20日 17:05</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE9rSEw2YjUxaVJBWGwwbG9hSkNiZlpLT1RFWThKZTc2NmtXR3NEelVlSUxsZUN6TE9BbWJEMHJ1OXBhb2dNSUo0RVRoVkRKbUc0X1ZjVmNuSTJyLW9Uc0ozcA?oc=5" target="_blank" rel="noopener"><h3 class="headline">レーティング日報【最上位を継続＋目標株価を増額】 (11月20日)</h3></a>
+      
+      <p class="meta"><span class="src">株探</span>　11月20日 17:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9vbUN5NnpXOUFSYm5LaVVBcUduM01BMElORDJTRHVKYXBEWnh1b09tdzFBOGZ0MkhWVW9LVTliSDB5eDFqZWxfYjFPamd4TW83cHNfYkRDNWE4YlFmclU0UWVXTTRqUDYyajBiSE1qT1RnLXRhWE0wTHpPcWF1N1U?oc=5" target="_blank" rel="noopener"><h3 class="headline">ICC初代判事でノーベル平和賞のナビ・ピレイ氏 「言語道断」米トランプ政権の制裁めぐり 赤根所長を「孤立させてはならない」JNN単独取材（TBS NEWS DIG Powered by JNN）</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　11月20日 16:56</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE81VkpqX1ZkSFBxU0k3R3pwX0ZHbDJ2MUhJUEM3dkdYZ2htWkpUcGk1YjVmQTNvYnNHYVZoUXBVbV8wb3QxdjNTenY2ZWhHUUZxaEFFRUhTUVIzQQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">エヌビディア好決算でも日本株急落、その背景にある市場心理は？</h3></a>
+      
+      <p class="meta"><span class="src">トウシル</span>　11月20日 16:45</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE54ZEJFSnFaZU8yTElEbVVPTTZOQ0hEb25nNWhPTGhTcVk0NTRFWEFBd1g3bEpjSmk4UjhKdnJVeFNJb0VqbDlGdGI5enpsblhHNy1lcUN5bkRyUQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">李大統領 朝鮮半島の懸案「われわれが主導」＝米中ロ首脳会談受け</h3></a>
+      
+      <p class="meta"><span class="src">聯合ニュース</span>　11月20日 16:32</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE9Ga1ZpSDNlcFgxN0JYT2Z0SnAyTU1fYXdUOHZla3BJaEkzNEZXdm5QT0xRVnpQQzhKMzBTbTVabFUzYUwzNndlOEV4NlZ1NmY5WEI5VEd1UWxNclUxMWpWVU9PbVk0eVZxck1YcV9wbzd1Z2JZZWc?oc=5" target="_blank" rel="noopener"><h3 class="headline">楽天証券の情報漏洩、集団訴訟に向けたサイトに2万人超登録 「企業側の法的責任追及」</h3></a>
+      
+      <p class="meta"><span class="src">産経ニュース</span>　11月20日 16:19</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxOTmZLMEJTYUFZQlVmeFI5UWJSZ0Rad0gxNllQOXJZNk14SFNhWGVlZDNQTVpTYWF2UlNQckhyRXBNZkprX2lCOWY4dmFGUzA3S0stMnoxMkVpODJVYnRqaTNYUFhJaUNkOFg1OVpmTll4VTJ4aFB2UGRUY0JPOTFyaklIVlRkVU0?oc=5" target="_blank" rel="noopener"><h3 class="headline">来週の相場展望：好材料に反応薄、日経平均下げ止まりめどは？(ウエルスアドバイザー)</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ファイナンス</span>　11月20日 16:02</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBPNDB3V2RibnBjempVTGhOcWtEb21Ha2JFd0hCS0RFOHhpYTZCSW5tUWxUeWZaNFhxWUtBS2phVHlFWFU1azFjYUtXVUlVTXB4WHlSUEQwVmpXUXh5bWh0M2t2eURjM1RsUjMyWg?oc=5" target="_blank" rel="noopener"><h3 class="headline">新興株20日 グロース250が7日続落 HiJoJoは初値下回る</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　11月20日 15:48</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxQLVZjQTNyaGdPMFVzMnFJR0dDQkMtajh1RWV2RUo5a3MydDVnRTZLTkZ6OVN1c3ZDNFFIYVlkSjdtczVuTnQzZFdERldpV1RsNVRFX2VXX0JqY0FxUm94RHEyZlJsNUUtOU11djd4SkI4d2lieDhEbmRCX2tsdWVkQUNMMU9fQWliMFE?oc=5" target="_blank" rel="noopener"><h3 class="headline">対イラン戦費が約7兆7200億円 米軍（AFPBB News）</h3></a>
+      
+      <p class="meta"><span class="src">ｄメニューニュース</span>　11月20日 15:37</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE5PSmVhOGpFZjV0Z2lYZ1lHb3F4OFZHbDM3c3RiVFlkU1A2cTItVXNCNk1IZVBiRWlISGNILVJUZWRvcGtPdFV2cHdTTzBlR21wMG91YTZYZWJETy05V2NxTlBIRQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">「北朝鮮行き」の臆測流れる トランプ氏帰国機内で携帯没収</h3></a>
+      
+      <p class="meta"><span class="src">時事ドットコム</span>　11月20日 15:21</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxPbmszRFo5Q1BVTXdXMXFoWTRkNzFCcGdNVzEzMm5iTFBuWFRqalN0LXdKSU9Vb2t3X21aTGFUMjBndnlvcFBuSWt2d3liczRBRGNOV1RpWGUzakZpQXBLQmtPWWMzQ3dnb20wOHE1THZyY3lVeFpsY1dBWV9lVEU5UDJkWmM?oc=5" target="_blank" rel="noopener"><h3 class="headline">台湾、メタに数千の不審アカウント通報 中国の情報戦で選挙介入と指摘 | ロイター</h3></a>
+      
+      <p class="meta"><span class="src">Reuters</span>　11月20日 14:56</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTFBYUElKeFBaVzFvQmh4dHZtSUFHRE81REZieVJuM0xCUWthcnpEY1BSX0VvVi1tbEVXLVNtSm9WS3AwQUtFQ01peE03YlVZSGtzdmN5dnFvUHJyXzI2Vzc2eFpndTA?oc=5" target="_blank" rel="noopener"><h3 class="headline">日経平均終値、３００７円安の５万６４３６円…７か月ぶり５万７０００円割り込む</h3></a>
+      
+      <p class="meta"><span class="src">読売新聞</span>　11月20日 14:51</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE9Gdnk4TktKYmduSjhEbmVNVWtzUnVBYnc1RlN0bXpzWW5NaGY3VmI0RDdMTExzVzBPT0xoZXNiY19aOUtJRzVXTXk1angzRXRFQ3c?oc=5" target="_blank" rel="noopener"><h3 class="headline">「自宅さえ安全ではなかった」英女性、夫から13年間薬物を用いた性暴力受ける 仏ペリコ事件と酷似</h3></a>
+      
+      <p class="meta"><span class="src">AFPBB News</span>　11月20日 14:43</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTE53aGhvdkt3QXhLTVY3S2U0M1VHbHJJVUxhRmZtLXBwdjgzZkh6eVBCSExEUlBDUDQxODMwUW9ORzBrWXNhWEN3UTFGOU50SEc2U1hNV2wwZGk?oc=5" target="_blank" rel="noopener"><h3 class="headline">八戸でもしらす干しにフグ稚魚混入か｜速報｜Web東奥</h3></a>
+      
+      <p class="meta"><span class="src">東奥日報社</span>　11月20日 14:33</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE1vb055MmluRmdoMlViY1ZfcmhoUXRGWGhxWUlENGs2OFZFMGtqM3Vrd1JmaVoyUXlKSXlXUUcyRWtPcUhsNXF4QWVCQmFIQ0otbHJITVljeHoxci1ucVlfaFFzSnNjTWk5anBmTDZmWnRZZUdJSEFfNWVER3FwUdIBgwFBVV95cUxPMGJYbFFNczdYNUVfWGw3V3lCZlVqNmNPbVBUUnRwSXc4T0Eya1VzWkpEWjZoamVaTFpfT2VNTjI4Q1NZcW91NzZyUTFmdGdsSDlMLTNOWjlRUU1YYXN3NVQwRXI3NkdFNjdZWlZjSjF6Yk1kTG16TnRPaUk2ZUt0SkhTWQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">インドネシア・中国首脳会談、南シナ海協力や経済・投資を協議</h3></a>
+      
+      <p class="meta"><span class="src">ｄメニューニュース</span>　11月20日 14:30</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTE5fNFhSREh6eGplMW9tNlhGSF9oR180Y00yLXFRWVVFQ0NHSC1qQmxtVF8tdl9wZ2tONlZtQTh4S2dSbnQtZjNqZ3hySGhDMlQwVUVGd2RaTQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">【一時運転見合わせ】JR京都線の京都～吹田駅間 岸辺駅で人身事故</h3></a>
+      
+      <p class="meta"><span class="src">TBS NEWS DIG</span>　11月20日 14:28</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFBpWk84ZnlvUDZTR3Fwa3BXc2tPZHUtT19zVERXdjc4aGtGMjl4TDhna1ZzNmdhYVRCek41LVZlaUFXQnZub1I1cUVFVmp6aEtTZnpSRW5EQkVtczBld3Zr?oc=5" target="_blank" rel="noopener"><h3 class="headline">維新“中小企業の賃上げ促進税制など廃止を”来年度税制改正</h3></a>
+      
+      <p class="meta"><span class="src">NHKニュース</span>　11月20日 14:24</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFBGOXc1S0xfRGROVlhoV3hweXo3ZjVxN3dwT3dOVTdlOE5tSjdjWGJQN3J2dXVHZjdkaUkwZnRTbkd4SDJ2V3NlX20td2o4cWk5NDliQmtkdHdRWmQyU3hpVNIBZkFVX3lxTE1TRkE5ZDZONjFQMkxqTnJlcFBaaFBycHZRVUFmNEtBanlPUUFSaGRwbkxuN1BnRXlRQkV3M3VBdXhYOXU0UTBVMGxfQ3pYOXhKME9nWGU1Q09GQms4QWp4TWtTS1dxZw?oc=5" target="_blank" rel="noopener"><h3 class="headline">欧州諸国首脳、ウクライナでの戦争終結に向けてロシアと協議する用意あると</h3></a>
+      
+      <p class="meta"><span class="src">BBC</span>　11月20日 14:12</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8yT0N3al92Qzk2ZG16WmUxVXZpNTlWRGx0RngxWmdvc1hES1dTeGVCT1JuQ0pidlU0R0ZIRVBXc0phRUVNeDVkSEE4a05kXzdDZVlZUEUxbm0wQWhtd2FoQ2hRMm5ncTg?oc=5" target="_blank" rel="noopener"><h3 class="headline">「Amazon ブラックフライデー」、対象製品が一部公開 「Kindle」や「Apple Watch Series 12」など</h3></a>
+      
+      <p class="meta"><span class="src">ケータイ Watch</span>　11月20日 14:05</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE5RbzJBX2ZSTkRXMWhnTXNkdjljZ3laMDRrZzVrT2VUdWpuOUFvX0NCTXFmd1NXcWZ1bFNFeFpreWhLdjRWNmczd1pQalhuYlZQODV0M3lLbkxvcm56Z3lyalA0ZUJkTEtBUmxxZQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">スパコン富岳へ不正アクセス、認証情報430件流出 理研が調査委設置</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　11月20日 14:03</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE5sdkFPRmRoZDdlMllPc2FTVVJoRTEzaEdEd3dCUkFlSGpUZE1yVXNfV3hNaVQ1clRaYWt4dTU2S09EREVDZm1FUUtNS2hUSFJxd2ZjeDNDaUJKRUR4SjJRaEZKalVpdFRZMGc?oc=5" target="_blank" rel="noopener"><h3 class="headline">24.5インチ・有機EL、競技シーンの常識を変えるゲーミングモニター「ROG Swift OLED PG259QWS Ace」「ROG Strix OLED XG259QWPG Ace」の予約開始 | ASUS JAPAN株式会社のプレスリリース</h3></a>
+      
+      <p class="meta"><span class="src">PR TIMES</span>　11月20日 14:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxQOUp2bGpjVklYb0Fkc2xuZlZ1a19QUEhQWTdZMExqVUtZenNiVUZPRzhud1BGWTdsRnZheXVoUFRGRDJ6NnBQYWtHV3NTcGQ3YnJyTGlwUlNXRE1wM0ktSkN2dHphcmM2U0dGNmNIcTdrcHJCcFM0MzBVTFlxX3Zua09TVmtQQQ?oc=5" target="_blank" rel="noopener"><h3 class="headline">ウクライナのＮＡＴＯ加盟議論、欧州安保に「意味ある」＝仏大統領</h3></a>
+      
+      <p class="meta"><span class="src">Reuters</span>　11月20日 14:00</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE4zaTJ3NTRFcmQxaEtSR3ltekFaajNhd1BkSHhQdDJMY0pKUWZFN3hhRmszSGZ0a1pNOHpMNC1JQjJLTE5meUtpbG1VSzB6QXJBaWZ4akJTTnBSa3U4RTB2a3FoV05LNWZwdDlvYg?oc=5" target="_blank" rel="noopener"><h3 class="headline">トランプ米政権、アラスカ上院選の民主勝利を容認</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　11月20日 13:42</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQS01nMkNaZ2pUMHRqQV9kSFdfMDZubzAtT3lpUWpFU2ZQMDI2aG5Qa3g5WFJWR0pJbWNDU2FLUTY5M2ItdWd5MktXOFQxT2NLeHdjU1ZkYXhVc2F0d3dqMmVrem5Od1BsT0VUa18yczhyMGVsend6SWNvRmtVaW1zRw?oc=5" target="_blank" rel="noopener"><h3 class="headline">「Microsoft Office 2024」永続版や「Microsoft 365」が15%ポイント還元！楽天ブラックフライデー</h3></a>
+      
+      <p class="meta"><span class="src">AKIBA PC Hotline!</span>　11月20日 13:10</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxPYy1VTzdxeks0NjZpbGVfY3BYcXFPVFFEelV2YnVGRzQyVVc3NWlWT2FZWHNPSlZCZ2hFZ2RVTkppYzNRaHNTQW5pVmlMalh6YWpzOER5TTd1ZXdEaUNYaFA4Vk9Rd3R0eGVJWkhhVGlqMmFuUlNKemZMcVpjbVJ2Snd3S28?oc=5" target="_blank" rel="noopener"><h3 class="headline">【寄稿】米海軍に必要なフリゲート艦、日本にはある</h3></a>
+      
+      <p class="meta"><span class="src">WSJ</span>　11月20日 12:29</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE5ZR1UyTUo1NzdZYXFmeHpPYzVtSDJCMjl0Ylg2N0hEOE01RUVqRExlX2o1aWp4WXY0Znc1am9oNHZ5ZkIxOFdKZDJNY0xhN2FvdFZaVl9VTnE1b1NFSXpBbG0wbFZhaUFfaHI0dmlPbm5ScWVUVk9Oa1dpZ1ZoYzA?oc=5" target="_blank" rel="noopener"><h3 class="headline">トランプ氏、ウクライナへのNATO型「安全の保証」に前向き 米特使（ＡＦＰ＝時事）</h3></a>
+      
+      <p class="meta"><span class="src">Yahoo!ニュース</span>　11月20日 12:01</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9FbTJYQmZ0b1F6Y2kxc1VEZWhTZjZEY3JyQ3lzTTBBS3ZzNERfbUJQYW1sUUhGdVJ5QnFCdEx0SUFGRnNMNHk3VTl4b0VDZFc0SnhtdHRSbjlTdFVvUm81N2tvdmd5MEdwWDluYw?oc=5" target="_blank" rel="noopener"><h3 class="headline">商品11時30分 金が下げ幅拡大 NY金は3500ドル台に下落 原油は上げ幅縮小</h3></a>
+      
+      <p class="meta"><span class="src">日本経済新聞</span>　11月20日 11:52</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTFBmdFRqdjMxamVzTUlTd0xzbjNJcHJVSjF0ZmVPUW1UYjdoY1JDbjFUcU9NdGo3eE5pc0ZabUNHQ2s5LVI1YnJXOFlmM0xTWHBNemZ1a21DbHNudnUyQXpORWZmVXc?oc=5" target="_blank" rel="noopener"><h3 class="headline">Kia、乗用にも商用にも使えるバッテリEV「PV5」2027年モデル発表</h3></a>
+      
+      <p class="meta"><span class="src">Car Watch</span>　11月20日 11:37</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE1IRXBXMXN3dERBQ2RBNTNKTmFCWS15c3ZqSnUzQURULUFPOTVON2E0Nk96OE01Qnhnd0o1Y3ZWdXYyWVNGUHZWZjRONEcxbGwyX3NR?oc=5" target="_blank" rel="noopener"><h3 class="headline">セブン-イレブンと夜パフェ専門店「21時にアイス」コラボ、ざくっとチョコクッキー＆贅沢いちご</h3></a>
+      
+      <p class="meta"><span class="src">ファッションプレス</span>　11月20日 11:35</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE9WZlNJRjc5eWpyeURQTDFsVGFWQVdMSDl0QzAzaVBycC1OaGcyYU44dnBHc3dFT1pfTm5fSEwyMUF5NkxRTEw1blVUVWtVaXVESGEyaHJHczFXQm83TU9WbEVwNkw?oc=5" target="_blank" rel="noopener"><h3 class="headline">大型主力ロケット「Ｈ３」打ち上げ業務、ＪＡＸＡから三菱重工業に移管へ…世界的な需要応え受注拡大図る</h3></a>
+      
+      <p class="meta"><span class="src">読売新聞</span>　11月20日 11:12</p>
+    </article>
+    <article class="item extra">
+      <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9DTC1idUZYcDA1Q2RtNG9sTGhEa3FHYzlqVURKcGg3Nlk0RkdMX204Xy1DcE4tVWJXTUdFT2p1d3NxR2xycXZDT1Q0YURQczVnZDhsdDI0Z01HZ1hSdmdXOVd1YjFROUMz?oc=5" target="_blank" rel="noopener"><h3 class="headline">トランプ政権,緊迫する中東情勢：ICC批判に執着したトランプ氏 イランと戦闘中に「平和宣言」</h3></a>
+      
+      <p class="meta"><span class="src">毎日新聞</span>　11月20日 11:00</p>
+    </article>
+    <button class="more-btn" data-count="86">もっとみる（あと86件）▼</button>
+  </section>
+
+  <section class="card section">
+    <div class="section-head"><h2><span class="material-symbols-outlined">eco</span>ライフハック</h2><span class="count">0件</span></div>
+    <p class="empty-note">今朝は新着なしやで。</p>
+  </section>
+
+  <footer>
+    啓報　—　10:50 刷り上がり ／ produced by くろえもん
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.more-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var sec = btn.closest('.section');
+      sec.classList.toggle('open');
+      var n = btn.dataset.count;
+      btn.textContent = sec.classList.contains('open')
+        ? '閉じる ▲'
+        : 'もっとみる（あと' + n + '件）▼';
+    });
+  });
+</script>
+</body>
+</html>
